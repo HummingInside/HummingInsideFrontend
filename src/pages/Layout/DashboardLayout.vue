@@ -4,26 +4,118 @@
 
     <side-bar :background-color="backgroundColor">
       <!-- <mobile-menu slot="content"></mobile-menu> -->
-      <sidebar-link to="/dashboard">
-        <i class="tim-icons icon-chart-pie-36"></i>
+      <sidebar-link to="/a">
+        <i class="tim-icons icon-spaceship"></i>
         <template>
           <p>New & Hot</p>
         </template>
       </sidebar-link>
-      <sidebar-link to="/dashboard">
-        <i class="tim-icons icon-chart-pie-36"></i>
+      <sidebar-link to="/b">
+        <i class="tim-icons icon-bell-55"></i>
         <template>
           <p>Ongoing</p>
         </template>
       </sidebar-link>
-      <sidebar-link to="/dashboard">
-        <i class="tim-icons icon-chart-pie-36"></i>
+      <sidebar-link to="/c">
+        <i class="tim-icons icon-pin"></i>
         <template>
           <p>Upcoming</p>
         </template>
       </sidebar-link>
+      <hr style="border-color: rgba(255, 255, 255, .45);"/>
+      <sidebar-link to="/d">
+        <i class="tim-icons icon-app"></i>
+        <template>
+          <p>My Concerts</p>
+        </template>
+      </sidebar-link>
+      <sidebar-link to="/e">
+        <i class="tim-icons icon-bag-16"></i>
+        <template>
+          <p>My Tickets</p>
+        </template>
+      </sidebar-link>
+      <hr style="border-color: rgba(255, 255, 255, .45);"/>
       <sidebar-link to="/dashboard">
-        <i class="tim-icons icon-chart-pie-36"></i>
+        <i class="tim-icons icon-headphones"></i>
+        <template>
+          <p>Rock</p>
+        </template>
+      </sidebar-link>
+      <sidebar-link to="/dashboard">
+        <i class="tim-icons icon-headphones"></i>
+        <template>
+          <p>Blues</p>
+        </template>
+      </sidebar-link>
+      <sidebar-link to="/dashboard">
+        <i class="tim-icons icon-headphones"></i>
+        <template>
+          <p>Jazz</p>
+        </template>
+      </sidebar-link>
+      <sidebar-link to="/dashboard">
+        <i class="tim-icons icon-headphones"></i>
+        <template>
+          <p>Hip Hop Music</p>
+        </template>
+      </sidebar-link>
+      <sidebar-link to="/dashboard">
+        <i class="tim-icons icon-headphones"></i>
+        <template>
+          <p>Folk Music</p>
+        </template>
+      </sidebar-link>
+      <sidebar-link to="/dashboard">
+        <i class="tim-icons icon-headphones"></i>
+        <template>
+          <p>Classical Music</p>
+        </template>
+      </sidebar-link>
+      <sidebar-link to="/dashboard">
+        <i class="tim-icons icon-headphones"></i>
+        <template>
+          <p>Dashboard</p>
+        </template>
+      </sidebar-link>
+      <sidebar-link to="/dashboard">
+        <i class="tim-icons icon-headphones"></i>
+        <template>
+          <p>Dashboard</p>
+        </template>
+      </sidebar-link>
+      <sidebar-link to="/dashboard">
+        <i class="tim-icons icon-headphones"></i>
+        <template>
+          <p>Dashboard</p>
+        </template>
+      </sidebar-link>
+      <sidebar-link to="/dashboard">
+        <i class="tim-icons icon-headphones"></i>
+        <template>
+          <p>Dashboard</p>
+        </template>
+      </sidebar-link>
+      <sidebar-link to="/dashboard">
+        <i class="tim-icons icon-headphones"></i>
+        <template>
+          <p>Dashboard</p>
+        </template>
+      </sidebar-link>
+      <sidebar-link to="/dashboard">
+        <i class="tim-icons icon-headphones"></i>
+        <template>
+          <p>Dashboard</p>
+        </template>
+      </sidebar-link>
+      <sidebar-link to="/dashboard">
+        <i class="tim-icons icon-headphones"></i>
+        <template>
+          <p>Dashboard</p>
+        </template>
+      </sidebar-link>
+      <sidebar-link to="/dashboard">
+        <i class="tim-icons icon-headphones"></i>
         <template>
           <p>Dashboard</p>
         </template>
