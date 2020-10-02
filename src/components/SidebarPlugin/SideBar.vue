@@ -32,11 +32,11 @@ export default{
   props: {
     abv: {
       type: String,
-      default: "CT"
+      default: "HI"
     },
     title: {
       type: String,
-      default: "Creative Tim"
+      default: "Humming Inside"
     },
     backgroundColor: {
       type: String,
