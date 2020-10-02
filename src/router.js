@@ -21,6 +21,31 @@ const routes = [{
       component: Dashboard
     },
     {
+      path: "a",
+      name: "New & Hot",
+      component: Dashboard
+    },
+    {
+      path: "b",
+      name: "Ongoing",
+      component: Dashboard
+    },
+    {
+      path: "c",
+      name: "Upcoming",
+      component: Dashboard
+    },
+    {
+      path: "d",
+      name: "My Concerts",
+      component: Dashboard
+    },
+    {
+      path: "e",
+      name: "My Tickets",
+      component: Dashboard
+    },
+    {
       path: "icons",
       name: "Icons",
       component: Icons
