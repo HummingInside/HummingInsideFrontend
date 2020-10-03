@@ -1,20 +1,3 @@
-/*!
-
-=========================================================
-* Vue White Dashboard - v1.0.0
-=========================================================
-
-* Product Page: https://www.creative-tim.com/product/vue-white-dashboard
-* Copyright 2019 Creative Tim (https://www.creative-tim.com)
-* Licensed under MIT (https://github.com/creativetimofficial/vue-white-dashboard/blob/master/LICENSE.md)
-
-* Coded by Creative Tim
-
-=========================================================
-
-* The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
-
-*/
 import Vue from "vue";
 import VueRouter from "vue-router";
 import SocialSharing from "vue-social-sharing"
@@ -28,7 +11,6 @@ import "@/assets/demo/demo.css";
 
 import GlobalComponents from "./globalComponents";
 import GlobalDirectives from "./globalDirectives";
-import RTLPlugin from "./RTLPlugin";
 import Notify from "@/components/NotificationPlugin";
 import i18n from "./i18n"
 import SideBar from "@/components/SidebarPlugin";
@@ -50,7 +32,6 @@ Vue.use(SocialSharing);
 Vue.use(VueGitHubButtons, { useCache: true });
 Vue.use(GlobalComponents);
 Vue.use(GlobalDirectives);
-Vue.use(RTLPlugin);
 Vue.use(SideBar);
 Vue.use(Notify);
 

@@ -8,7 +8,7 @@
             {{ abv }}
           </a>
 
-          <a href="javascript:void(0)" class="simple-text logo-normal" :class="$rtl.isRTL ? '' : 'text-left'">
+          <a href="javascript:void(0)" class="simple-text logo-normal">
             {{ title }}
           </a>
         </div>
@@ -53,9 +53,6 @@ export default{
     }
   },
   computed:{
-    isRTL() {
-      return this.$rtl.isRTL;
-    }
   },
   methods:{
     findActiveLink(){

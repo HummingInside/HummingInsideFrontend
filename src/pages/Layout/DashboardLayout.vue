@@ -1,9 +1,6 @@
 <template>
   <div class="wrapper">
-    <!-- <div class="wrapper" :class="{'nav-open': $sidebar.showSidebar}"> -->
-
     <side-bar :background-color="backgroundColor">
-      <!-- <mobile-menu slot="content"></mobile-menu> -->
       <sidebar-link to="/a">
         <i class="tim-icons icon-spaceship"></i>
         <template>
@@ -167,9 +164,9 @@
 
     <div class="main-panel" :data="backgroundColor">
       <top-navbar></top-navbar>
-
-      <dashboard-content @click.native="toggleSidebar"></dashboard-content>
-
+      <transition @click.native="toggleSidebar" name="fade" mode="out-in">
+        <router-view></router-view>
+      </transition>
       <content-footer></content-footer>
     </div>
   </div>
@@ -178,7 +175,6 @@
 <script>
 import TopNavbar from "./TopNavbar.vue";
 import ContentFooter from "./ContentFooter.vue";
-import DashboardContent from "./DashboardContent.vue";
 import SidebarShare from "./SidebarSharePlugin.vue";
 import SideBar from "@/components/SidebarPlugin/SideBar.vue";
 import SidebarLink from "@/components/SidebarPlugin/SidebarLink.vue";
@@ -186,7 +182,6 @@ import SidebarLink from "@/components/SidebarPlugin/SidebarLink.vue";
 export default {
   components: {
     TopNavbar,
-    DashboardContent,
     ContentFooter,
     SideBar,
     SidebarLink,
