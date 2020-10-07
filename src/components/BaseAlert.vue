@@ -36,6 +36,7 @@
     },
     data(){
       return{
+
         visible: true
       }
     },
@@ -46,5 +47,5 @@
     }
   }
 </script>
-<style>
+<style scoped="scss">
 </style>

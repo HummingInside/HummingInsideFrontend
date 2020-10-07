@@ -3,7 +3,7 @@
     <div class="card-image" v-if="$slots.image">
       <slot name="image"></slot>
     </div>
-    <div class="card-header" :class="isRTL ? 'text-right' : 'text-left'" v-if="$slots.header || title">
+    <div class="card-header text-right" v-if="$slots.header || title">
       <slot name="header">
         <h5 class="card-category" v-if="subTitle">{{subTitle}}</h5>
         <h2 class="card-title"><i v-if="icon" class="tim-icons" :class="icon"></i>{{ title }}</h2>
@@ -31,9 +31,6 @@ export default{
     icon: String
   },
   computed:{
-    isRTL() {
-      return this.$rtl.isRTL;
-    }
   }
 }
 </script>

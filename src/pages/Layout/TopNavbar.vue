@@ -25,7 +25,7 @@
         <span class="navbar-toggler-bar navbar-kebab"></span>
       </button>
       <div class="collapse navbar-collapse show text-left" v-show="showMenu">
-        <ul class="navbar-nav" :class="$rtl.isRTL ? 'mr-auto' : 'ml-auto'">
+        <ul class="navbar-nav ml-auto">
           <li class="search-bar input-group"  @click="searchModalVisible = true">
             <button class="btn btn-link" id="search-button" data-toggle="modal" data-target="#searchModal"><i class="tim-icons icon-zoom-split"></i>
               <span class="d-lg-none d-md-block">Search</span>
@@ -106,9 +106,6 @@ import {
       }
     },
     computed:{
-      isRTL() {
-        return this.$rtl.isRTL;
-      }
     }
   }
 </script>
