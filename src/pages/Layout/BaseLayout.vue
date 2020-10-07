@@ -160,7 +160,6 @@
         </template>
       </sidebar-link>
     </side-bar>
-    <sidebar-share :background-color.sync="backgroundColor"></sidebar-share>
 
     <div class="main-panel" :data="backgroundColor">
       <top-navbar></top-navbar>
@@ -175,7 +174,6 @@
 <script>
 import TopNavbar from "./TopNavbar.vue";
 import ContentFooter from "./ContentFooter.vue";
-import SidebarShare from "./SidebarSharePlugin.vue";
 import SideBar from "@/components/SidebarPlugin/SideBar.vue";
 import SidebarLink from "@/components/SidebarPlugin/SidebarLink.vue";
 
@@ -185,7 +183,6 @@ export default {
     ContentFooter,
     SideBar,
     SidebarLink,
-    SidebarShare
   },
   data() {
     return {

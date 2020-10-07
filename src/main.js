@@ -9,24 +9,20 @@ import '@/assets/css/nucleo-icons.css';
 import "@/assets/demo/demo.css";
 
 
+import routes from "./router";
 import GlobalComponents from "./globalComponents";
 import GlobalDirectives from "./globalDirectives";
 import Notify from "@/components/NotificationPlugin";
-import i18n from "./i18n"
 import SideBar from "@/components/SidebarPlugin";
-
 
 Vue.config.productionTip = false;
 
-// router setup
-import routes from "./router";
-
-// configure router
 const router = new VueRouter({
   routes, // short for routes: routes
   linkExactActiveClass: "active"
 });
 
+// router setup
 Vue.use(VueRouter);
 Vue.use(SocialSharing);
 Vue.use(VueGitHubButtons, { useCache: true });
@@ -37,6 +33,5 @@ Vue.use(Notify);
 
 new Vue({
   router,
-  i18n,
   render: h => h(App)
 }).$mount("#app");
