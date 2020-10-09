@@ -1,5 +1,5 @@
 <template>
-  <card class="test" type="user">
+  <card type="user">
     <div class="author">
       <div class="block block-one"></div>
       <div class="block block-two"></div>
