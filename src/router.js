@@ -10,6 +10,7 @@ import Typography from "@/pages/Typography.vue";
 import ConcertDetail from "./pages/ConcertDetail";
 import SignIn from "./pages/SignIn";
 import SignUp from "./pages/SignUp";
+import LiveConcert from "./pages/LiveConcert";
 import AuthLayout from "@/pages/Layout/AuthLayout";
 
 
@@ -40,6 +41,11 @@ const routes = [
         path: "concerts/:pk",
         name: "concert-detail",
         component: ConcertDetail,
+      },
+      {
+        path: "concerts/:pk/live",
+        name: "concert-detail",
+        component: LiveConcert,
       },
       {
         path: "concerts",
