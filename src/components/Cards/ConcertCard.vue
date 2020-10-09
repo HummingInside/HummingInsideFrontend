@@ -1,7 +1,7 @@
 <template>
   <div class="card" :class="[type && `card-${type}`]">
-    <div class="card-image" v-if="img">
-      <img :src="img">
+    <div class="card-image" v-if="imgUrl">
+      <img :src="imgUrl">
     </div>
     <div class="card-header text-right" v-if="title">
       <div class="card-title">{{ title }}</div>
@@ -20,7 +20,7 @@ export default{
   props: {
     title: String,
     performer: String,
-    img: String,
+    imgUrl: String,
     likesCount: Number,
     status: String,
     date: String
@@ -44,7 +44,7 @@ export default{
 .UPCOMING {
   background-color: #0082f2;
 }
-.ONAIR {
+.ON-AIR {
   background-color: #e14e77;
 }
 .ENDED {

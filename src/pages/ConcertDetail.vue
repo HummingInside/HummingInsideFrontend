@@ -47,8 +47,8 @@
     </div>
     <div class="row desc-row mt-1">
       <div class="col-lg-12 font-weight-bold">
-        <base-button class="big-button blue-gradation">Reservation</base-button>
-        <base-button class="small-button pink-gradation">🤍</base-button>
+        <base-button class="big-button blue-color">Reservation</base-button>
+        <base-button class="small-button pink-color">🤍</base-button>
       </div>
     </div>
   </div>
@@ -110,15 +110,18 @@ export default {
     padding: 1rem 1rem;
     font-size: 1.1rem;
   }
-  .pink-gradation {
-    background-image: linear-gradient(to bottom left, pink, deeppink) !important;
+  .pink-color {
+    background-color: #e14eca !important;
   }
-  .blue-gradation {
-    background-image: linear-gradient(to bottom left, dodgerblue, white) !important;
+  .blue-color {
+    background-color: #0082f2 !important;
   }
   .title{
     color: #333;
     font-size: 2rem;
+  }
+  .btn {
+    background-image: none !important;
   }
   .desc-row{
     margin-bottom: 0.5rem;

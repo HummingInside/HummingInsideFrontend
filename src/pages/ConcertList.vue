@@ -7,7 +7,7 @@
         :title="concert.title"
         :performer="concert.performer"
         :date="concert.date"
-        :img="concert.img"
+        :imgUrl="concert.imgUrl"
         :status="concert.status"
         :likesCount="concert.likesCount"
         >
@@ -33,7 +33,7 @@ export default {
         {
           title: 'DMZPOP DRIVE IN CONCERT',
           performer: 'Psy',
-          img: 'http://tkfile.yes24.com/upload2/perfblog/202009/20200911/20200911-37429_1.jpg/dims/quality/70/',
+          imgUrl: 'http://tkfile.yes24.com/upload2/perfblog/202009/20200911/20200911-37429_1.jpg/dims/quality/70/',
           date: '2020.10.09 / 18:00',
           status: 'UPCOMING',
           likesCount: 10
@@ -41,15 +41,15 @@ export default {
         {
           title: 'Forestella Concert',
           performer: 'Forestella',
-          img: 'http://tkfile.yes24.com/upload2/perfblog/202009/20200909/20200909-37516_11.jpg/dims/quality/70/',
+          imgUrl: 'http://tkfile.yes24.com/upload2/perfblog/202009/20200909/20200909-37516_11.jpg/dims/quality/70/',
           date: '2020.10.06 / 09:00',
-          status: 'ONAIR',
+          status: 'ON-AIR',
           likesCount: 30
         },
         {
           title: 'Christopher concert in Korea',
           performer: 'Chirstopher',
-          img: 'http://tkfile.yes24.com/upload2/perfblog/202007/20200729/20200729-36086_1.jpg/dims/quality/70/',
+          imgUrl: 'http://tkfile.yes24.com/upload2/perfblog/202007/20200729/20200729-36086_1.jpg/dims/quality/70/',
           date: '2021.01.15 / 13:00',
           status: 'ENDED',
           likesCount: 1000
@@ -57,7 +57,7 @@ export default {
         {
           title: '2020 Myungsub Choi Solo Concert',
           performer: 'Myungsub Choi',
-          img: 'http://tkfile.yes24.com/upload2/perfblog/202008/20200818/20200818-37419_11.jpg/dims/quality/70/',
+          imgUrl: 'http://tkfile.yes24.com/upload2/perfblog/202008/20200818/20200818-37419_11.jpg/dims/quality/70/',
           date: '2020.12.31 / 20:00',
           status: 'UPCOMING',
           likesCount: 400
@@ -65,7 +65,7 @@ export default {
         {
           title: 'Jiyoung Baek National Tour',
           performer: 'Jiyoung Baek',
-          img: 'http://tkfile.yes24.com/upload2/perfblog/202008/20200826/20200826-37467_1.jpg/dims/quality/70/',
+          imgUrl: 'http://tkfile.yes24.com/upload2/perfblog/202008/20200826/20200826-37467_1.jpg/dims/quality/70/',
           date: '2020.11.28 / 18:00',
           status: 'ENDED',
           likesCount: 350
@@ -73,9 +73,9 @@ export default {
         {
           title: 'Phantom Signer Concert',
           performer: 'KBS',
-          img: 'http://tkfile.yes24.com/upload2/perfblog/202008/20200828/20200828-37463_1.jpg/dims/quality/70/',
+          imgUrl: 'http://tkfile.yes24.com/upload2/perfblog/202008/20200828/20200828-37463_1.jpg/dims/quality/70/',
           date: '2020.10.08 / 19:00',
-          status: 'ONAIR',
+          status: 'ON-AIR',
           likesCount: 20
         },
       ],
