@@ -1,5 +1,5 @@
 <template>
-  <card class="test">
+  <card>
     <template slot="header">
       <h5 class="title">Sign up to HummingInside</h5>
     </template>
