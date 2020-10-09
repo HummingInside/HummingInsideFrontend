@@ -1,15 +1,24 @@
 <template>
-    <div>
-        로그인
+  <div class="content">
+    <div class="row">
+      <div class="col-md-4">
+        <sign-in-card :model="model">
+        </sign-in-card>
+      </div>
     </div>
+  </div>
 </template>
-
 <script>
-    export default {
-        name: "SignUp"
+import SignInCard from "@/pages/Profile/SignInCard";
+
+export default{
+  components:{
+    SignInCard
+  },
+  data() {
+    return {
     }
+  }
+}
 </script>
-
-<style scoped>
-
-</style>
+<style></style>
