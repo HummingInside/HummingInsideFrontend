@@ -1,4 +1,5 @@
 import Card from "./Cards/Card.vue";
+import ConcertCard from "@/components/Cards/ConcertCard";
 import BaseInput from "./Inputs/BaseInput.vue";
 import SidebarPlugin from "./SidebarPlugin/index";
 import BaseAlert from "./BaseAlert";
@@ -14,6 +15,7 @@ import Notifications from "./NotificationPlugin/index";
 
 let components = {
   Card,
+  ConcertCard,
   BaseInput,
   SidebarPlugin,
   BaseAlert,
@@ -30,6 +32,7 @@ let components = {
 
 export{
   Card,
+  ConcertCard,
   BaseInput,
   SidebarPlugin,
   BaseAlert,
