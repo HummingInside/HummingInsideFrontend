@@ -10,20 +10,27 @@ import Typography from "@/pages/Typography.vue";
 import ConcertDetail from "./pages/ConcertDetail";
 import SignIn from "./pages/SignIn";
 import SignUp from "./pages/SignUp";
+import AuthLayout from "@/pages/Layout/AuthLayout";
 
 
 const routes = [
   {
-    path: "/sign-in",
-    name: 'sign-in',
-    component: SignIn,
+    path: "/",
+    component: AuthLayout,
+    children: [
+      {
+        path: "sign-in",
+        name: 'sign-in',
+        component: SignIn,
+      },
+      {
+        path: "sign-up",
+        name: 'sign-up',
+        component: SignUp,
+      }
+    ]
   },
   {
-    path: "/sign-up",
-    name: 'sign-up',
-    component: SignUp,
-  }
-  ,{
     path: "/",
     component: BaseLayout,
     redirect: "dashboard",
