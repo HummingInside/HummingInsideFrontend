@@ -17,6 +17,7 @@ const routes = [
   {
     path: "/",
     component: AuthLayout,
+    redirect: "dashboard",
     children: [
       {
         path: "sign-in",
