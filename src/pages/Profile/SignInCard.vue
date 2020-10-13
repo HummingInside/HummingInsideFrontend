@@ -1,26 +1,23 @@
 <template>
-  <card type="user">
+  <card class="auth-card" type="user">
     <div class="author">
-      <div class="block block-one"></div>
-      <div class="block block-two"></div>
-      <div class="block block-three"></div>
-      <div class="block block-four"></div>
       <a href="#">
-        <img class="avatar" src="../../assets/img/anime6.png" alt="...">
+        <img class="avatar" src="../../assets/img/bird-icon.png" alt="...">
         <h5 class="title">Sign in to HummingInside</h5>
       </a>
     </div>
     <div class="row">
-      <div class="col-md-12 text-left">
+      <div class="col-md-10 text-left" style="margin-left: 35px">
         <base-input label="Email address"
                     type="email"
-                    placeholder="mike@email.com">
+                    placeholder="mike@email.com"
+                    v-model="email">
         </base-input>
       </div>
     </div>
 
     <div class="row">
-      <div class="col-md-12 text-left">
+      <div class="col-md-10 text-left" style="margin-left: 35px">
         <base-input label="Password"
                     placeholder="Password">
         </base-input>
@@ -28,8 +25,14 @@
     </div>
 
     <template slot="footer">
-      <base-button type="success" fill>Sign In</base-button>
-      <base-button type="success" fill>Sign Up</base-button>
+      <div class="signin-button">
+        <base-button type="success" fill>Sign In</base-button>
+        <!--<base-button v-on:click="link">Sign Up</base-button>-->
+      </div>
+      <div class="signup-link">
+        <router-link to="/sign-up" class="text-light"><small>Create new account</small></router-link> /
+        <router-link to="/sign-up" class="text-light"><small>Forget your password?</small></router-link>
+      </div>
     </template>
   </card>
 </template>
@@ -47,6 +50,11 @@ export default {
     BaseButton,
     BaseInput
   },
+  data: function (){
+    return {
+      email: '',
+    }
+  },
   props: {
     user: {
       type: Object,
@@ -54,11 +62,29 @@ export default {
         return {};
       }
     }
+  },
+  methods:{
+    link: function (){
+      this.$router.push('/sign-up')
+    }
   }
-}
+};
 </script>
 <style>
 .title{
   font-size: 25px;
+}
+.auth-card .author .avatar{
+  border: initial;
+  border-radius: initial;
+}
+
+.signin-button{
+  text-align: center;
+}
+
+.signup-link{
+  text-align: center;
+  color: #adb5bd !important;
 }
 </style>
