@@ -1,7 +1,9 @@
 <template>
   <card>
     <template slot="header">
-      <h5 class="title">Sign up to HummingInside</h5>
+      <h5 class="title">
+        <img class="avatar" src="../../assets/img/bird-icon.png" alt="..." style="border: initial; border-radius: initial; float: left">
+        Sign up to HummingInside</h5>
     </template>
     <div class="row">
       <div class="col-md-12 text-left">
@@ -37,7 +39,9 @@
     </div>
 
     <template slot="footer">
-      <base-button type="success" fill>Sign Up</base-button>
+      <div style="text-align: center">
+        <base-button type="success" fill>Confirm</base-button>
+      </div>
     </template>
   </card>
 </template>
@@ -62,9 +66,15 @@ export default{
         return {};
       }
     }
-  }
+  },
+  methods:{
 
+  }
 }
 </script>
 <style>
+.card{
+  padding: 40px 30px 30px 30px;
+  border-radius: 3%;
+}
 </style>

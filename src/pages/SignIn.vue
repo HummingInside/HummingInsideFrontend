@@ -1,7 +1,7 @@
 <template>
   <div class="content">
     <div class="row">
-      <div class="col-md-4">
+      <div class="col-md-5">
         <sign-in-card :model="model">
         </sign-in-card>
       </div>
@@ -14,6 +14,11 @@ import SignInCard from "@/pages/Profile/SignInCard";
 export default{
   components:{
     SignInCard
+  },
+  props:{
+    model:{
+
+    }
   },
   data() {
     return {
