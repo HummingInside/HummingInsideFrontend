@@ -15,10 +15,11 @@
         </base-input>
       </div>
     </div>
-
     <div class="row">
       <div class="col-md-10 text-left" style="margin-left: 35px">
         <base-input label="Password"
+                    type="password"
+                    v-model="password"
                     placeholder="Password">
         </base-input>
       </div>
@@ -26,8 +27,7 @@
 
     <template slot="footer">
       <div class="signin-button">
-        <base-button type="success" fill>Sign In</base-button>
-        <!--<base-button v-on:click="link">Sign Up</base-button>-->
+        <base-button type="success" fill v-on:click="onSubmit">Sign In</base-button>
       </div>
       <div class="signup-link">
         <router-link to="/sign-up" class="text-light"><small>Create new account</small></router-link> /
@@ -43,30 +43,33 @@ import {
 } from "@/components/index";
 
 import BaseButton from '@/components/BaseButton';
+import { mapState } from "vuex";
+import { LOGIN } from "@/store/actions.type";
 
 export default {
+  name:'SignInCard',
   components: {
     Card,
     BaseButton,
     BaseInput
   },
-  data: function (){
+  methods: {
+    onSubmit:function() {
+      this.$store
+          .dispatch(LOGIN, { email: this.email, password: this.password })
+          .then(() => this.$router.push({ name: "concert-list" }));
+    }
+  },
+  data() {
     return {
-      email: '',
-    }
+      email: null,
+      password: null
+    };
   },
-  props: {
-    user: {
-      type: Object,
-      default: () => {
-        return {};
-      }
-    }
-  },
-  methods:{
-    link: function (){
-      this.$router.push('/sign-up')
-    }
+  computed: {
+    ...mapState({
+      errors: state => state.auth.errors
+    })
   }
 };
 </script>
