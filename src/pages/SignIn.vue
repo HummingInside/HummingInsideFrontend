@@ -12,18 +12,19 @@
 import SignInCard from "@/pages/Profile/SignInCard";
 
 export default{
+  name: 'SignIn',
   components:{
     SignInCard
   },
-  props:{
-    model:{
-
-    }
+  methods: {
   },
   data() {
     return {
-    }
+      model:{
+
+      }
+    };
   }
-}
+};
 </script>
 <style></style>
