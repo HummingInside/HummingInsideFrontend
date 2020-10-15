@@ -7,7 +7,7 @@ import App from "./App.vue";
 import '@/assets/scss/white-dashboard.scss';
 import '@/assets/css/nucleo-icons.css';
 import "@/assets/demo/demo.css";
-
+import store from "./store";
 
 import routes from "./router";
 import GlobalComponents from "./globalComponents";
@@ -35,5 +35,6 @@ Vue.use(Notify);
 
 new Vue({
   router,
+  store,
   render: h => h(App)
 }).$mount("#app");
