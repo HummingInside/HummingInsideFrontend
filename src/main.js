@@ -14,13 +14,15 @@ import GlobalComponents from "./globalComponents";
 import GlobalDirectives from "./globalDirectives";
 import Notify from "@/components/NotificationPlugin";
 import SideBar from "@/components/SidebarPlugin";
-
-Vue.config.productionTip = false;
+import ApiService from "./common/api.service";
 
 const router = new VueRouter({
   routes, // short for routes: routes
   linkExactActiveClass: "active"
 });
+
+ApiService.init();
+Vue.config.productionTip = false
 
 // router setup
 Vue.use(VueRouter);

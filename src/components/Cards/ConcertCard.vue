@@ -14,6 +14,7 @@
     </div>
   </div>
 </template>
+
 <script>
 export default{
   name:"card",
@@ -25,10 +26,10 @@ export default{
     status: String,
     date: String
   },
-  computed:{
-  }
+  methods : {}
 }
 </script>
+
 <style>
 @import url(http://fonts.googleapis.com/earlyaccess/notosanskr.css);
 

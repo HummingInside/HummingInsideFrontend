@@ -22,7 +22,6 @@ import {
   ConcertCard
 } from "@/components/index";
 
-
 export default {
   components: {
     ConcertCard,
@@ -83,11 +82,10 @@ export default {
   },
   computed:{
   },
-  methods:{
+  methods: {
+
   },
   mounted(){
-  },
-  beforeDestroy() {
   }
 }
 </script>
