@@ -1,5 +1,5 @@
 <template>
-  <div class="card" :class="[type && `card-${type}`]">
+  <div class="card">
     <div class="card-image" v-if="imgUrl">
       <img :src="imgUrl">
     </div>
@@ -41,6 +41,7 @@ export default{
 
 .card {
   font-family: 'Noto Sans KR', sans-serif;
+  padding: 0 !important;
 }
 .UPCOMING {
   background-color: #0082f2;

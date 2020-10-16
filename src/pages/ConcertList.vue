@@ -4,12 +4,12 @@
       <div class="col-xl-3 col-lg-4 col-sm-6"
            v-for="(concert, index) in concerts">
         <ConcertCard
-        :title="concert.title"
-        :performer="concert.performer"
-        :date="concert.date"
-        :imgUrl="concert.imgUrl"
-        :status="concert.status"
-        :likesCount="concert.likesCount"
+          :title="concert.title"
+          :performer="concert.performer"
+          :date="concert.date"
+          :imgUrl="concert.imgUrl"
+          :status="concert.status"
+          :likesCount="concert.likesCount"
         >
         </ConcertCard>
       </div>
