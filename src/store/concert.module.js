@@ -63,7 +63,7 @@ export const actions = {
     },
     [FETCH_CONCERTS]({ commit }, params){
         commit(FETCH_START);
-        return ConcertsService.query(params.type, params.filters)
+        return ConcertsService.query(params)
             .then(({ data }) => {
                 commit(FETCH_END, data)
             })

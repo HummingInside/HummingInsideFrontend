@@ -62,12 +62,16 @@ import store from "@/store";
 import { FETCH_CONCERT } from "@/store/actions.type";
 
 export default {
-  methods: {},
+  methods: {
+    loadConcert(){
+      store.dispatch(FETCH_CONCERT, this.$route.params.pk)
+    }
+  },
   computed: {
     ...mapGetters(['concert'])
   },
   created() {
-    store.dispatch(FETCH_CONCERT, this.$route.params.pk)
+    this.loadConcert()
   }
 }
 </script>

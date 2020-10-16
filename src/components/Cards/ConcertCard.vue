@@ -1,30 +1,28 @@
 <template>
-  <div class="card">
-    <div class="card-image" v-if="imgUrl">
-      <img :src="imgUrl">
+  <router-link class="card" :to="{ name: 'concert-detail', params: {pk :concert.id} }">
+    <div class="card-image" v-if="concert.imgUrl">
+      <img :src="concert.imgUrl">
     </div>
-    <div class="card-header text-right" v-if="title">
-      <div class="card-title">{{ title }}</div>
+    <div class="card-header text-right" v-if="concert.title">
+      <div class="card-title">{{ concert.title }}</div>
     </div>
     <div class="card-body text-right">
-      <div v-if="date">{{ date }}</div>
-      <div v-if="performer">{{ performer }}</div>
-      <span class="badge badge-pill mr-1 badge-primary likesCount">🤍 <span>{{ likesCount }}</span></span>
-      <span class="badge badge-pill" :class="status">{{ status }}</span>
+      <div v-if="concert.date" style="color: #2c3e50 !important;">{{ concert.date }}</div>
+      <div v-if="concert.performer" style="color: #2c3e50 !important;">{{ concert.performer }}</div>
+      <span class="badge badge-pill mr-1 badge-primary likesCount">🤍 <span>{{ concert.likesCount }}</span></span>
+      <span class="badge badge-pill" :class="concert.status">{{ concert.status }}</span>
     </div>
-  </div>
+  </router-link>
 </template>
 
 <script>
 export default{
   name:"card",
   props: {
-    title: String,
-    performer: String,
-    imgUrl: String,
-    likesCount: Number,
-    status: String,
-    date: String
+    concert: {
+      type: Object,
+      required: true
+    }
   },
   methods : {}
 }
