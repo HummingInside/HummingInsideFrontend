@@ -4,3 +4,6 @@ export const REGISTER = "register";
 export const UPDATE_USER = "updateUser";
 export const CHECK_AUTH = "checkAuth";
 export const FETCH_CONCERTS = "fetchConcerts";
+export const FETCH_CONCERT = "fetchConcert";
+export const CONCERT_PUBLISH = "publishConcert"
+export const CONCERT_DELETE = "deleteConcert"

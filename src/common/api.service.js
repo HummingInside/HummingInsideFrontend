@@ -23,7 +23,6 @@ const ApiService = {
     },
 
     get(resource, pk = "") {
-        console.log(API_URL+'/'+resource+'/'+pk)
         return Vue.axios.get(`${resource}/${pk}`).catch(error => {
             throw new Error(`[RWV] ApiService ${error}`);
         });
@@ -55,7 +54,6 @@ export const ConcertsService = {
         });
     },
     get(pk) {
-        console.log(pk)
         return ApiService.get(CONCERT_PATH, pk);
     },
     create(params) {

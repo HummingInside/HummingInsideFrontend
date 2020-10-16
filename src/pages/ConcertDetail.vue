@@ -53,7 +53,10 @@
     </div>
   </div>
 </template>
+
 <script>
+import {ConcertsService} from "@/common/api.service";
+
 export default {
   components: {},
   data() {
@@ -71,12 +74,20 @@ export default {
       time: '3 hours'
     }
   },
-  computed: {},
-  methods: {},
-  mounted() {},
-  beforeDestroy() {}
+  methods: {
+    fetchArticle(){
+      ConcertsService.get(this.$route.params.pk)
+          .then(({data}) => {
+            console.log(data)
+          })
+    }
+  },
+  created() {
+    this.fetchArticle()
+  }
 }
 </script>
+
 <style scoped="scss">
   @import url(http://fonts.googleapis.com/earlyaccess/notosanskr.css);
 
