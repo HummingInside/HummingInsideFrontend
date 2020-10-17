@@ -4,159 +4,159 @@
       <sidebar-link to="/a">
         <i class="tim-icons icon-spaceship"></i>
         <template>
-          <p>New & Hot</p>
+          <p class="sidebar-link-text">New & Hot</p>
         </template>
       </sidebar-link>
       <sidebar-link to="/b">
         <i class="tim-icons icon-bell-55"></i>
         <template>
-          <p>Ongoing</p>
+          <p class="sidebar-link-text">Ongoing</p>
         </template>
       </sidebar-link>
       <sidebar-link to="/c">
         <i class="tim-icons icon-pin"></i>
         <template>
-          <p>Upcoming</p>
+          <p class="sidebar-link-text">Upcoming</p>
         </template>
       </sidebar-link>
       <hr style="border-color: rgba(255, 255, 255, .45);"/>
       <sidebar-link to="/d">
         <i class="tim-icons icon-app"></i>
         <template>
-          <p>My Concerts</p>
+          <p class="sidebar-link-text">My Concerts</p>
         </template>
       </sidebar-link>
       <sidebar-link to="/e">
         <i class="tim-icons icon-bag-16"></i>
         <template>
-          <p>My Tickets</p>
+          <p class="sidebar-link-text">My Tickets</p>
         </template>
       </sidebar-link>
       <hr style="border-color: rgba(255, 255, 255, .45);"/>
       <sidebar-link to="/dashboard">
         <i class="tim-icons icon-headphones"></i>
         <template>
-          <p>Rock</p>
+          <p class="sidebar-link-text">Rock</p>
         </template>
       </sidebar-link>
       <sidebar-link to="/dashboard">
         <i class="tim-icons icon-headphones"></i>
         <template>
-          <p>Blues</p>
+          <p class="sidebar-link-text">Blues</p>
         </template>
       </sidebar-link>
       <sidebar-link to="/dashboard">
         <i class="tim-icons icon-headphones"></i>
         <template>
-          <p>Jazz</p>
+          <p class="sidebar-link-text">Jazz</p>
         </template>
       </sidebar-link>
       <sidebar-link to="/dashboard">
         <i class="tim-icons icon-headphones"></i>
         <template>
-          <p>Hip Hop Music</p>
+          <p class="sidebar-link-text">Hip Hop Music</p>
         </template>
       </sidebar-link>
       <sidebar-link to="/dashboard">
         <i class="tim-icons icon-headphones"></i>
         <template>
-          <p>Folk Music</p>
+          <p class="sidebar-link-text">Folk Music</p>
         </template>
       </sidebar-link>
       <sidebar-link to="/dashboard">
         <i class="tim-icons icon-headphones"></i>
         <template>
-          <p>Classical Music</p>
+          <p class="sidebar-link-text">Classical Music</p>
         </template>
       </sidebar-link>
       <sidebar-link to="/dashboard">
         <i class="tim-icons icon-headphones"></i>
         <template>
-          <p>Dashboard</p>
+          <p class="sidebar-link-text">Dashboard</p>
         </template>
       </sidebar-link>
       <sidebar-link to="/dashboard">
         <i class="tim-icons icon-headphones"></i>
         <template>
-          <p>Dashboard</p>
+          <p class="sidebar-link-text">Dashboard</p>
         </template>
       </sidebar-link>
       <sidebar-link to="/dashboard">
         <i class="tim-icons icon-headphones"></i>
         <template>
-          <p>Dashboard</p>
+          <p class="sidebar-link-text">Dashboard</p>
         </template>
       </sidebar-link>
       <sidebar-link to="/dashboard">
         <i class="tim-icons icon-headphones"></i>
         <template>
-          <p>Dashboard</p>
+          <p class="sidebar-link-text">Dashboard</p>
         </template>
       </sidebar-link>
       <sidebar-link to="/dashboard">
         <i class="tim-icons icon-headphones"></i>
         <template>
-          <p>Dashboard</p>
+          <p class="sidebar-link-text">Dashboard</p>
         </template>
       </sidebar-link>
       <sidebar-link to="/dashboard">
         <i class="tim-icons icon-headphones"></i>
         <template>
-          <p>Dashboard</p>
+          <p class="sidebar-link-text">Dashboard</p>
         </template>
       </sidebar-link>
       <sidebar-link to="/dashboard">
         <i class="tim-icons icon-headphones"></i>
         <template>
-          <p>Dashboard</p>
+          <p class="sidebar-link-text">Dashboard</p>
         </template>
       </sidebar-link>
       <sidebar-link to="/dashboard">
         <i class="tim-icons icon-headphones"></i>
         <template>
-          <p>Dashboard</p>
+          <p class="sidebar-link-text">Dashboard</p>
         </template>
       </sidebar-link>
       <sidebar-link to="/icons">
         <i class="tim-icons icon-atom"></i>
         <template>
-          <p>Icons</p>
+          <p class="sidebar-link-text">Icons</p>
         </template>
       </sidebar-link>
       <sidebar-link to="/maps">
         <i class="tim-icons icon-pin"></i>
         <template>
-          <p>Maps</p>
+          <p class="sidebar-link-text">Maps</p>
         </template>
       </sidebar-link>
       <sidebar-link to="/notifications">
         <i class="tim-icons icon-bell-55"></i>
         <template>
-          <p>Notifications</p>
+          <p class="sidebar-link-text">Notifications</p>
         </template>
       </sidebar-link>
       <sidebar-link to="/user">
         <i class="tim-icons icon-single-02"></i>
         <template>
-          <p>User Profile</p>
+          <p class="sidebar-link-text">User Profile</p>
         </template>
       </sidebar-link>
       <sidebar-link to="/table">
         <i class="tim-icons icon-puzzle-10"></i>
         <template>
-          <p>Table List</p>
+          <p class="sidebar-link-text">Table List</p>
         </template>
       </sidebar-link>
       <sidebar-link to="/typography">
         <i class="tim-icons icon-align-center"></i>
         <template>
-          <p>Typography</p>
+          <p class="sidebar-link-text">Typography</p>
         </template>
       </sidebar-link>
       <sidebar-link to="/dashboard?enableRTL=true">
         <i class="tim-icons icon-world"></i>
         <template>
-          <p>RTL Support</p>
+          <p class="sidebar-link-text">RTL Support</p>
         </template>
       </sidebar-link>
     </side-bar>
@@ -170,7 +170,7 @@
     </div>
   </div>
 </template>
-<style lang="scss"></style>
+
 <script>
 import TopNavbar from "./TopNavbar.vue";
 import ContentFooter from "./ContentFooter.vue";
@@ -200,3 +200,11 @@ export default {
   }
 };
 </script>
+
+
+<style scoped="scss">
+.sidebar-link-text {
+  font-weight: bold;
+}
+
+</style>
