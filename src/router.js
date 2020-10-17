@@ -44,7 +44,7 @@ const routes = [
       },
       {
         path: "concerts/:pk/live",
-        name: "concert-detail",
+        name: "Live Concert",
         component: LiveConcert,
       },
       {
