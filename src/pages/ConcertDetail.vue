@@ -26,16 +26,12 @@
         <div class="row desc-row">
           <div class="col-lg-3 font-weight-bold text-left">Remaining Seat</div>
           <div class="col-lg-7 text-left desc-content">
-            {{ concert.currentAudience }} / {{ concert.maxAudience }}
+            {{ numberFormat(concert.currentAudience) }} / {{ numberFormat(concert.maxAudience) }}
           </div>
         </div>
         <div class="row desc-row">
           <div class="col-lg-3 font-weight-bold text-left">Charge</div>
-          <div class="col-lg-7 text-left desc-content">{{ concert.price }} ￦</div>
-        </div>
-        <div class="row desc-row">
-          <div class="col-lg-3 font-weight-bold text-left">Likes</div>
-          <div class="col-lg-7 text-left desc-content">{{ concert.likesCount }}</div>
+          <div class="col-lg-7 text-left desc-content">{{ numberFormat(concert.price) }} ￦</div>
         </div>
         <div class="row desc-row">
           <div class="col-lg-3 font-weight-bold text-left">Status</div>
@@ -50,7 +46,7 @@
     <div class="row desc-row mt-1">
       <div class="col-lg-12 font-weight-bold">
         <base-button class="big-button blue-color">Reservation</base-button>
-        <base-button class="small-button pink-color">🤍</base-button>
+        <base-button class="small-button pink-color">{{numberFormat(concert.likesCount)}} 🤍</base-button>
       </div>
     </div>
   </div>
@@ -60,12 +56,14 @@
 import { mapGetters } from "vuex";
 import store from "@/store";
 import { FETCH_CONCERT } from "@/store/actions.type";
+import {numberFormat} from "@/common/misc";
 
 export default {
   methods: {
     loadConcert(){
       store.dispatch(FETCH_CONCERT, this.$route.params.pk)
-    }
+    },
+    numberFormat
   },
   computed: {
     ...mapGetters(['concert'])
