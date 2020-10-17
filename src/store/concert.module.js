@@ -2,10 +2,11 @@ import Vue from 'vue';
 import {ConcertsService} from "@/common/api.service";
 
 import {
-    CONCERT_PUBLISH,
-    CONCERT_DELETE,
+    CREATE_CONCERT,
+    DELETE_CONCERT,
     FETCH_CONCERT,
-    FETCH_CONCERTS
+    FETCH_CONCERTS,
+    RESET_CONCERT
 } from "@/store/actions.type";
 
 import {
@@ -73,11 +74,15 @@ export const actions = {
                 throw new Error(error)
             })
     },
-    [CONCERT_PUBLISH]({ state }){
+    [CREATE_CONCERT]({ state }){
         return ConcertsService.create(state.concert)
+
     },
-    [CONCERT_DELETE](context, pk){
+    [DELETE_CONCERT](context, pk){
         return ConcertsService.destroy(pk)
+    },
+    [RESET_CONCERT]({ commit }){
+        commit(RESET_STATE)
     }
 }
 
@@ -93,7 +98,7 @@ export const mutations = {
         state.concertsCount = concerts.length
         state.isLoading = false
     },
-    [RESET_STATE](){
+    [RESET_STATE](state){
         for (let f in state){
             Vue.set(state, f, initialState[f])
         }

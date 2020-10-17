@@ -26,6 +26,13 @@
       </button>
       <div class="collapse navbar-collapse show text-left" v-show="showMenu">
         <ul class="navbar-nav ml-auto">
+          <li class="search-bar input-group">
+            <router-link :to="{name: 'concert-create'}" exact>
+              <button class="btn btn-link" id="broadcast-button"><i class="tim-icons icon-video-66"></i>
+                <span class="d-lg-none d-md-block">Broadcast</span>
+              </button>
+            </router-link>
+          </li>
           <li class="search-bar input-group"  @click="searchModalVisible = true">
             <button class="btn btn-link" id="search-button" data-toggle="modal" data-target="#searchModal"><i class="tim-icons icon-zoom-split"></i>
               <span class="d-lg-none d-md-block">Search</span>
@@ -109,5 +116,9 @@ import {
     }
   }
 </script>
+
 <style>
+.search-bar{
+  margin-left: 0;
+}
 </style>
