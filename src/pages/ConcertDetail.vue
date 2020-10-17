@@ -45,8 +45,18 @@
     </div>
     <div class="row desc-row mt-1">
       <div class="col-lg-12 font-weight-bold">
-        <base-button class="big-button blue-color">Reservation</base-button>
-        <base-button class="small-button pink-color">{{numberFormat(concert.likesCount)}} 🤍</base-button>
+        <router-link v-if="concert.status === 'ON-AIR'" to="/">
+          <base-button class="big-button purple-color">
+            Enter
+          </base-button>
+        </router-link>
+        <router-link v-else to="/">
+          <base-button class="big-button blue-color">
+            Reservation
+          </base-button>
+        </router-link>
+
+        <base-button class="small-button pink-color">🤍</base-button>
       </div>
     </div>
   </div>
@@ -108,10 +118,13 @@ export default {
     font-size: 1.1rem;
   }
   .pink-color {
-    background-color: #e14eca !important;
+    background-color: #fd77a4 !important;
   }
   .blue-color {
-    background-color: #0082f2 !important;
+    background-color: #419ef9 !important;
+  }
+  .purple-color {
+    background-color: #ba54f5 !important;
   }
   .title{
     color: #333;
