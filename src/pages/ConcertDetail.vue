@@ -6,7 +6,7 @@
         {{ concert.title }}
         </div>
         <div class="row" id="date">
-          {{ concert.date }}
+          {{ concert.startDate }} ~ {{ concert.endDate }}
         </div>
       </div>
     </div>
@@ -21,7 +21,7 @@
         </div>
         <div class="row desc-row">
           <div class="col-lg-3 font-weight-bold text-left">Running Time</div>
-          <div class="col-lg-7 text-left desc-content">0</div>
+          <div class="col-lg-7 text-left desc-content">{{ concert.runningTime }}</div>
         </div>
         <div class="row desc-row">
           <div class="col-lg-3 font-weight-bold text-left">Remaining Seat</div>

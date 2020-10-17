@@ -7,7 +7,7 @@
       <div class="card-title">{{ concert.title }}</div>
     </div>
     <div class="card-body text-right">
-      <div v-if="concert.date" style="color: #2c3e50 !important;">{{ concert.date }}</div>
+      <div v-if="concert.startDate" style="color: #2c3e50 !important;">{{ concert.startDate }}</div>
       <div v-if="concert.performer" style="color: #2c3e50 !important;">{{ concert.performer }}</div>
       <span class="badge badge-pill mr-1 badge-primary likesCount">🤍 <span>{{ numberFormat(concert.likesCount) }}</span></span>
       <span class="badge badge-pill" :class="concert.status">{{ concert.status }}</span>

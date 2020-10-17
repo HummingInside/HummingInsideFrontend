@@ -19,7 +19,9 @@ const initialState = {
     concert: {
         title: "",
         performer: "",
-        date: "",
+        startDate: "",
+        endDate: "",
+        runningTime: "",
         description: "",
         currentAudience: 0,
         maxAudience: '0',
