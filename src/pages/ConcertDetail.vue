@@ -3,80 +3,77 @@
     <div class="row">
       <div class="col-11" id="custom-header">
         <div class="row title">
-        {{ title }}
+        {{ concert.title }}
         </div>
         <div class="row" id="date">
-          {{ date }}
+          {{ concert.startDate }} ~ {{ concert.endDate }}
         </div>
       </div>
     </div>
     <div class="row">
       <div class="col-lg-5 mb-5">
-        <img id="concert-img" :src="img">
+        <img id="concert-img" :src="concert.imgUrl">
       </div>
       <div class="col-lg-7">
         <div class="row desc-row">
           <div class="col-lg-3 font-weight-bold text-left">Performer</div>
-          <div class="col-lg-7 text-left desc-content">{{ performer }}</div>
+          <div class="col-lg-7 text-left desc-content">{{ concert.performer }}</div>
         </div>
         <div class="row desc-row">
-          <div class="col-lg-3 font-weight-bold text-left">Show Time</div>
-          <div class="col-lg-7 text-left desc-content">{{ time }}</div>
+          <div class="col-lg-3 font-weight-bold text-left">Running Time</div>
+          <div class="col-lg-7 text-left desc-content">{{ concert.runningTime }}</div>
         </div>
         <div class="row desc-row">
           <div class="col-lg-3 font-weight-bold text-left">Remaining Seat</div>
-          <div class="col-lg-7 text-left desc-content">{{ maxAudience }}</div>
+          <div class="col-lg-7 text-left desc-content">
+            {{ numberFormat(concert.currentAudience) }} / {{ numberFormat(concert.maxAudience) }}
+          </div>
         </div>
         <div class="row desc-row">
           <div class="col-lg-3 font-weight-bold text-left">Charge</div>
-          <div class="col-lg-7 text-left desc-content">{{ price }} ￦</div>
-        </div>
-        <div class="row desc-row">
-          <div class="col-lg-3 font-weight-bold text-left">Likes</div>
-          <div class="col-lg-7 text-left desc-content">{{ likesCount }}</div>
+          <div class="col-lg-7 text-left desc-content">{{ numberFormat(concert.price) }} ￦</div>
         </div>
         <div class="row desc-row">
           <div class="col-lg-3 font-weight-bold text-left">Status</div>
-          <div class="col-lg-7 text-left desc-content">{{ status }}</div>
+          <div class="col-lg-7 text-left desc-content">{{ concert.status }}</div>
         </div>
         <div class="row desc-row">
           <div class="col-lg-3 font-weight-bold text-left">Description</div>
-          <div class="col-lg-7 text-left desc-content">{{ description }}</div>
+          <div class="col-lg-7 text-left desc-content">{{ concert.description }}</div>
         </div>
       </div>
     </div>
     <div class="row desc-row mt-1">
       <div class="col-lg-12 font-weight-bold">
         <base-button class="big-button blue-color">Reservation</base-button>
-        <base-button class="small-button pink-color">🤍</base-button>
+        <base-button class="small-button pink-color">{{numberFormat(concert.likesCount)}} 🤍</base-button>
       </div>
     </div>
   </div>
 </template>
+
 <script>
+import { mapGetters } from "vuex";
+import store from "@/store";
+import { FETCH_CONCERT } from "@/store/actions.type";
+import {numberFormat} from "@/common/misc";
+
 export default {
-  components: {},
-  data() {
-    return {
-      title: "The play, <History Boys>",
-      performer: "Daesuk Oh / Youngkyu Cho / Jungbok Park",
-      date: "2020.10.16 / 18:00",
-      description: 'The story about \'Learning\' and \'Maturity\' told to everyone in this era!\n' +
-              'The play <History Boys> is the masterpiece of Alan Burnett, a master of the British performing arts, and won three honors at the Olivier Awards in the UK in 2005 and the Tony Awards in the US in 2006.',
-      maxAudience: '150 / 2000',
-      price: '35,000',
-      likesCount: 20,
-      status: "Upcoming",
-      img: 'http://tkfile.yes24.com/upload2/PerfBlog/202009/20200915/20200915-37361_01.jpg',
-      time: '3 hours'
-    }
+  methods: {
+    loadConcert(){
+      store.dispatch(FETCH_CONCERT, this.$route.params.pk)
+    },
+    numberFormat
   },
-  computed: {},
-  methods: {},
-  mounted() {},
-  beforeDestroy() {}
+  computed: {
+    ...mapGetters(['concert'])
+  },
+  created() {
+    this.loadConcert()
+  }
 }
 </script>
+
 <style scoped="scss">
   @import url(http://fonts.googleapis.com/earlyaccess/notosanskr.css);
 
