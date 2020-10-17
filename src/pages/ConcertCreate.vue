@@ -5,9 +5,6 @@
         <div class="row title">
         {{ concert.title }}
         </div>
-        <div class="row" id="date">
-          {{ concert.startDate }} ~ {{ concert.endDate }}
-        </div>
       </div>
     </div>
     <div class="row">
@@ -52,11 +49,9 @@
         </router-link>
         <router-link v-else to="/">
           <base-button class="big-button blue-color">
-            Reservation
+            Create
           </base-button>
         </router-link>
-
-        <base-button class="small-button pink-color">🤍</base-button>
       </div>
     </div>
   </div>
@@ -65,21 +60,24 @@
 <script>
 import { mapGetters } from "vuex";
 import store from "@/store";
-import { FETCH_CONCERT } from "@/store/actions.type";
+import {RESET_CONCERT, CREATE_CONCERT} from "@/store/actions.type";
 import {numberFormat} from "@/common/misc";
 
 export default {
   methods: {
-    loadConcert(){
-      store.dispatch(FETCH_CONCERT, this.$route.params.pk)
+    numberFormat,
+    resetConcert(){
+      store.dispatch(RESET_CONCERT)
     },
-    numberFormat
+    createConcert(){
+      store.dispatch(CREATE_CONCERT).then(() => this.$router.push({ name: "concert-list" }))
+    }
   },
   computed: {
     ...mapGetters(['concert'])
   },
   created() {
-    this.loadConcert()
+    this.resetConcert()
   }
 }
 </script>

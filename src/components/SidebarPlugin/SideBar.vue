@@ -4,13 +4,13 @@
       :data="backgroundColor">
       <div class="sidebar-wrapper text-left">
         <div class="logo">
-          <a href="javascript:void(0)" class="simple-text logo-mini">
+          <router-link to="/" class="simple-text logo-mini">
             {{ abv }}
-          </a>
+          </router-link>
 
-          <a href="javascript:void(0)" class="simple-text logo-normal">
+          <router-link to="/" class="simple-text logo-normal">
             {{ title }}
-          </a>
+          </router-link>
         </div>
         <ul class="nav">
           <slot>

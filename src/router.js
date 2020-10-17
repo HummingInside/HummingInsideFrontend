@@ -8,6 +8,7 @@ import UserProfile from "@/pages/UserProfile.vue";
 import TableList from "@/pages/TableList.vue";
 import Typography from "@/pages/Typography.vue";
 import ConcertDetail from "./pages/ConcertDetail";
+import ConcertCreate from "./pages/ConcertCreate";
 import SignIn from "./pages/SignIn";
 import SignUp from "./pages/SignUp";
 import AuthLayout from "@/pages/Layout/AuthLayout";
@@ -36,6 +37,11 @@ const routes = [
     component: BaseLayout,
     redirect: "dashboard",
     children:[
+      {
+        path: "concerts/create",
+        name: "concert-create",
+        component: ConcertCreate,
+      },
       {
         path: "concerts/:pk",
         name: "concert-detail",
