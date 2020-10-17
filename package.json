@@ -11,6 +11,7 @@
     "axios": "^0.20.0",
     "chart.js": "^2.8.0",
     "core-js": "^2.6.5",
+    "sockjs-client": "^1.5.0",
     "vue": "^2.6.10",
     "vue-axios": "^2.1.5",
     "vue-chartjs": "^3.4.2",
@@ -21,7 +22,8 @@
     "vue-router": "^3.0.3",
     "vue-social-sharing": "^2.4.6",
     "vue2-transitions": "^0.3.0",
-    "vuex": "^3.5.1"
+    "vuex": "^3.5.1",
+    "webstomp-client": "^1.2.6"
   },
   "devDependencies": {
     "@vue/cli-plugin-babel": "^3.11.0",
