@@ -8,50 +8,98 @@
       </div>
     </div>
     <div class="row">
-      <div class="col-lg-5 mb-5">
-        <img id="concert-img" :src="concert.imgUrl">
-      </div>
-      <div class="col-lg-7">
-        <div class="row desc-row">
-          <div class="col-lg-3 font-weight-bold text-left">Performer</div>
-          <div class="col-lg-7 text-left desc-content">{{ concert.performer }}</div>
-        </div>
-        <div class="row desc-row">
-          <div class="col-lg-3 font-weight-bold text-left">Running Time</div>
-          <div class="col-lg-7 text-left desc-content">{{ concert.runningTime }}</div>
-        </div>
-        <div class="row desc-row">
-          <div class="col-lg-3 font-weight-bold text-left">Remaining Seat</div>
-          <div class="col-lg-7 text-left desc-content">
-            {{ numberFormat(concert.currentAudience) }} / {{ numberFormat(concert.maxAudience) }}
+      <div class="col-lg-5 m-4" id="blank-image">
+        <div>
+          <span data-notify="icon" class="tim-icons icon-upload" style="font-size: 45px;"></span>
+          <div style="margin-top: 10px">
+            Upload Title Image
           </div>
         </div>
-        <div class="row desc-row">
-          <div class="col-lg-3 font-weight-bold text-left">Charge</div>
-          <div class="col-lg-7 text-left desc-content">{{ numberFormat(concert.price) }} ￦</div>
+<!--        <img id="concert-img" src="http://tkfile.yes24.com/upload2/perfblog/202009/20200911/20200911-37429_1.jpg/dims/quality/70/">-->
+      </div>
+      <div class="col-lg-6">
+        <div class="row desc-row text-left">
+          <base-input label="Title"
+                      placeholder="Title"
+                      class="col-lg-12"
+                      v-model="concert.title">
+          </base-input>
         </div>
-        <div class="row desc-row">
-          <div class="col-lg-3 font-weight-bold text-left">Status</div>
-          <div class="col-lg-7 text-left desc-content">{{ concert.status }}</div>
+        <div class="row desc-row text-left">
+          <base-input label="Performer"
+                      placeholder="Performer"
+                      class="col-lg-12"
+                      v-model="concert.performer">
+          </base-input>
         </div>
-        <div class="row desc-row">
-          <div class="col-lg-3 font-weight-bold text-left">Description</div>
-          <div class="col-lg-7 text-left desc-content">{{ concert.description }}</div>
+        <div class="row desc-row text-left">
+          <div class="col-lg-12">
+            <label>State Date</label>
+            <datetime placeholder="Start Date"
+                      type="datetime"
+                      class="form-control form-group theme-blue"
+                      :phrases="{ok: 'OK', cancel: 'Exit'}"
+                      :hour-step="2"
+                      :minute-step="15"
+                      :week-start="7"
+                      use12-hour
+                      v-model="concert.startDate">
+            </datetime>
+          </div>
         </div>
+        <div class="row desc-row text-left">
+          <div class="col-lg-12">
+            <label>End Date</label>
+            <datetime placeholder="End Date"
+                      type="datetime"
+                      class="form-control form-group theme-blue"
+                      :phrases="{ok: 'OK', cancel: 'Exit'}"
+                      :hour-step="2"
+                      :minute-step="15"
+                      :week-start="7"
+                      use12-hour
+                      v-model="concert.endDate">
+            </datetime>
+          </div>
+        </div>
+        <div class="row desc-row text-left">
+          <base-input label="Max Seat"
+                      placeholder="Max Seat"
+                      class="col-lg-12"
+                      v-model="concert.maxAudience">
+          </base-input>
+        </div>
+        <div class="row desc-row text-left">
+          <base-input label="Charge"
+                      placeholder="Charge"
+                      class="col-lg-12"
+                      v-model="concert.price">
+          </base-input>
+        </div>
+        <div class="row desc-row text-left">
+          <base-input label="Description"
+                      class="col-lg-12">
+            <textarea rows="3" cols="80"
+                      class="form-control"
+                      placeholder="Description"
+                      v-model="concert.description"></textarea>
+          </base-input>
+        </div>
+<!--        <div class="row desc-row text-left">-->
+<!--          <base-input label="Status"-->
+<!--                      placeholder="Status"-->
+<!--                      class="col-lg-12"-->
+<!--                      v-model="concert.status"-->
+<!--                      disabled>-->
+<!--          </base-input>-->
+<!--        </div>-->
       </div>
     </div>
     <div class="row desc-row mt-1">
-      <div class="col-lg-12 font-weight-bold">
-        <router-link v-if="concert.status === 'ON-AIR'" to="/">
-          <base-button class="big-button purple-color">
-            Enter
-          </base-button>
-        </router-link>
-        <router-link v-else to="/">
-          <base-button class="big-button blue-color">
-            Create
-          </base-button>
-        </router-link>
+      <div class="col-lg-11 font-weight-bold text-right">
+        <base-button class="big-button blue-color">
+          Create
+        </base-button>
       </div>
     </div>
   </div>
@@ -62,8 +110,17 @@ import { mapGetters } from "vuex";
 import store from "@/store";
 import {RESET_CONCERT, CREATE_CONCERT} from "@/store/actions.type";
 import {numberFormat} from "@/common/misc";
+import BaseInput from "@/components/Inputs/BaseInput";
+import { Datetime } from 'vue-datetime';
+import { Settings } from 'luxon'
+
+Settings.defaultLocale = 'en'
 
 export default {
+  components: {
+    BaseInput,
+    datetime: Datetime
+  },
   methods: {
     numberFormat,
     resetConcert(){
@@ -100,29 +157,12 @@ export default {
     border-bottom: 2px solid #333;
     margin-bottom: 30px;
   }
-  #date{
-    margin-top: 15px;
-    margin-bottom: 21px;
-    margin-left: -5px;
-    font-size: 1rem;
-  }
   .big-button {
     padding: 1rem 5rem;
     font-size: 1.1rem;
   }
-  .small-button {
-    margin-left: 0.5rem;
-    padding: 1rem 1rem;
-    font-size: 1.1rem;
-  }
-  .pink-color {
-    background-color: #fd77a4 !important;
-  }
   .blue-color {
     background-color: #419ef9 !important;
-  }
-  .purple-color {
-    background-color: #ba54f5 !important;
   }
   .title{
     color: #333;
@@ -136,5 +176,35 @@ export default {
   }
   .desc-content{
     line-height: 1.7rem;
+  }
+  .vdatetime >>> input {
+    background-color: transparent !important;
+    border: none !important;
+    width: 100%;
+  }
+  .theme-blue >>> .vdatetime-popup {
+    border-radius: 10px;
+  }
+  .theme-blue >>> .vdatetime-popup__header{
+    background: #419ef9 !important;
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+  }
+  .theme-blue >>> .vdatetime-calendar__month__day--selected > span > span,
+  .theme-blue >>> .vdatetime-calendar__month__day--selected:hover > span > span {
+    background: #419ef9 !important;
+  }
+
+  .theme-blue >>> .vdatetime-year-picker__item--selected,
+  .theme-blue >>> .vdatetime-time-picker__item--selected,
+  .theme-blue >>> .vdatetime-popup__actions__button {
+    color: #419ef9 !important;
+  }
+  #blank-image {
+    border: dashed 2px black;
+    border-radius: 10px;
+    display:flex;
+    justify-content: center;
+    align-items: center
   }
 </style>
