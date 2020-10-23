@@ -16,33 +16,7 @@
                     <p class="font-dark" style="font-size: 14px;font-weight: 600;">Christopher concert in Korea</p>
                 </div>
             </div>
-            <div class="flex-shrink-0 d-flex flex-column" style="width: 340px;height: 803px; border-top-right-radius: 4px;">
-                <div style="border-bottom:1px solid rgb(229,229,229);border-top-right-radius: 4px">
-                    <p class="text-center font-dark" style="font-size: 14px; font-weight: 600;margin: 10px">Live Chat</p>
-                </div>
-                <div class="flex-grow-1">
-                </div>
-<!--                <div class="input-group mb-3">-->
-<!--                    <input type="text" class="form-control" placeholder="Recipient's username" aria-label="Recipient's username" aria-describedby="button-addon2">-->
-<!--                    <div class="input-group-append">-->
-<!--                        <base-button type="success" fill style="padding: 11px">send</base-button>-->
-<!--                    </div>-->
-<!--                </div>-->
-
-                <div style="border-top:1px solid rgb(229,229,229);padding: 10px">
-                    <input style="width: 80%;border-top-left-radius: 5px;border-bottom-left-radius: 5px;height: 30px;border: 1px solid rgb(142,146,156);padding-left: 10px" placeholder="enter message...">
-                    <button class="shadow" style="height: 30px;width: 19%;background: rgb(89,158,242);color: white;font-weight: 600; border: none;border-top-right-radius: 5px; border-bottom-right-radius: 5px">
-<!--                    <i class="tim-icons icon-send"></i>-->
-                    send
-                </button>
-<!--                        <div class="form-group">-->
-<!--                            <input class="form-control" style="margin: 0">-->
-<!--                        </div>-->
-<!--                        <div style="padding: 0">-->
-<!--                            <base-button type="success" fill style="padding: 11px;margin: 0">send</base-button>-->
-<!--                        </div>-->
-                </div>
-            </div>
+            <LiveChat></LiveChat>
         </div>
     </div>
 </template>
@@ -50,9 +24,11 @@
     import {
         BaseInput
     } from "@/components/index";
+    import LiveChat from "../components/LiveChat";
 
     export default {
         components: {
+            LiveChat,
             BaseInput,
         },
         data() {
