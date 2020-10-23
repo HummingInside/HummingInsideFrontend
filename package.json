@@ -11,19 +11,22 @@
     "axios": "^0.20.0",
     "chart.js": "^2.8.0",
     "core-js": "^2.6.5",
+    "luxon": "^1.25.0",
     "sockjs-client": "^1.5.0",
     "vue": "^2.6.10",
     "vue-axios": "^2.1.5",
     "vue-chartjs": "^3.4.2",
     "vue-click-outside": "^1.0.7",
     "vue-clickaway": "^2.2.2",
+    "vue-datetime": "^1.0.0-beta.14",
     "vue-github-buttons": "^3.1.0",
     "vue-i18n": "^8.14.1",
     "vue-router": "^3.0.3",
     "vue-social-sharing": "^2.4.6",
     "vue2-transitions": "^0.3.0",
     "vuex": "^3.5.1",
-    "webstomp-client": "^1.2.6"
+    "webstomp-client": "^1.2.6",
+    "weekstart": "^1.0.1"
   },
   "devDependencies": {
     "@vue/cli-plugin-babel": "^3.11.0",

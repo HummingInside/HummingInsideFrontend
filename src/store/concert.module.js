@@ -28,7 +28,7 @@ const initialState = {
         maxAudience: '0',
         price: 0,
         likesCount: 0,
-        status: "",
+        status: "UPCOMING",
         img: "",
         time: 0
     },

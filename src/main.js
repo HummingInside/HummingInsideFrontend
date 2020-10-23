@@ -3,6 +3,8 @@ import VueRouter from "vue-router";
 import SocialSharing from "vue-social-sharing"
 import VueGitHubButtons from "vue-github-buttons"
 import "vue-github-buttons/dist/vue-github-buttons.css"
+import { Datetime } from 'vue-datetime'
+import 'vue-datetime/dist/vue-datetime.css'
 import App from "./App.vue";
 import '@/assets/scss/white-dashboard.scss';
 import '@/assets/css/nucleo-icons.css';
@@ -32,6 +34,7 @@ Vue.use(GlobalComponents);
 Vue.use(GlobalDirectives);
 Vue.use(SideBar);
 Vue.use(Notify);
+Vue.use(Datetime)
 
 new Vue({
   router,
