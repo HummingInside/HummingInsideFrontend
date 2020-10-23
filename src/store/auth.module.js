@@ -5,8 +5,8 @@ import {
     LOGIN,
     LOGOUT,
     REGISTER,
-    CHECK_AUTH,
-    UPDATE_USER
+   /*CHECK_AUTH,
+    UPDATE_USER*/
 } from "./actions.type";
 import { SET_AUTH, PURGE_AUTH, SET_ERROR } from "./mutations.type";
 
@@ -30,13 +30,11 @@ const actions = {
         return new Promise(resolve => {
             ApiService.post("/signin", credentials )
                 .then(({ data }) => {
-                    //context.commit(SET_AUTH, data.user);
-                    console.log(data);
+                    context.commit(SET_AUTH, { "token": data });
                     resolve(data);
                 })
                 .catch(({ response }) => {
-                    //context.commit(SET_ERROR, response.data.errors);
-                    console.log(response);
+                    context.commit(SET_ERROR, response.data.errors);
                 });
         });
     },
@@ -45,18 +43,17 @@ const actions = {
     },
     [REGISTER](context, credentials) {
         return new Promise((resolve, reject) => {
-            ApiService.post("users", { user: credentials })
+            ApiService.post("/signup", credentials )
                 .then(({ data }) => {
-                    context.commit(SET_AUTH, data.user);
+                    console.log(data);
                     resolve(data);
                 })
                 .catch(({ response }) => {
-                    context.commit(SET_ERROR, response.data.errors);
                     reject(response);
                 });
         });
     },
-    [CHECK_AUTH](context) {
+    /*[CHECK_AUTH](context) {
         if (TokenService.getToken()) {
             ApiService.setHeader();
             ApiService.get("user")
@@ -86,7 +83,7 @@ const actions = {
             context.commit(SET_AUTH, data.user);
             return data;
         });
-    }
+    }*/
 };
 
 const mutations = {
@@ -94,6 +91,7 @@ const mutations = {
         state.errors = error;
     },
     [SET_AUTH](state, user) {
+        console.log(user);
         state.isAuthenticated = true;
         state.user = user;
         state.errors = {};

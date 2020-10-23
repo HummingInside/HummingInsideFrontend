@@ -8,12 +8,13 @@ const ApiService = {
     init() {
         Vue.use(VueAxios, axios);
         Vue.axios.defaults.baseURL = API_URL;
+        this.setHeader();
     },
 
     setHeader() {
         Vue.axios.defaults.headers.common[
             "X-AUTH-TOKEN"
-            ] = `Token ${TokenService.getToken()}`;
+            ] = `${TokenService.getToken()}`;
     },
 
     query(resource, params) {
