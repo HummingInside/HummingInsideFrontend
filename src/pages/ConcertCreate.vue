@@ -39,7 +39,6 @@
                       type="datetime"
                       class="form-control form-group theme-blue"
                       :phrases="{ok: 'OK', cancel: 'Exit'}"
-                      :hour-step="2"
                       :minute-step="15"
                       :week-start="7"
                       use12-hour
@@ -54,7 +53,6 @@
                       type="datetime"
                       class="form-control form-group theme-blue"
                       :phrases="{ok: 'OK', cancel: 'Exit'}"
-                      :hour-step="2"
                       :minute-step="15"
                       :week-start="7"
                       use12-hour
