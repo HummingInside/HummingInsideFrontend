@@ -12,7 +12,14 @@ import { SET_AUTH, PURGE_AUTH, SET_ERROR } from "./mutations.type";
 
 const state = {
     errors: null,
-    user: {},
+    user: {
+        id: 'default id',
+        email: 'default@default.com',
+        username: 'default name',
+        role: 'default role',
+        token: 'default token',
+
+    },
     isAuthenticated: !!TokenService.getToken()
 };
 

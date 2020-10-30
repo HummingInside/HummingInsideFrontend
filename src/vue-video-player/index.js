@@ -1,0 +1,20 @@
+import _videojs from 'video.js'
+import videoPlayer from './player.vue'
+
+const videojs = window.videojs || _videojs
+const install = function (Vue, config) {
+    if (config) {
+        if (config.options) {
+            videoPlayer.props.globalOptions.default = () => config.options
+        }
+        if (config.events) {
+            videoPlayer.props.globalEvents.default = () => config.events
+        }
+    }
+    Vue.component(videoPlayer.name, videoPlayer)
+}
+
+const VueVideoPlayer = { videojs, videoPlayer, install }
+
+export default VueVideoPlayer
+export { videojs, videoPlayer, install }

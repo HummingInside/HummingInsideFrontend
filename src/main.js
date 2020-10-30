@@ -19,6 +19,9 @@ import SideBar from "@/components/SidebarPlugin";
 import { CHECK_AUTH } from "./store/actions.type";
 import ApiService from "./common/api.service";
 
+import 'video.js/dist/video-js.css'
+// import 'vue-video-player/src/custom-theme.css'
+
 const router = new VueRouter({
   routes, // short for routes: routes
   linkExactActiveClass: "active"
