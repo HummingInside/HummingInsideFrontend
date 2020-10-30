@@ -20,6 +20,7 @@
 <script>
     import SockJS from "sockjs-client";
     import Stomp from "webstomp-client";
+    import API_URL from "../common/config";
 
     export default {
         name: "LiveChat",
@@ -49,7 +50,7 @@
                 }
             },
             connect() {
-                this.socket = new SockJS("http://localhost:8080/ws");
+                this.socket = new SockJS(API_URL + "/ws");
                 this.stompClient = Stomp.over(this.socket);
                 this.stompClient.connect(
                     {},
