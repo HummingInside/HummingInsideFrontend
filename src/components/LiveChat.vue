@@ -21,6 +21,7 @@
     import SockJS from "sockjs-client";
     import Stomp from "webstomp-client";
     import API_URL from "../common/config";
+    import {mapGetters} from "vuex";
 
     export default {
         name: "LiveChat",
@@ -58,7 +59,7 @@
                         this.connected = true;
                         this.stompClient.subscribe("/listen/" + this.$route.params.pk, tick => {
                             const msg = {
-                                username: 'username',
+                                username: this.currentUser.username,
                                 content: JSON.parse(tick.body).message.msg
                             }
                             this.chatMessages.push(msg);
@@ -78,6 +79,9 @@
                 this.connected = false;
             },
 
+        },
+        computed: {
+            ...mapGetters(['currentUser'])
         }
     }
 </script>
