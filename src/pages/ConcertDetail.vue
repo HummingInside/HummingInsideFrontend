@@ -12,7 +12,7 @@
     </div>
     <div class="row">
       <div class="col-lg-5 mb-5">
-        <img id="concert-img" :src="concert.imgUrl">
+        <img id="concert-img" :src="getImage(concert.imgUrl)">
       </div>
       <div class="col-lg-7">
         <div class="row desc-row">
@@ -26,7 +26,8 @@
         <div class="row desc-row">
           <div class="col-lg-3 font-weight-bold text-left">Remaining Seat</div>
           <div class="col-lg-7 text-left desc-content">
-            {{ numberFormat(concert.currentAudience) }} / {{ numberFormat(concert.maxAudience) }}
+            {{ numberFormat(concert.maxAudience-concert.currentAudience) }}
+            / {{ numberFormat(concert.maxAudience) }}
           </div>
         </div>
         <div class="row desc-row">
@@ -66,14 +67,15 @@
 import { mapGetters } from "vuex";
 import store from "@/store";
 import { FETCH_CONCERT } from "@/store/actions.type";
-import {numberFormat} from "@/common/misc";
+import {numberFormat, getImage} from "@/common/misc";
 
 export default {
   methods: {
     loadConcert(){
       store.dispatch(FETCH_CONCERT, this.$route.params.pk)
     },
-    numberFormat
+    numberFormat,
+    getImage
   },
   computed: {
     ...mapGetters(['concert'])

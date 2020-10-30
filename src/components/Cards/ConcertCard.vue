@@ -1,7 +1,7 @@
 <template>
   <router-link class="card" :to="{ name: 'concert-detail', params: {pk :concert.id} }">
     <div class="card-image" v-if="concert.imgUrl">
-      <img :src="concert.imgUrl">
+      <img :src="getImage(concert.imgUrl)">
     </div>
     <div class="card-header text-right" v-if="concert.title">
       <div class="card-title">{{ concert.title }}</div>
@@ -16,7 +16,7 @@
 </template>
 
 <script>
-import {numberFormat} from "@/common/misc";
+import {numberFormat, getImage} from "@/common/misc";
 
 export default{
   name:"card",
@@ -27,7 +27,8 @@ export default{
     }
   },
   methods : {
-    numberFormat
+    numberFormat,
+    getImage
   }
 }
 </script>
