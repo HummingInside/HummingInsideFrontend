@@ -72,10 +72,10 @@
                   </p>
                 </a>
                 <ul class="dropdown-menu dropdown-navbar">
-                  <li class="nav-link"><a href="javascript:void(0)" class="nav-item dropdown-item">Profile</a></li>
+                  <li class="nav-link"><a href="#/myPage" class="nav-item dropdown-item">MY page</a></li>
                   <li class="nav-link"><a href="javascript:void(0)" class="nav-item dropdown-item">Settings</a></li>
                   <li class="dropdown-divider"></li>
-                  <li class="nav-link"><a href="javascript:void(0)" class="nav-item dropdown-item">Log out</a></li>
+                  <li class="nav-link"><a @click="logout" class="nav-item dropdown-item">Log out</a></li>
                 </ul>
               </drop-down>
         </ul>
@@ -90,6 +90,7 @@ import Modal from "@/components/Modal.vue";
 import {
   SidebarPlugin
 } from "@/components/index";
+import {LOGIN, LOGOUT} from "@/store/actions.type";
 
   export default{
     components:{
@@ -110,6 +111,11 @@ import {
       },
       toggleMenu(){
         this.showMenu  = !this.showMenu;
+      },
+      logout:function() {
+        this.$store
+            .dispatch(LOGOUT)
+            .then(() => this.$router.push({ name: "sign-in" }));
       }
     },
     computed:{
