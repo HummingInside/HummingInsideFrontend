@@ -51,12 +51,20 @@
             Enter
           </base-button>
         </router-link>
-        <router-link v-else to="/">
-          <base-button class="big-button blue-color">
-            Reservation
-          </base-button>
-        </router-link>
-
+        <template v-else>
+          <router-link to="/">
+            <base-button class="big-button blue-color">
+              Reservation
+            </base-button>
+          </router-link>
+          <router-link
+              v-if="concert.status !== 'ENDED'"
+              :to="{ name: 'concert-update', params: {pk :concert.id} }">
+            <base-button class="middle-button mint-color">
+              Modify
+            </base-button>
+          </router-link>
+        </template>
         <base-button class="small-button pink-color">🤍</base-button>
       </div>
     </div>
@@ -119,6 +127,11 @@ export default {
     padding: 1rem 1rem;
     font-size: 1.1rem;
   }
+  .middle-button {
+    margin-left: 0.5rem;
+    padding: 1rem 1.5rem;
+    font-size: 1.1rem;
+  }
   .pink-color {
     background-color: #fd77a4 !important;
   }
@@ -127,6 +140,9 @@ export default {
   }
   .purple-color {
     background-color: #ba54f5 !important;
+  }
+  .mint-color {
+    background-color: #71caa6 !important;
   }
   .title{
     color: #333;

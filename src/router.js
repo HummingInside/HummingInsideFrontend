@@ -9,6 +9,7 @@ import TableList from "@/pages/TableList.vue";
 import Typography from "@/pages/Typography.vue";
 import ConcertDetail from "./pages/ConcertDetail";
 import ConcertCreate from "./pages/ConcertCreate";
+import ConcertUpdate from "./pages/ConcertUpdate";
 import SignIn from "./pages/SignIn";
 import SignUp from "./pages/SignUp";
 import LiveConcert from "./pages/LiveConcert";
@@ -48,6 +49,11 @@ const routes = [
         path: "concerts/:pk",
         name: "concert-detail",
         component: ConcertDetail,
+      },
+      {
+        path: "concerts/:pk",
+        name: "concert-update",
+        component: ConcertUpdate,
       },
       {
         path: "concerts/:pk/live",
