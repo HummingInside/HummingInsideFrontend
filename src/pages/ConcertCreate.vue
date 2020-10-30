@@ -9,13 +9,21 @@
     </div>
     <div class="row">
       <div class="col-lg-5 m-4" id="blank-image">
-        <div>
-          <span data-notify="icon" class="tim-icons icon-upload" style="font-size: 45px;"></span>
-          <div style="margin-top: 10px">
+        <div style="padding: 1rem">
+          <input ref="imageInput"
+                 type="file" hidden @change="onChangeImages">
+          <span data-notify="icon"
+                v-if="imageUrl == null"
+                id="image-button"
+                class="tim-icons icon-upload"
+                @click="onClickImageUpload"></span>
+          <img v-if="imageUrl" :src="imageUrl" alt="Upload Title Image"
+               id="upload-image"
+               @click="onClickImageUpload">
+          <div v-if="imageUrl == null" style="margin-top: 10px">
             Upload Title Image
           </div>
         </div>
-<!--        <img id="concert-img" src="http://tkfile.yes24.com/upload2/perfblog/202009/20200911/20200911-37429_1.jpg/dims/quality/70/">-->
       </div>
       <div class="col-lg-6">
         <div class="row desc-row text-left">
@@ -26,10 +34,10 @@
           </base-input>
         </div>
         <div class="row desc-row text-left">
-          <base-input label="Performer"
-                      placeholder="Performer"
+          <base-input label="Category"
+                      placeholder="Category"
                       class="col-lg-12"
-                      v-model="concert.performer">
+                      v-model="concert.category">
           </base-input>
         </div>
         <div class="row desc-row text-left">
@@ -39,7 +47,6 @@
                       type="datetime"
                       class="form-control form-group theme-blue"
                       :phrases="{ok: 'OK', cancel: 'Exit'}"
-                      :hour-step="2"
                       :minute-step="15"
                       :week-start="7"
                       use12-hour
@@ -54,7 +61,6 @@
                       type="datetime"
                       class="form-control form-group theme-blue"
                       :phrases="{ok: 'OK', cancel: 'Exit'}"
-                      :hour-step="2"
                       :minute-step="15"
                       :week-start="7"
                       use12-hour
@@ -85,19 +91,14 @@
                       v-model="concert.description"></textarea>
           </base-input>
         </div>
-<!--        <div class="row desc-row text-left">-->
-<!--          <base-input label="Status"-->
-<!--                      placeholder="Status"-->
-<!--                      class="col-lg-12"-->
-<!--                      v-model="concert.status"-->
-<!--                      disabled>-->
-<!--          </base-input>-->
-<!--        </div>-->
       </div>
     </div>
     <div class="row desc-row mt-1">
+      <div class="col-lg-1"></div>
       <div class="col-lg-11 font-weight-bold text-right">
-        <base-button class="big-button blue-color">
+        <base-button
+            class="big-button blue-color"
+            v-on:click="createConcert()">
           Create
         </base-button>
       </div>
@@ -108,7 +109,7 @@
 <script>
 import { mapGetters } from "vuex";
 import store from "@/store";
-import {RESET_CONCERT, CREATE_CONCERT} from "@/store/actions.type";
+import {RESET_CONCERT, CREATE_CONCERT, LOAD_IMAGE} from "@/store/actions.type";
 import {numberFormat} from "@/common/misc";
 import BaseInput from "@/components/Inputs/BaseInput";
 import { Datetime } from 'vue-datetime';
@@ -117,6 +118,11 @@ import { Settings } from 'luxon'
 Settings.defaultLocale = 'en'
 
 export default {
+  data(){
+    return {
+      imageUrl: null
+    }
+  },
   components: {
     BaseInput,
     datetime: Datetime
@@ -127,7 +133,16 @@ export default {
       store.dispatch(RESET_CONCERT)
     },
     createConcert(){
-      store.dispatch(CREATE_CONCERT).then(() => this.$router.push({ name: "concert-list" }))
+      store.dispatch(CREATE_CONCERT)
+          .then(() => this.$router.push({ name: "concert-list" }))
+    },
+    onClickImageUpload() {
+      this.$refs.imageInput.click();
+    },
+    onChangeImages(e) {
+      const file = e.target.files[0]; // Get first index in files
+      this.imageUrl = URL.createObjectURL(file); // Create File URL
+      store.dispatch(LOAD_IMAGE, file)
     }
   },
   computed: {
@@ -206,5 +221,18 @@ export default {
     display:flex;
     justify-content: center;
     align-items: center
+  }
+
+  #image-button {
+    font-size: 45px;
+  }
+  #image-button:hover {
+    cursor: pointer;
+  }
+  #upload-image {
+
+  }
+  #upload-image:hover {
+    cursor: pointer;
   }
 </style>

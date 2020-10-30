@@ -41,6 +41,16 @@ const ApiService = {
         return Vue.axios.delete(resource).catch(error => {
             throw new Error(`[RWV] ApiService ${error}`);
         });
+    },
+
+    upload(resource, pk, formData){
+        return Vue.axios.post(`${resource}/${pk}/upload`, formData, {
+            headers: {
+                'Content-Type': 'multipart/form-data'
+            }
+        }).catch(error => {
+            throw new Error(`[RWV] ApiService ${error}`);
+        });
     }
 };
 
@@ -58,12 +68,15 @@ export const ConcertsService = {
         return ApiService.get(CONCERT_PATH, pk);
     },
     create(params) {
-        return ApiService.post(CONCERT_PATH, { concert: params });
+        return ApiService.post(CONCERT_PATH, params);
     },
     update(pk, params) {
         return ApiService.update(CONCERT_PATH, pk, { concert: params });
     },
     destroy(pk) {
         return ApiService.delete(CONCERT_PATH+`/${pk}`);
+    },
+    upload(pk, file){
+        return ApiService.upload(CONCERT_PATH, pk, file);
     }
 };
