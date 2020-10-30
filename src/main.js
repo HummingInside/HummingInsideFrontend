@@ -18,6 +18,9 @@ import Notify from "@/components/NotificationPlugin";
 import SideBar from "@/components/SidebarPlugin";
 import ApiService from "./common/api.service";
 
+import 'video.js/dist/video-js.css'
+// import 'vue-video-player/src/custom-theme.css'
+
 const router = new VueRouter({
   routes, // short for routes: routes
   linkExactActiveClass: "active"
