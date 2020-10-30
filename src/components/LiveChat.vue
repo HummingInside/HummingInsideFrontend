@@ -1,7 +1,7 @@
 <template>
     <div class="flex-shrink-0 d-flex flex-column" style="width: 340px;height: 803px; border-top-right-radius: 4px;">
         <div style="border-bottom:1px solid rgb(229,229,229);border-top-right-radius: 4px">
-            <p class="text-center font-dark" style="font-size: 14px; font-weight: 600;margin: 10px">Live Chat</p>
+            <p class="text-center font-dark" style="font-size: 14px; font-weight: 600;margin: 10px;color:#343a40!important">Live Chat</p>
         </div>
         <div class="flex-grow-1" style="overflow-y: scroll" ref="messageSection">
             <p class="chat-message font-weight-600" v-for="message in chatMessages">
