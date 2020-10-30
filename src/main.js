@@ -14,6 +14,7 @@ import GlobalComponents from "./globalComponents";
 import GlobalDirectives from "./globalDirectives";
 import Notify from "@/components/NotificationPlugin";
 import SideBar from "@/components/SidebarPlugin";
+import { CHECK_AUTH } from "./store/actions.type";
 import ApiService from "./common/api.service";
 
 const router = new VueRouter({
@@ -32,6 +33,11 @@ Vue.use(GlobalComponents);
 Vue.use(GlobalDirectives);
 Vue.use(SideBar);
 Vue.use(Notify);
+
+// Ensure we checked auth before each page load.
+router.beforeEach((to, from, next) =>
+    Promise.all([store.dispatch(CHECK_AUTH)]).then(next)
+);
 
 new Vue({
   router,
