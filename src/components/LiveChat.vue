@@ -3,6 +3,10 @@
         <div style="border-bottom:1px solid rgb(229,229,229);border-top-right-radius: 4px">
             <p class="text-center font-dark" style="font-size: 14px; font-weight: 600;margin: 10px;color:#343a40!important">Live Chat</p>
         </div>
+        <div style="border-bottom:1px solid rgb(229,229,229);border-top-right-radius: 4px">
+            <p class="text-center font-dark" style="font-size: 14px; font-weight: 600;margin: 10px;color:#e66ad2!important">
+                <i class="tim-icons icon-pin font-weight-bold"></i> Notice: Receive the requested song.</p>
+        </div>
         <div class="flex-grow-1" style="overflow-y: scroll" ref="messageSection">
             <p class="chat-message font-weight-600" v-for="message in chatMessages">
                 <span class="font-weight-bold">{{message.username}}: </span>{{message.content}}
@@ -47,7 +51,7 @@
             send(message) {
                 if (this.stompClient && this.stompClient.connected) {
                     const msg = { message: {msg: message}};
-                    this.stompClient.send("/send/" + this.$route.params.pk, JSON.stringify(msg), {});
+                    this.stompClient.send("/send/" + this.$route.params.pk + "/chat", JSON.stringify(msg), {});
                 }
             },
             connect() {
@@ -57,7 +61,7 @@
                     {},
                     frame => {
                         this.connected = true;
-                        this.stompClient.subscribe("/listen/" + this.$route.params.pk, tick => {
+                        this.stompClient.subscribe("/listen/" + this.$route.params.pk + "/chat", tick => {
                             const msg = {
                                 username: this.currentUser.username,
                                 content: JSON.parse(tick.body).message.msg
