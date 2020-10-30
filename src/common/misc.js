@@ -5,5 +5,5 @@ export const numberFormat = (inputNumber) => {
 }
 
 export const getImage = (imgUrl) => {
-  return API_URL + '/concerts/files/' + imgUrl;
+  return API_URL + '/files/' + imgUrl;
 }

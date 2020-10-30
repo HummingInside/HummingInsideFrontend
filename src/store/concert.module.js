@@ -81,7 +81,7 @@ export const actions = {
         const concert = state.concert
         const param = {
             title: concert.title,
-            categoryId: 52, // TODO
+            categoryId: 52, // TODO 리스트 형식으로 불러오기
             startDate: concert.startDate,
             endDate: concert.endDate,
             description: concert.description,
