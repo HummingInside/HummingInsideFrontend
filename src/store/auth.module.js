@@ -5,8 +5,8 @@ import {
     LOGIN,
     LOGOUT,
     REGISTER,
-   /*CHECK_AUTH,
-    UPDATE_USER*/
+    CHECK_AUTH,
+    //UPDATE_USER
 } from "./actions.type";
 import { SET_AUTH, PURGE_AUTH, SET_ERROR } from "./mutations.type";
 
@@ -30,11 +30,12 @@ const actions = {
         return new Promise(resolve => {
             ApiService.post("/signin", credentials )
                 .then(({ data }) => {
-                    context.commit(SET_AUTH, { "token": data });
+                    context.commit(SET_AUTH, data);
                     resolve(data);
                 })
-                .catch(({ response }) => {
-                    context.commit(SET_ERROR, response.data.errors);
+                .catch(() => {
+                    alert("잘못된 유저정보입니다.");
+                    //context.commit(SET_ERROR, response.data.errors);
                 });
         });
     },
@@ -45,7 +46,6 @@ const actions = {
         return new Promise((resolve, reject) => {
             ApiService.post("/signup", credentials )
                 .then(({ data }) => {
-                    console.log(data);
                     resolve(data);
                 })
                 .catch(({ response }) => {
@@ -53,21 +53,22 @@ const actions = {
                 });
         });
     },
-    /*[CHECK_AUTH](context) {
+    [CHECK_AUTH](context) {
         if (TokenService.getToken()) {
             ApiService.setHeader();
-            ApiService.get("user")
+            ApiService.get("/user")
                 .then(({ data }) => {
-                    context.commit(SET_AUTH, data.user);
+                    context.commit(SET_AUTH, data);
                 })
-                .catch(({ response }) => {
-                    context.commit(SET_ERROR, response.data.errors);
+                .catch(() => {
+                    alert("다시 로그인해주세요.");
+                    context.commit(PURGE_AUTH);
                 });
         } else {
             context.commit(PURGE_AUTH);
         }
     },
-    [UPDATE_USER](context, payload) {
+    /*[UPDATE_USER](context, payload) {
         const { email, username, password, image, bio } = payload;
         const user = {
             email,
@@ -91,7 +92,6 @@ const mutations = {
         state.errors = error;
     },
     [SET_AUTH](state, user) {
-        console.log(user);
         state.isAuthenticated = true;
         state.user = user;
         state.errors = {};
