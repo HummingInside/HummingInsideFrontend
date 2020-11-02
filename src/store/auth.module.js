@@ -1,5 +1,6 @@
 import ApiService from "@/common/api.service";
 import TokenService from "@/common/token.service";
+import { vm } from "@/main"
 
 import {
     LOGIN,
@@ -68,8 +69,9 @@ const actions = {
                     context.commit(SET_AUTH, data);
                 })
                 .catch(() => {
-                    alert("다시 로그인해주세요.");
+                    alert("로그아웃 되었습니다. 다시 로그인해주세요.");
                     context.commit(PURGE_AUTH);
+                    vm.$router.push({name:"sign-in"});
                 });
         } else {
             context.commit(PURGE_AUTH);
