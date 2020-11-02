@@ -45,8 +45,10 @@ router.beforeEach((to, from, next) =>
     Promise.all([store.dispatch(CHECK_AUTH)]).then(next)
 );
 
-new Vue({
+const vm = new Vue({
   router,
   store,
   render: h => h(App)
 }).$mount("#app");
+
+export {vm}
