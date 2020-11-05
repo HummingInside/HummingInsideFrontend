@@ -72,7 +72,7 @@
                   </p>
                 </a>
                 <ul class="dropdown-menu dropdown-navbar">
-                  <li class="nav-link"><a href="#/myPage" class="nav-item dropdown-item">MY page</a></li>
+                  <li class="nav-link"><a href="#/my-page" class="nav-item dropdown-item">MY page</a></li>
                   <li class="nav-link"><a href="javascript:void(0)" class="nav-item dropdown-item">Settings</a></li>
                   <li class="dropdown-divider"></li>
                   <li class="nav-link"><a @click="logout" class="nav-item dropdown-item">Log out</a></li>
