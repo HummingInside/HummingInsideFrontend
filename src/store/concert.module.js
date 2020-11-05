@@ -21,6 +21,10 @@ import {
 const initialState = {
     concert: {
         title: "",
+        category: {
+          id: 0,
+          name: ""
+        },
         performer: "",
         startDate: "",
         endDate: "",

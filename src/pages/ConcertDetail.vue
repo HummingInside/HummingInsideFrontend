@@ -6,7 +6,7 @@
         {{ concert.title }}
         </div>
         <div class="row" id="date">
-          {{ concert.startDate }} ~ {{ concert.endDate }}
+          {{ dateFormat(concert.startDate) }} ~ {{ dateFormat(concert.endDate) }}
         </div>
       </div>
     </div>
@@ -75,7 +75,7 @@
 import { mapGetters } from "vuex";
 import store from "@/store";
 import { FETCH_CONCERT } from "@/store/actions.type";
-import {numberFormat, getImage} from "@/common/misc";
+import {numberFormat, dateFormat, getImage} from "@/common/misc";
 
 export default {
   methods: {
@@ -83,6 +83,7 @@ export default {
       store.dispatch(FETCH_CONCERT, this.$route.params.pk)
     },
     numberFormat,
+    dateFormat,
     getImage
   },
   computed: {

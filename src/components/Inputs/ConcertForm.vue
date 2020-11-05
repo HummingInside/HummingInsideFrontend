@@ -45,7 +45,7 @@
           <base-input label="Category"
                       placeholder="Category"
                       class="col-lg-12"
-                      v-model="concert.category">
+                      v-model="concert.category.name">
           </base-input>
         </div>
         <div class="row desc-row text-left">
@@ -116,7 +116,7 @@
 
 <script>
 import store from "@/store";
-import {RESET_CONCERT, CREATE_CONCERT, LOAD_IMAGE} from "@/store/actions.type";
+import {CREATE_CONCERT, LOAD_IMAGE} from "@/store/actions.type";
 import {numberFormat, dateFormat} from "@/common/misc";
 import BaseInput from "@/components/Inputs/BaseInput";
 import { Datetime } from 'vue-datetime';
