@@ -20,17 +20,20 @@
         <div style="padding: 1rem">
           <input ref="imageInput"
                  type="file" hidden @change="onChangeImages">
-          <span data-notify="icon"
-                v-if="imageUrl == null"
-                id="image-button"
-                class="tim-icons icon-upload"
-                @click="onClickImageUpload"></span>
-          <img v-if="imageUrl" :src="imageUrl" alt="Upload Title Image"
-               id="upload-image"
-               @click="onClickImageUpload">
-          <div v-if="imageUrl == null" style="margin-top: 10px">
-            Upload Title Image
-          </div>
+          <template v-if="imgPreview">
+            <img :src="imgPreview" alt="Upload Title Image"
+                 id="upload-image"
+                 @click="onClickImageUpload">
+          </template>
+          <template v-else>
+            <span data-notify="icon"
+                  id="image-button"
+                  class="tim-icons icon-upload"
+                  @click="onClickImageUpload"></span>
+            <div style="margin-top: 10px">
+              Upload Title Image
+            </div>
+          </template>
         </div>
       </div>
       <div class="col-lg-6">
@@ -104,11 +107,7 @@
     <div class="row desc-row mt-1">
       <div class="col-lg-1"></div>
       <div class="col-lg-11 font-weight-bold text-right">
-        <base-button
-            class="big-button blue-color"
-            v-on:click="createConcert()">
-          Create
-        </base-button>
+        <slot name="buttonSlot"></slot>
       </div>
     </div>
   </div>
@@ -116,26 +115,16 @@
 
 <script>
 import store from "@/store";
-import {CREATE_CONCERT, LOAD_IMAGE} from "@/store/actions.type";
+import {LOAD_IMAGE} from "@/store/actions.type";
 import {numberFormat, dateFormat} from "@/common/misc";
 import BaseInput from "@/components/Inputs/BaseInput";
 import { Datetime } from 'vue-datetime';
 import { Settings } from 'luxon'
+import { mapGetters } from "vuex";
 
 Settings.defaultLocale = 'en'
 
 export default {
-  props: {
-    concert: {
-      type: Object,
-      required: true
-    }
-  },
-  data(){
-    return {
-      imageUrl: null
-    }
-  },
   components: {
     BaseInput,
     datetime: Datetime
@@ -143,18 +132,16 @@ export default {
   methods: {
     numberFormat,
     dateFormat,
-    createConcert(){
-      store.dispatch(CREATE_CONCERT)
-          .then(() => this.$router.push({ name: "concert-list" }))
-    },
     onClickImageUpload() {
-      this.$refs.imageInput.click();
+      this.$refs.imageInput.click()
     },
     onChangeImages(e) {
-      const file = e.target.files[0]; // Get first index in files
-      this.imageUrl = URL.createObjectURL(file); // Create File URL
+      const file = e.target.files[0]
       store.dispatch(LOAD_IMAGE, file)
     }
+  },
+  computed: {
+    ...mapGetters(['concert', 'imgPreview'])
   }
 }
 </script>

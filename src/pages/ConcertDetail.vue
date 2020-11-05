@@ -12,7 +12,7 @@
     </div>
     <div class="row">
       <div class="col-lg-5 mb-5">
-        <img id="concert-img" :src="getImage(concert.imgUrl)">
+        <img id="concert-img" :src="imgPreview">
       </div>
       <div class="col-lg-7">
         <div class="row desc-row">
@@ -87,7 +87,7 @@ export default {
     getImage
   },
   computed: {
-    ...mapGetters(['concert'])
+    ...mapGetters(['concert', 'imgPreview'])
   },
   created() {
     this.loadConcert()

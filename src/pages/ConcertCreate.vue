@@ -1,11 +1,22 @@
 <template>
-  <ConcertForm :concert="concert"></ConcertForm>
+  <ConcertForm>
+    <template v-slot:buttonSlot>
+      <base-button
+          class="big-button blue-color"
+          v-on:click="createConcert()">
+        Create
+      </base-button>
+    </template>
+  </ConcertForm>
 </template>
 
 <script>
-import { mapGetters } from "vuex";
 import store from "@/store";
-import {RESET_CONCERT} from "@/store/actions.type";
+import {
+  CREATE_CONCERT,
+  RESET_CONCERT,
+  FETCH_CONCERTS
+} from "@/store/actions.type";
 import { ConcertForm } from "@/components/index";
 
 export default {
@@ -13,10 +24,12 @@ export default {
   methods: {
     resetConcert(){
       store.dispatch(RESET_CONCERT)
-    }
-  },
-  computed: {
-    ...mapGetters(['concert'])
+    },
+    createConcert(){
+      store.dispatch(CREATE_CONCERT)
+      store.dispatch(FETCH_CONCERTS)
+          .then(() => this.$router.push({ name: "concert-list" }))
+    },
   },
   created() {
     this.resetConcert()
