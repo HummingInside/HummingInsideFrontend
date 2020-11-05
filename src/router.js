@@ -13,6 +13,7 @@ import SignIn from "./pages/SignIn";
 import SignUp from "./pages/SignUp";
 import LiveConcert from "./pages/LiveConcert";
 import AuthLayout from "@/pages/Layout/AuthLayout";
+import MyPage from "@/pages/MyPage";
 
 
 const routes = [
@@ -59,9 +60,9 @@ const routes = [
         component: ConcertList,
       },
       {
-        path: "dashboard",
-        name: "New & Hot",
-        component: ConcertList
+        path: "my-page",
+        name: "my-page",
+        component: MyPage
       },
       {
         path: "a",
