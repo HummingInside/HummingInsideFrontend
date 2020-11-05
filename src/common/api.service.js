@@ -58,6 +58,13 @@ export default ApiService;
 
 const CONCERT_PATH = 'concerts'
 const FILE_PATH = 'files'
+const CATEGORY_PATH = 'categories'
+
+export const CategoriesService = {
+    query(){
+        return ApiService.query(CATEGORY_PATH);
+    }
+}
 
 export const ConcertsService = {
     query(params) {

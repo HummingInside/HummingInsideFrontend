@@ -10,5 +10,6 @@ export const CREATE_CONCERT = "createConcert"
 export const UPDATE_CONCERT = "updateConcert"
 export const DELETE_CONCERT = "deleteConcert"
 export const LOAD_IMAGE = "loadImage"
+export const FETCH_CATEGORIES = "fetchCategories"
 
 export const MY_CONCERTS = "myConcerts";

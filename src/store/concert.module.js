@@ -1,5 +1,8 @@
 import Vue from 'vue';
-import {ConcertsService} from "@/common/api.service";
+import {
+    ConcertsService,
+    CategoriesService
+} from "@/common/api.service";
 
 import {
     CREATE_CONCERT,
@@ -8,7 +11,8 @@ import {
     FETCH_CONCERT,
     FETCH_CONCERTS,
     RESET_CONCERT,
-    LOAD_IMAGE
+    LOAD_IMAGE,
+    FETCH_CATEGORIES
 } from "@/store/actions.type";
 
 import {
@@ -17,7 +21,8 @@ import {
     SET_CONCERT,
     RESET_STATE,
     SET_IMAGE,
-    SET_UPLOAD_IMAGE
+    SET_UPLOAD_IMAGE,
+    SET_CATEGORIES
 } from './mutations.type'
 
 import {getImage} from "@/common/misc";
@@ -44,6 +49,7 @@ const initialState = {
     },
     concerts: [],
     concertsCount: 0,
+    categories: [],
     isLoading: true,
     imgFile: "",
     imgPreview: ""
@@ -59,6 +65,9 @@ const getters = {
     concertsCount(state) {
         return state.concertsCount;
     },
+    categories(state) {
+        return state.categories
+    },
     isLoading(state) {
         return state.isLoading;
     },
@@ -70,7 +79,7 @@ const getters = {
 export const state = { ...initialState};
 
 export const actions = {
-    async [FETCH_CONCERT](context, concertPk, prevConcert){
+    async [FETCH_CONCERT](context, concertPk){
         // avoid extronuous network call if article exists
         // if(prevConcert !== undefined){
         //     return context.commit(SET_CONCERT, prevConcert)
@@ -111,10 +120,8 @@ export const actions = {
     async [UPDATE_CONCERT]({ commit, state }, pk){
         if(state.imgFile !== ''){
             const { data } = await ConcertsService.upload(state.imgFile)
-            console.log(data)
             commit(SET_UPLOAD_IMAGE, data)
         }
-        console.log('temp1')
         const concert = state.concert
         const param = {
             title: concert.title,
@@ -126,9 +133,6 @@ export const actions = {
             price: concert.price,
             imgUrl: concert.img
         }
-        console.log('temp2')
-        console.log(pk)
-        console.log('temp3')
         ConcertsService.update(pk, param)
         commit(RESET_STATE)
     },
@@ -140,6 +144,18 @@ export const actions = {
     },
     [LOAD_IMAGE]({ commit }, file){
         commit(SET_IMAGE, file)
+    },
+    [FETCH_CATEGORIES]({ commit }){
+        if(state.categories.length > 0){
+            return state.categories
+        }
+        return CategoriesService.query()
+            .then(({ data }) => {
+                commit(SET_CATEGORIES, data)
+            })
+            .catch(error => {
+                throw new Error(error)
+            })
     }
 }
 
@@ -168,6 +184,9 @@ export const mutations = {
     },
     [SET_UPLOAD_IMAGE](state, img){
         state.concert.img = img
+    },
+    [SET_CATEGORIES](state, categories){
+        state.categories = categories
     }
 }
 

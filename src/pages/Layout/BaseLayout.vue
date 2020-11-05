@@ -1,23 +1,11 @@
 <template>
   <div class="wrapper">
     <side-bar :background-color="backgroundColor">
-      <sidebar-link to="/a">
-        <i class="tim-icons icon-spaceship"></i>
-        <template>
-          <p class="sidebar-link-text">New & Hot</p>
-        </template>
-      </sidebar-link>
-      <sidebar-link to="/b">
-        <i class="tim-icons icon-bell-55"></i>
-        <template>
-          <p class="sidebar-link-text">Ongoing</p>
-        </template>
-      </sidebar-link>
-      <sidebar-link to="/c">
-        <i class="tim-icons icon-pin"></i>
-        <template>
-          <p class="sidebar-link-text">Upcoming</p>
-        </template>
+      <sidebar-link
+          v-for="(status, index) in concertStatus" :key="index"
+          :to="'/dashboard?concertStatus=' + status.query">
+        <i class="tim-icons" v-bind:class="status.icon"></i>
+        <p class="sidebar-link-text">{{ status.text }}</p>
       </sidebar-link>
       <hr style="border-color: rgba(255, 255, 255, .45);"/>
       <sidebar-link to="/d">
@@ -32,91 +20,18 @@
           <p class="sidebar-link-text">My Tickets</p>
         </template>
       </sidebar-link>
+
       <hr style="border-color: rgba(255, 255, 255, .45);"/>
-      <sidebar-link to="/dashboard">
+
+      <sidebar-link
+          v-for="(category, index) in categories" :key="'a'+index"
+          :to="'/dashboard?categoryId=' + category.id">
         <i class="tim-icons icon-headphones"></i>
         <template>
-          <p class="sidebar-link-text">Rock</p>
+          <p class="sidebar-link-text">{{ category.name }}</p>
         </template>
       </sidebar-link>
-      <sidebar-link to="/dashboard">
-        <i class="tim-icons icon-headphones"></i>
-        <template>
-          <p class="sidebar-link-text">Blues</p>
-        </template>
-      </sidebar-link>
-      <sidebar-link to="/dashboard">
-        <i class="tim-icons icon-headphones"></i>
-        <template>
-          <p class="sidebar-link-text">Jazz</p>
-        </template>
-      </sidebar-link>
-      <sidebar-link to="/dashboard">
-        <i class="tim-icons icon-headphones"></i>
-        <template>
-          <p class="sidebar-link-text">Hip Hop Music</p>
-        </template>
-      </sidebar-link>
-      <sidebar-link to="/dashboard">
-        <i class="tim-icons icon-headphones"></i>
-        <template>
-          <p class="sidebar-link-text">Folk Music</p>
-        </template>
-      </sidebar-link>
-      <sidebar-link to="/dashboard">
-        <i class="tim-icons icon-headphones"></i>
-        <template>
-          <p class="sidebar-link-text">Classical Music</p>
-        </template>
-      </sidebar-link>
-      <sidebar-link to="/dashboard">
-        <i class="tim-icons icon-headphones"></i>
-        <template>
-          <p class="sidebar-link-text">Dashboard</p>
-        </template>
-      </sidebar-link>
-      <sidebar-link to="/dashboard">
-        <i class="tim-icons icon-headphones"></i>
-        <template>
-          <p class="sidebar-link-text">Dashboard</p>
-        </template>
-      </sidebar-link>
-      <sidebar-link to="/dashboard">
-        <i class="tim-icons icon-headphones"></i>
-        <template>
-          <p class="sidebar-link-text">Dashboard</p>
-        </template>
-      </sidebar-link>
-      <sidebar-link to="/dashboard">
-        <i class="tim-icons icon-headphones"></i>
-        <template>
-          <p class="sidebar-link-text">Dashboard</p>
-        </template>
-      </sidebar-link>
-      <sidebar-link to="/dashboard">
-        <i class="tim-icons icon-headphones"></i>
-        <template>
-          <p class="sidebar-link-text">Dashboard</p>
-        </template>
-      </sidebar-link>
-      <sidebar-link to="/dashboard">
-        <i class="tim-icons icon-headphones"></i>
-        <template>
-          <p class="sidebar-link-text">Dashboard</p>
-        </template>
-      </sidebar-link>
-      <sidebar-link to="/dashboard">
-        <i class="tim-icons icon-headphones"></i>
-        <template>
-          <p class="sidebar-link-text">Dashboard</p>
-        </template>
-      </sidebar-link>
-      <sidebar-link to="/dashboard">
-        <i class="tim-icons icon-headphones"></i>
-        <template>
-          <p class="sidebar-link-text">Dashboard</p>
-        </template>
-      </sidebar-link>
+
       <sidebar-link to="/icons">
         <i class="tim-icons icon-atom"></i>
         <template>
@@ -172,6 +87,9 @@
 </template>
 
 <script>
+import { mapGetters } from "vuex";
+import { FETCH_CATEGORIES } from "@/store/actions.type";
+import store from "@/store";
 import TopNavbar from "./TopNavbar.vue";
 import ContentFooter from "./ContentFooter.vue";
 import SideBar from "@/components/SidebarPlugin/SideBar.vue";
@@ -186,17 +104,29 @@ export default {
   },
   data() {
     return {
-      backgroundColor: "green"
-    };
+      backgroundColor: "green",
+      concertStatus: [
+        {query: 'ONAIR', text: 'ON-AIR', icon: 'icon-spaceship'},
+        {query: 'UPCOMING', text: 'UPCOMING', icon: 'icon-bell-55'},
+        {query: 'ENDED', text: 'ENDED', icon: 'icon-pin'}
+      ],
+    }
   },
   computed: {
+    ...mapGetters(['categories'])
   },
   methods: {
     toggleSidebar() {
       if (this.$sidebar.showSidebar) {
         this.$sidebar.displaySidebar(false);
       }
+    },
+    loadCategories(){
+      store.dispatch(FETCH_CATEGORIES)
     }
+  },
+  mounted() {
+    this.loadCategories()
   }
 };
 </script>
