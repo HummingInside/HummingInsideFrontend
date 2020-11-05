@@ -2,7 +2,7 @@
   <div class="content">
     <div class="row">
       <div class="col-xl-3 col-lg-4 col-sm-6"
-           v-for="(concert, index) in concerts">
+           v-for="(concert, index) in concerts" :key="index">
         <ConcertCard :concert="concert">
         </ConcertCard>
       </div>
@@ -21,7 +21,7 @@ export default {
   },
   methods: {
     loadConcerts(){
-      store.dispatch(FETCH_CONCERTS)
+      store.dispatch(FETCH_CONCERTS, this.$route.query)
     }
   },
   watch: {

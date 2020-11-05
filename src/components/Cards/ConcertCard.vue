@@ -7,16 +7,18 @@
       <div class="card-title">{{ concert.title }}</div>
     </div>
     <div class="card-body text-right">
-      <div v-if="concert.startDate" style="color: #2c3e50 !important;">{{ concert.startDate }}</div>
+      <div v-if="concert.startDate" style="color: #2c3e50 !important;">{{ dateFormat(concert.startDate) }}</div>
       <div v-if="concert.performer" style="color: #2c3e50 !important;">{{ concert.performer }}</div>
-      <span class="badge badge-pill mr-1 badge-primary likesCount">🤍 <span>{{ numberFormat(concert.likesCount) }}</span></span>
+      <span class="badge badge-pill mr-1 badge-primary likesCount">🤍
+        <span>{{ numberFormat(concert.likesCount) }}</span>
+      </span>
       <span class="badge badge-pill" :class="concert.status">{{ concert.status }}</span>
     </div>
   </router-link>
 </template>
 
 <script>
-import {numberFormat, getImage} from "@/common/misc";
+import {numberFormat, dateFormat, getImage} from "@/common/misc";
 
 export default{
   name:"card",
@@ -28,6 +30,7 @@ export default{
   },
   methods : {
     numberFormat,
+    dateFormat,
     getImage
   }
 }

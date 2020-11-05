@@ -43,8 +43,8 @@ const ApiService = {
         });
     },
 
-    upload(resource, pk, formData){
-        return Vue.axios.post(`${resource}/${pk}/upload`, formData, {
+    upload(resource, formData){
+        return Vue.axios.post(`${resource}/upload`, formData, {
             headers: {
                 'Content-Type': 'multipart/form-data'
             }
@@ -57,6 +57,14 @@ const ApiService = {
 export default ApiService;
 
 const CONCERT_PATH = 'concerts'
+const FILE_PATH = 'files'
+const CATEGORY_PATH = 'categories'
+
+export const CategoriesService = {
+    query(){
+        return ApiService.query(CATEGORY_PATH);
+    }
+}
 
 export const ConcertsService = {
     query(params) {
@@ -71,12 +79,14 @@ export const ConcertsService = {
         return ApiService.post(CONCERT_PATH, params);
     },
     update(pk, params) {
-        return ApiService.update(CONCERT_PATH, pk, { concert: params });
+        return ApiService.update(CONCERT_PATH, pk, params);
     },
     destroy(pk) {
         return ApiService.delete(CONCERT_PATH+`/${pk}`);
     },
-    upload(pk, file){
-        return ApiService.upload(CONCERT_PATH, pk, file);
+    upload(file){
+        const formData = new FormData()
+        formData.append('file', file)
+        return ApiService.upload(FILE_PATH, formData);
     }
 };

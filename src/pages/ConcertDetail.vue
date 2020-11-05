@@ -6,13 +6,13 @@
         {{ concert.title }}
         </div>
         <div class="row" id="date">
-          {{ concert.startDate }} ~ {{ concert.endDate }}
+          {{ dateFormat(concert.startDate) }} ~ {{ dateFormat(concert.endDate) }}
         </div>
       </div>
     </div>
     <div class="row">
       <div class="col-lg-5 mb-5">
-        <img id="concert-img" :src="getImage(concert.imgUrl)">
+        <img id="concert-img" :src="imgPreview">
       </div>
       <div class="col-lg-7">
         <div class="row desc-row">
@@ -51,12 +51,21 @@
             Enter
           </base-button>
         </router-link>
-        <router-link v-else to="/">
-          <base-button class="big-button blue-color">
-            Reservation
-          </base-button>
-        </router-link>
-
+        <template v-else>
+          <router-link to="/">
+            <base-button class="big-button blue-color">
+              Reservation
+            </base-button>
+          </router-link>
+          <router-link
+              v-if="concert.status !== 'ENDED'
+               && concert.performer === currentUser.username"
+              :to="{ name: 'concert-update', params: {pk :concert.id} }">
+            <base-button class="middle-button mint-color">
+              Modify
+            </base-button>
+          </router-link>
+        </template>
         <base-button class="small-button pink-color">🤍</base-button>
       </div>
     </div>
@@ -67,7 +76,7 @@
 import { mapGetters } from "vuex";
 import store from "@/store";
 import { FETCH_CONCERT } from "@/store/actions.type";
-import {numberFormat, getImage} from "@/common/misc";
+import {numberFormat, dateFormat, getImage} from "@/common/misc";
 
 export default {
   methods: {
@@ -75,10 +84,11 @@ export default {
       store.dispatch(FETCH_CONCERT, this.$route.params.pk)
     },
     numberFormat,
+    dateFormat,
     getImage
   },
   computed: {
-    ...mapGetters(['concert'])
+    ...mapGetters(['concert', 'imgPreview', 'currentUser'])
   },
   created() {
     this.loadConcert()
@@ -119,6 +129,11 @@ export default {
     padding: 1rem 1rem;
     font-size: 1.1rem;
   }
+  .middle-button {
+    margin-left: 0.5rem;
+    padding: 1rem 1.5rem;
+    font-size: 1.1rem;
+  }
   .pink-color {
     background-color: #fd77a4 !important;
   }
@@ -127,6 +142,9 @@ export default {
   }
   .purple-color {
     background-color: #ba54f5 !important;
+  }
+  .mint-color {
+    background-color: #71caa6 !important;
   }
   .title{
     color: #333;
