@@ -17,7 +17,7 @@
    },
    computed: {
      table() {
-       return this.$t('dashboard.usersTable');
+       return 'dashboard.usersTable';
      }
    }
  }
