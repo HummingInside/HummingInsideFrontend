@@ -31,7 +31,7 @@ const initialState = {
     concert: {
         title: "",
         category: {
-          id: 0,
+          id: 50,
           name: ""
         },
         performer: "",
@@ -106,7 +106,7 @@ export const actions = {
         const concert = state.concert
         const param = {
             title: concert.title,
-            categoryId: 53, // TODO 리스트 형식으로 불러오기
+            categoryId: concert.category.id,
             startDate: concert.startDate,
             endDate: concert.endDate,
             description: concert.description,
@@ -125,7 +125,7 @@ export const actions = {
         const concert = state.concert
         const param = {
             title: concert.title,
-            categoryId: 53, // TODO 리스트 형식으로 불러오기
+            categoryId: concert.category.id,
             startDate: concert.startDate,
             endDate: concert.endDate,
             description: concert.description,

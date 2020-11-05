@@ -1,10 +1,17 @@
 <template>
   <ConcertForm>
-    <template v-slot:buttonSlot>
+    <template v-slot:updateButtonSlot>
       <base-button
           class="big-button blue-color"
           v-on:click="updateConcert()">
         Update
+      </base-button>
+    </template>
+    <template v-slot:deleteButtonSlot>
+      <base-button
+          class="small-button red-color"
+          v-on:click="deleteConcert()">
+        <i class="tim-icons icon-trash-simple"></i>
       </base-button>
     </template>
   </ConcertForm>
@@ -29,6 +36,9 @@ export default {
       store.dispatch(UPDATE_CONCERT, this.$route.params.pk)
       store.dispatch(FETCH_CONCERTS)
           .then(() => this.$router.push({ name: "concert-list" }))
+    },
+    deleteConcert(){
+
     }
   },
   created() {

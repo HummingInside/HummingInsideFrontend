@@ -45,11 +45,20 @@
           </base-input>
         </div>
         <div class="row desc-row text-left">
-          <base-input label="Category"
-                      placeholder="Category"
-                      class="col-lg-12"
-                      v-model="concert.category.name">
-          </base-input>
+          <div class="col-lg-12">
+            <label>Category</label>
+            <div>
+              <select v-model="concert.category.id"
+                      class="form-group form-control input-group-text select-box">
+                <option
+                    v-for="(category, index) in categories"
+                    :key="'a'+index"
+                    :value="category.id">
+                    {{ category.name }}
+                </option>
+              </select>
+            </div>
+          </div>
         </div>
         <div class="row desc-row text-left">
           <div class="col-lg-12">
@@ -107,7 +116,8 @@
     <div class="row desc-row mt-1">
       <div class="col-lg-1"></div>
       <div class="col-lg-11 font-weight-bold text-right">
-        <slot name="buttonSlot"></slot>
+        <slot name="updateButtonSlot"></slot>
+        <slot name="deleteButtonSlot"></slot>
       </div>
     </div>
   </div>
@@ -141,7 +151,7 @@ export default {
     }
   },
   computed: {
-    ...mapGetters(['concert', 'imgPreview'])
+    ...mapGetters(['concert', 'imgPreview', 'categories'])
   }
 }
 </script>
@@ -168,8 +178,16 @@ export default {
   padding: 1rem 5rem;
   font-size: 1.1rem;
 }
+.small-button {
+  margin-left: 0.5rem;
+  padding: 1rem 1rem;
+  font-size: 1.1rem;
+}
 .blue-color {
   background-color: #419ef9 !important;
+}
+.red-color {
+  background-color: #f66363 !important;
 }
 .title{
   color: #333;
@@ -226,5 +244,9 @@ export default {
 }
 #upload-image:hover {
   cursor: pointer;
+}
+.select-box {
+  appearance: none;
+  -webkit-appearance: none;
 }
 </style>

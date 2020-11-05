@@ -58,7 +58,8 @@
             </base-button>
           </router-link>
           <router-link
-              v-if="concert.status !== 'ENDED'"
+              v-if="concert.status !== 'ENDED'
+               && concert.performer === currentUser.username"
               :to="{ name: 'concert-update', params: {pk :concert.id} }">
             <base-button class="middle-button mint-color">
               Modify
@@ -87,7 +88,7 @@ export default {
     getImage
   },
   computed: {
-    ...mapGetters(['concert', 'imgPreview'])
+    ...mapGetters(['concert', 'imgPreview', 'currentUser'])
   },
   created() {
     this.loadConcert()
