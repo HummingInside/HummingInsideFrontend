@@ -116,7 +116,7 @@
     <div class="row desc-row mt-1">
       <div class="col-lg-1"></div>
       <div class="col-lg-11 font-weight-bold text-right">
-        <slot name="updateButtonSlot"></slot>
+        <slot name="actionButtonSlot"></slot>
         <slot name="deleteButtonSlot"></slot>
       </div>
     </div>

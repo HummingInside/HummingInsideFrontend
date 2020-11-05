@@ -1,6 +1,6 @@
 <template>
   <ConcertForm>
-    <template v-slot:updateButtonSlot>
+    <template v-slot:actionButtonSlot>
       <base-button
           class="big-button blue-color"
           v-on:click="updateConcert()">
@@ -20,6 +20,7 @@
 <script>
 import store from "@/store";
 import {
+  DELETE_CONCERT,
   FETCH_CONCERT,
   FETCH_CONCERTS,
   UPDATE_CONCERT
@@ -38,7 +39,9 @@ export default {
           .then(() => this.$router.push({ name: "concert-list" }))
     },
     deleteConcert(){
-
+      store.dispatch(DELETE_CONCERT, this.$route.params.pk)
+      store.dispatch(FETCH_CONCERTS)
+          .then(() => this.$router.push({ name: "concert-list" }))
     }
   },
   created() {

@@ -1,6 +1,6 @@
 <template>
   <ConcertForm>
-    <template v-slot:buttonSlot>
+    <template v-slot:actionButtonSlot>
       <base-button
           class="big-button blue-color"
           v-on:click="createConcert()">
