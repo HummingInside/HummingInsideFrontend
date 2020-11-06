@@ -126,9 +126,9 @@
             <line-chart
                 class="chart-area"
                 chart-id="purple-line-chart"
-                :chart-data="purpleLineChart.chartData"
-                :gradient-stops="purpleLineChart.gradientStops"
-                :extra-options="purpleLineChart.extraOptions">
+                :chart-data="purpleLineChartData"
+                :gradient-stops="purpleLineChartGradient"
+                :extra-options="purpleLineChartExtra">
             </line-chart>
           </card>
         </div>
@@ -216,10 +216,9 @@ export default {
         gradientColors: config.colors.primaryGradient,
         gradientStops: [1, 0.4, 0],
       },
-      purpleLineChart: {
+      /*purpleLineChart: {
         extraOptions: chartConfigs.purpleChartOptions,
-        chartData: { datasets: [{ }]},
-        /*chartData: {
+        chartData: {
           labels: [],
           datasets: [{
             label: "My First dataset",
@@ -237,16 +236,18 @@ export default {
             pointRadius: 4,
             data: [90, 27, 60, 12, 80],
           }]
-        },*/
+        },
         gradientColors: ['rgba(66,134,121,0.15)', 'rgba(66,134,121,0.0)', 'rgba(66,134,121,0)'],
         gradientStops: [1, 0.4, 0],
-      }
+      }*/
     }
   },
   computed:{
     ...mapGetters(["myConcerts"]),
     ...mapGetters(["myReservations"]),
-    //...mapGetters("myExpenditureKey")
+    ...mapGetters(["purpleLineChartData"]),
+    ...mapGetters(["purpleLineChartGradient"]),
+    ...mapGetters(["purpleLineChartExtra"]),
   },
   methods:{
     initBigChart(index) {
@@ -271,40 +272,14 @@ export default {
       this.$refs.bigChart.updateGradients(chartData);
       this.bigLineChart.chartData = chartData;
       this.bigLineChart.activeIndex = index;
-    },
-    initPurpleLineChart(){
-      console.log("initPurple method");
-      let chartData = {
-        datasets: [{
-          label: "My First dataset",
-          fill: true,
-          borderColor: config.colors.danger,
-          borderWidth: 2,
-          borderDash: [],
-          borderDashOffset: 0.0,
-          pointBackgroundColor: config.colors.danger,
-          pointBorderColor: 'rgba(255,255,255,0)',
-          pointHoverBackgroundColor: config.colors.danger,
-          pointBorderWidth: 20,
-          pointHoverRadius: 4,
-          pointHoverBorderWidth: 15,
-          pointRadius: 4,
-          data: this.$store.getters.myExpenditureValue,
-        }],
-        labels: this.$store.getters.myExpenditureKey
-      }
-      this.purpleLineChart.chartData = chartData;
     }
   },
   mounted(){
-    console.log(this.$store.getters.myExpenditureKey);
 
     this.initBigChart(0);
   },
   created() {
     this.$store.dispatch(MY_CONCERTS);
-
-    this.initPurpleLineChart();
   }
 }
 </script>

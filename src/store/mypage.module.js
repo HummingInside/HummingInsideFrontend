@@ -8,14 +8,38 @@ import {
     SET_ERROR,
     SET_MY_CONCERTS
 } from "./mutations.type";
+import * as chartConfigs from "@/components/Charts/config";
+import config from "@/pages/config";
 
 export const state = {
     errors: null,
     concerts: [],
     reservations: [],
     expStatistics: {},
-    expStatisticsKey: [],
-    expStatisticsValue: []
+    purpleLineChart: {
+        extraOptions: chartConfigs.purpleChartOptions,
+        chartData: {
+            labels: [],
+            datasets: [{
+                label: "My First dataset",
+                fill: true,
+                borderColor: config.colors.danger,
+                borderWidth: 2,
+                borderDash: [],
+                borderDashOffset: 0.0,
+                pointBackgroundColor: config.colors.danger,
+                pointBorderColor: 'rgba(255,255,255,0)',
+                pointHoverBackgroundColor: config.colors.danger,
+                pointBorderWidth: 20,
+                pointHoverRadius: 4,
+                pointHoverBorderWidth: 15,
+                pointRadius: 4,
+                data: [],
+            }]
+        },
+        gradientColors: ['rgba(66,134,121,0.15)', 'rgba(66,134,121,0.0)', 'rgba(66,134,121,0)'],
+        gradientStops: [1, 0.4, 0],
+    }
 };
 
 const getters = {
@@ -25,13 +49,15 @@ const getters = {
     myReservations(state){
         return state.reservations;
     },
-    myExpenditureKey(state){
-        console.log(Object.keys(state.expStatistics));
-        return Object.keys(state.expStatistics);
+    purpleLineChartData(state){
+        console.log(state.purpleLineChart.chartData);
+        return state.purpleLineChart.chartData;
     },
-    myExpenditureValue(state){
-
-        return Object.values(state.expStatistics);
+    purpleLineChartGradient(state){
+        return state.purpleLineChart.gradientStops;
+    },
+    purpleLineChartExtra(state){
+        return state.purpleLineChart.extraOptions;
     }
 };
 
@@ -76,9 +102,9 @@ export const mutations = {
             }
         });
 
-        console.log("set statistics");
-        console.log(state.expStatistics);
-        console.log(Object.keys(state.expStatistics));
+        state.purpleLineChart.chartData.labels = Object.keys(state.expStatistics);
+        console.log(state.purpleLineChart.chartData.labels);
+        state.purpleLineChart.chartData.datasets[0].data = Object.values(state.expStatistics);
     }
 };
 
