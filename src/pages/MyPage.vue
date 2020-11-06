@@ -10,7 +10,7 @@
                   <h5 class="card-category">Total</h5>
                 </template>
                 <template>
-                  <h2 class="card-title">Monthly</h2>
+                  <h2 class="card-title">Daily</h2>
                 </template>
               </div>
               <div class="col-sm-6">
@@ -52,24 +52,30 @@
           <template slot="header">
             <div class="text-left">
               <template>
-                <p class="card-category d-inline">My Concerts List</p>
+                <p class="card-category d-inline">Concerts</p>
+              </template>
+              <template>
+                <h2 class="card-title">My Concerts List</h2>
               </template>
             </div>
           </template>
           <div class="table-full-width table-responsive">
-            <task-list templateId="concerts"></task-list>
+            <task-list templateId="concerts" :data="myConcerts"></task-list>
           </div>
         </card>
         <card type="tasks" style="height: 47%">
           <template slot="header">
             <div class="text-left">
               <template>
-                <p class="card-category d-inline">My Reservations</p>
+                <p class="card-category d-inline">Reservations</p>
+              </template>
+              <template>
+                <h2 class="card-title">My Reservations</h2>
               </template>
             </div>
           </template>
           <div class="table-full-width table-responsive">
-            <task-list templateId="reservations"></task-list>
+            <task-list templateId="reservations" :data="myReservations"></task-list>
           </div>
         </card>
       </div>
@@ -78,8 +84,8 @@
           <card type="chart" cardCol>
             <template slot="header">
               <div style="text-align: left !important;">
-                <h5 class="card-category">dashboard.totalShipments</h5>
-                <h3 class="card-title"><i class="tim-icons icon-bell-55 text-primary "></i> 763,215</h3>
+                <h5 class="card-category">Daily Concert Revenue</h5>
+                <h3 class="card-title"><i class="tim-icons icon-bell-55 text-primary"></i> 763,215</h3>
               </div>
             </template>
             <line-chart
@@ -96,7 +102,7 @@
           <card type="chart" cardCol>
             <template slot="header">
               <div style="text-align: left !important;">
-                <h5 class="card-category">dashboard.dailySales</h5>
+                <h5 class="card-category">Concert Purchaser Count</h5>
                 <h3 class="card-title"><i class="tim-icons icon-delivery-fast text-info "></i> 3,500€</h3>
               </div>
             </template>
@@ -113,7 +119,7 @@
           <card type="chart" cardCol>
             <template slot="header">
               <div style="text-align: left !important;">
-                <h5 class="card-category">dashboard.completedTasks</h5>
+                <h5 class="card-category">My Expenditure</h5>
                 <h3 class="card-title"><i class="tim-icons icon-send text-success "></i> 12,100K</h3>
               </div>
             </template>
@@ -141,6 +147,8 @@ import BarChart from '@/components/Charts/BarChart';
 import * as chartConfigs from '@/components/Charts/config';
 import TaskList from './Dashboard/TaskList'
 import config from './config';
+import {MY_CONCERTS} from "@/store/actions.type";
+import {mapGetters} from "vuex";
 
 export default {
   components: {
@@ -210,8 +218,9 @@ export default {
       },
       purpleLineChart: {
         extraOptions: chartConfigs.purpleChartOptions,
-        chartData: {
-          labels: ['JUL', 'AUG', 'SEP', 'OCT', 'NOV'],
+        chartData: { datasets: [{ }]},
+        /*chartData: {
+          labels: [],
           datasets: [{
             label: "My First dataset",
             fill: true,
@@ -228,14 +237,16 @@ export default {
             pointRadius: 4,
             data: [90, 27, 60, 12, 80],
           }]
-        },
+        },*/
         gradientColors: ['rgba(66,134,121,0.15)', 'rgba(66,134,121,0.0)', 'rgba(66,134,121,0)'],
         gradientStops: [1, 0.4, 0],
       }
     }
   },
   computed:{
-
+    ...mapGetters(["myConcerts"]),
+    ...mapGetters(["myReservations"]),
+    //...mapGetters("myExpenditureKey")
   },
   methods:{
     initBigChart(index) {
@@ -260,10 +271,40 @@ export default {
       this.$refs.bigChart.updateGradients(chartData);
       this.bigLineChart.chartData = chartData;
       this.bigLineChart.activeIndex = index;
+    },
+    initPurpleLineChart(){
+      console.log("initPurple method");
+      let chartData = {
+        datasets: [{
+          label: "My First dataset",
+          fill: true,
+          borderColor: config.colors.danger,
+          borderWidth: 2,
+          borderDash: [],
+          borderDashOffset: 0.0,
+          pointBackgroundColor: config.colors.danger,
+          pointBorderColor: 'rgba(255,255,255,0)',
+          pointHoverBackgroundColor: config.colors.danger,
+          pointBorderWidth: 20,
+          pointHoverRadius: 4,
+          pointHoverBorderWidth: 15,
+          pointRadius: 4,
+          data: this.$store.getters.myExpenditureValue,
+        }],
+        labels: this.$store.getters.myExpenditureKey
+      }
+      this.purpleLineChart.chartData = chartData;
     }
   },
   mounted(){
+    console.log(this.$store.getters.myExpenditureKey);
+
     this.initBigChart(0);
+  },
+  created() {
+    this.$store.dispatch(MY_CONCERTS);
+
+    this.initPurpleLineChart();
   }
 }
 </script>
