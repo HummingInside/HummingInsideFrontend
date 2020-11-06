@@ -16,6 +16,7 @@ export const state = {
     concerts: [],
     reservations: [],
     expStatistics: {},
+    isLoading: true,
     purpleLineChart: {
         extraOptions: chartConfigs.purpleChartOptions,
         chartData: {
@@ -58,6 +59,9 @@ const getters = {
     },
     purpleLineChartExtra(state){
         return state.purpleLineChart.extraOptions;
+    },
+    isMyPageLoading(state){
+        return state.isLoading;
     }
 };
 
@@ -105,6 +109,8 @@ export const mutations = {
         state.purpleLineChart.chartData.labels = Object.keys(state.expStatistics);
         console.log(state.purpleLineChart.chartData.labels);
         state.purpleLineChart.chartData.datasets[0].data = Object.values(state.expStatistics);
+
+        state.isLoading = false;
     }
 };
 

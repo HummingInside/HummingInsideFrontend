@@ -124,6 +124,7 @@
               </div>
             </template>
             <line-chart
+                v-if="!isMyPageLoading"
                 class="chart-area"
                 chart-id="purple-line-chart"
                 :chart-data="purpleLineChartData"
@@ -243,11 +244,16 @@ export default {
     }
   },
   computed:{
-    ...mapGetters(["myConcerts"]),
-    ...mapGetters(["myReservations"]),
-    ...mapGetters(["purpleLineChartData"]),
-    ...mapGetters(["purpleLineChartGradient"]),
-    ...mapGetters(["purpleLineChartExtra"]),
+    ...mapGetters(
+            [
+              "myConcerts",
+              "myReservations",
+              "purpleLineChartData",
+              "purpleLineChartGradient",
+              "purpleLineChartExtra",
+              "isMyPageLoading"
+            ]
+    ),
   },
   methods:{
     initBigChart(index) {
@@ -275,7 +281,6 @@ export default {
     }
   },
   mounted(){
-
     this.initBigChart(0);
   },
   created() {
