@@ -12,5 +12,3 @@ export const LOAD_IMAGE = "loadImage"
 export const FETCH_CATEGORIES = "fetchCategories"
 export const UPDATE_CONCERT = "updateConcert"
 export const MY_CONCERTS = "myConcerts";
-
-export const MY_CONCERTS = "myConcerts";
