@@ -18,7 +18,15 @@
                      data-toggle="buttons"
                      :class="'float-right'">
                   <template>
-                    <label v-for="(option, index) in bigLineChartCategories"
+                    <label id="0" class="btn btn-success btn-sm btn-simple active">
+                      <input type="radio" @click="initBigChart(0)" name="options" autocomplete="off">
+                      Revenue
+                    </label>
+                    <label id="1" class="btn btn-success btn-sm btn-simple">
+                      <input type="radio" @click="initBigChart(1)" name="options" autocomplete="off">
+                      Audience
+                    </label>
+                    <!--<label v-for="(option, index) in bigLineChartCategories"
                            :key="option"
                            class="btn btn-success btn-sm btn-simple"
                            :class="{active:bigLineChart.activeIndex === index}"
@@ -28,20 +36,21 @@
                              name="options" autocomplete="off"
                              :checked="bigLineChart.activeIndex === index">
                       {{ option }}
-                    </label>
+                    </label>-->
                   </template>
                 </div>
               </div>
             </div>
           </template>
           <line-chart
+              v-if="!isMyPageLoading"
               class="chart-area"
               ref="bigChart"
               chart-id="big-line-chart"
-              :chart-data="bigLineChart.chartData"
-              :gradient-colors="bigLineChart.gradientColors"
-              :gradient-stops="bigLineChart.gradientStops"
-              :extra-options="bigLineChart.extraOptions">
+              :chart-data="bigLineChartData"
+              :gradient-colors="bigLineChartColors"
+              :gradient-stops="bigLineChartStops"
+              :extra-options="bigLineChartOptions">
           </line-chart>
         </card>
       </div>
@@ -89,12 +98,13 @@
               </div>
             </template>
             <line-chart
+                v-if="!isMyPageLoading"
                 class="chart-area"
                 chart-id="green-line-chart"
-                :chart-data="greenLineChart.chartData"
-                :gradient-colors="greenLineChart.gradientColors"
-                :gradient-stops="greenLineChart.gradientStops"
-                :extra-options="greenLineChart.extraOptions">
+                :chart-data="greenLineChartData"
+                :gradient-colors="greenLineChartColors"
+                :gradient-stops="greenLineChartStops"
+                :extra-options="greenLineChartOptions">
             </line-chart>
           </card>
         </div>
@@ -107,11 +117,12 @@
               </div>
             </template>
             <bar-chart
+                v-if="!isMyPageLoading"
                 class="chart-area"
                 chart-id="blue-bar-chart"
-                :chart-data="blueBarChart.chartData"
-                :gradient-stops="blueBarChart.gradientStops"
-                :extra-options="blueBarChart.extraOptions">
+                :chart-data="blueBarChartData"
+                :gradient-stops="blueBarChartStops"
+                :extra-options="blueBarChartOptions">
             </bar-chart>
           </card>
         </div>
@@ -128,8 +139,8 @@
                 class="chart-area"
                 chart-id="purple-line-chart"
                 :chart-data="purpleLineChartData"
-                :gradient-stops="purpleLineChartGradient"
-                :extra-options="purpleLineChartExtra">
+                :gradient-stops="purpleLineChartStops"
+                :extra-options="purpleLineChartOptions">
             </line-chart>
           </card>
         </div>
@@ -145,7 +156,7 @@ import {
 
 import LineChart from '@/components/Charts/LineChart';
 import BarChart from '@/components/Charts/BarChart';
-import * as chartConfigs from '@/components/Charts/config';
+//import * as chartConfigs from '@/components/Charts/config';
 import TaskList from './Dashboard/TaskList'
 import config from './config';
 import {MY_CONCERTS} from "@/store/actions.type";
@@ -158,7 +169,7 @@ export default {
     BarChart,
     TaskList
   },
-  data(){
+  /*data(){
     return{
       bigLineChartCategories:[
         "Revenue",
@@ -217,40 +228,27 @@ export default {
         gradientColors: config.colors.primaryGradient,
         gradientStops: [1, 0.4, 0],
       },
-      /*purpleLineChart: {
-        extraOptions: chartConfigs.purpleChartOptions,
-        chartData: {
-          labels: [],
-          datasets: [{
-            label: "My First dataset",
-            fill: true,
-            borderColor: config.colors.danger,
-            borderWidth: 2,
-            borderDash: [],
-            borderDashOffset: 0.0,
-            pointBackgroundColor: config.colors.danger,
-            pointBorderColor: 'rgba(255,255,255,0)',
-            pointHoverBackgroundColor: config.colors.danger,
-            pointBorderWidth: 20,
-            pointHoverRadius: 4,
-            pointHoverBorderWidth: 15,
-            pointRadius: 4,
-            data: [90, 27, 60, 12, 80],
-          }]
-        },
-        gradientColors: ['rgba(66,134,121,0.15)', 'rgba(66,134,121,0.0)', 'rgba(66,134,121,0)'],
-        gradientStops: [1, 0.4, 0],
-      }*/
     }
-  },
+  },*/
   computed:{
     ...mapGetters(
             [
               "myConcerts",
               "myReservations",
+              "bigLineChartData",
+              "bigLineChartColors",
+              "bigLineChartStops",
+              "bigLineChartOptions",
+              "greenLineChartData",
+              "greenLineChartColors",
+              "greenLineChartStops",
+              "greenLineChartOptions",
+              "blueBarChartData",
+              "blueBarChartStops",
+              "blueBarChartOptions",
               "purpleLineChartData",
-              "purpleLineChartGradient",
-              "purpleLineChartExtra",
+              "purpleLineChartStops",
+              "purpleLineChartOptions",
               "isMyPageLoading"
             ]
     ),
@@ -281,10 +279,11 @@ export default {
     }
   },
   mounted(){
-    this.initBigChart(0);
+    //this.initBigChart(0);
   },
   created() {
     this.$store.dispatch(MY_CONCERTS);
+
   }
 }
 </script>
