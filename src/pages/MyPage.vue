@@ -10,7 +10,7 @@
                   <h5 class="card-category">Total</h5>
                 </template>
                 <template>
-                  <h2 class="card-title">Monthly</h2>
+                  <h2 class="card-title">Daily</h2>
                 </template>
               </div>
               <div class="col-sm-6">
@@ -18,7 +18,15 @@
                      data-toggle="buttons"
                      :class="'float-right'">
                   <template>
-                    <label v-for="(option, index) in bigLineChartCategories"
+                    <label id="0" class="btn btn-success btn-sm btn-simple active">
+                      <input type="radio" @click="initBigChart(0)" name="options" autocomplete="off">
+                      Revenue
+                    </label>
+                    <label id="1" class="btn btn-success btn-sm btn-simple">
+                      <input type="radio" @click="initBigChart(1)" name="options" autocomplete="off">
+                      Audience
+                    </label>
+                    <!--<label v-for="(option, index) in bigLineChartCategories"
                            :key="option"
                            class="btn btn-success btn-sm btn-simple"
                            :class="{active:bigLineChart.activeIndex === index}"
@@ -28,20 +36,21 @@
                              name="options" autocomplete="off"
                              :checked="bigLineChart.activeIndex === index">
                       {{ option }}
-                    </label>
+                    </label>-->
                   </template>
                 </div>
               </div>
             </div>
           </template>
           <line-chart
+              v-if="!isMyPageLoading"
               class="chart-area"
               ref="bigChart"
               chart-id="big-line-chart"
-              :chart-data="bigLineChart.chartData"
-              :gradient-colors="bigLineChart.gradientColors"
-              :gradient-stops="bigLineChart.gradientStops"
-              :extra-options="bigLineChart.extraOptions">
+              :chart-data="bigLineChartData"
+              :gradient-colors="bigLineChartColors"
+              :gradient-stops="bigLineChartStops"
+              :extra-options="bigLineChartOptions">
           </line-chart>
         </card>
       </div>
@@ -52,24 +61,30 @@
           <template slot="header">
             <div class="text-left">
               <template>
-                <p class="card-category d-inline">My Concerts List</p>
+                <p class="card-category d-inline">Concerts</p>
+              </template>
+              <template>
+                <h2 class="card-title">My Concerts List</h2>
               </template>
             </div>
           </template>
           <div class="table-full-width table-responsive">
-            <task-list templateId="concerts"></task-list>
+            <task-list templateId="concerts" :data="myConcerts"></task-list>
           </div>
         </card>
         <card type="tasks" style="height: 47%">
           <template slot="header">
             <div class="text-left">
               <template>
-                <p class="card-category d-inline">My Reservations</p>
+                <p class="card-category d-inline">Reservations</p>
+              </template>
+              <template>
+                <h2 class="card-title">My Reservations</h2>
               </template>
             </div>
           </template>
           <div class="table-full-width table-responsive">
-            <task-list templateId="reservations"></task-list>
+            <task-list templateId="reservations" :data="myReservations"></task-list>
           </div>
         </card>
       </div>
@@ -78,17 +93,18 @@
           <card type="chart" cardCol>
             <template slot="header">
               <div style="text-align: left !important;">
-                <h5 class="card-category">dashboard.totalShipments</h5>
-                <h3 class="card-title"><i class="tim-icons icon-bell-55 text-primary "></i> 763,215</h3>
+                <h5 class="card-category">Daily Concert Revenue</h5>
+                <h3 class="card-title"><i class="tim-icons icon-bell-55 text-primary"></i> 763,215</h3>
               </div>
             </template>
             <line-chart
+                v-if="!isMyPageLoading"
                 class="chart-area"
                 chart-id="green-line-chart"
-                :chart-data="greenLineChart.chartData"
-                :gradient-colors="greenLineChart.gradientColors"
-                :gradient-stops="greenLineChart.gradientStops"
-                :extra-options="greenLineChart.extraOptions">
+                :chart-data="greenLineChartData"
+                :gradient-colors="greenLineChartColors"
+                :gradient-stops="greenLineChartStops"
+                :extra-options="greenLineChartOptions">
             </line-chart>
           </card>
         </div>
@@ -96,16 +112,17 @@
           <card type="chart" cardCol>
             <template slot="header">
               <div style="text-align: left !important;">
-                <h5 class="card-category">dashboard.dailySales</h5>
+                <h5 class="card-category">Concert Purchaser Count</h5>
                 <h3 class="card-title"><i class="tim-icons icon-delivery-fast text-info "></i> 3,500€</h3>
               </div>
             </template>
             <bar-chart
+                v-if="!isMyPageLoading"
                 class="chart-area"
                 chart-id="blue-bar-chart"
-                :chart-data="blueBarChart.chartData"
-                :gradient-stops="blueBarChart.gradientStops"
-                :extra-options="blueBarChart.extraOptions">
+                :chart-data="blueBarChartData"
+                :gradient-stops="blueBarChartStops"
+                :extra-options="blueBarChartOptions">
             </bar-chart>
           </card>
         </div>
@@ -113,16 +130,17 @@
           <card type="chart" cardCol>
             <template slot="header">
               <div style="text-align: left !important;">
-                <h5 class="card-category">dashboard.completedTasks</h5>
+                <h5 class="card-category">My Expenditure</h5>
                 <h3 class="card-title"><i class="tim-icons icon-send text-success "></i> 12,100K</h3>
               </div>
             </template>
             <line-chart
+                v-if="!isMyPageLoading"
                 class="chart-area"
                 chart-id="purple-line-chart"
-                :chart-data="purpleLineChart.chartData"
-                :gradient-stops="purpleLineChart.gradientStops"
-                :extra-options="purpleLineChart.extraOptions">
+                :chart-data="purpleLineChartData"
+                :gradient-stops="purpleLineChartStops"
+                :extra-options="purpleLineChartOptions">
             </line-chart>
           </card>
         </div>
@@ -138,9 +156,11 @@ import {
 
 import LineChart from '@/components/Charts/LineChart';
 import BarChart from '@/components/Charts/BarChart';
-import * as chartConfigs from '@/components/Charts/config';
+//import * as chartConfigs from '@/components/Charts/config';
 import TaskList from './Dashboard/TaskList'
 import config from './config';
+import {MY_CONCERTS} from "@/store/actions.type";
+import {mapGetters} from "vuex";
 
 export default {
   components: {
@@ -149,7 +169,7 @@ export default {
     BarChart,
     TaskList
   },
-  data(){
+  /*data(){
     return{
       bigLineChartCategories:[
         "Revenue",
@@ -208,34 +228,30 @@ export default {
         gradientColors: config.colors.primaryGradient,
         gradientStops: [1, 0.4, 0],
       },
-      purpleLineChart: {
-        extraOptions: chartConfigs.purpleChartOptions,
-        chartData: {
-          labels: ['JUL', 'AUG', 'SEP', 'OCT', 'NOV'],
-          datasets: [{
-            label: "My First dataset",
-            fill: true,
-            borderColor: config.colors.danger,
-            borderWidth: 2,
-            borderDash: [],
-            borderDashOffset: 0.0,
-            pointBackgroundColor: config.colors.danger,
-            pointBorderColor: 'rgba(255,255,255,0)',
-            pointHoverBackgroundColor: config.colors.danger,
-            pointBorderWidth: 20,
-            pointHoverRadius: 4,
-            pointHoverBorderWidth: 15,
-            pointRadius: 4,
-            data: [90, 27, 60, 12, 80],
-          }]
-        },
-        gradientColors: ['rgba(66,134,121,0.15)', 'rgba(66,134,121,0.0)', 'rgba(66,134,121,0)'],
-        gradientStops: [1, 0.4, 0],
-      }
     }
-  },
+  },*/
   computed:{
-
+    ...mapGetters(
+            [
+              "myConcerts",
+              "myReservations",
+              "bigLineChartData",
+              "bigLineChartColors",
+              "bigLineChartStops",
+              "bigLineChartOptions",
+              "greenLineChartData",
+              "greenLineChartColors",
+              "greenLineChartStops",
+              "greenLineChartOptions",
+              "blueBarChartData",
+              "blueBarChartStops",
+              "blueBarChartOptions",
+              "purpleLineChartData",
+              "purpleLineChartStops",
+              "purpleLineChartOptions",
+              "isMyPageLoading"
+            ]
+    ),
   },
   methods:{
     initBigChart(index) {
@@ -263,7 +279,11 @@ export default {
     }
   },
   mounted(){
-    this.initBigChart(0);
+    //this.initBigChart(0);
+  },
+  created() {
+    this.$store.dispatch(MY_CONCERTS);
+
   }
 }
 </script>

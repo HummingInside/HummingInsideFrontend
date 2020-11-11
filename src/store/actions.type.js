@@ -12,5 +12,7 @@ export const LOAD_IMAGE = "loadImage"
 export const FETCH_CATEGORIES = "fetchCategories"
 export const UPDATE_CONCERT = "updateConcert"
 export const MY_CONCERTS = "myConcerts";
-
-export const MY_CONCERTS = "myConcerts";
+export const STATISTICS_TOTAL = "statisticsTotal";
+export const STATISTICS_ONE = "statisticsOne";
+export const STATISTICS_EXP = "statisticsExp";
+//export const MY_CONCERTS = "myConcerts";
