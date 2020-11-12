@@ -22,21 +22,10 @@
                       <input type="radio" @click="initBigChart(0)" name="options" autocomplete="off">
                       Revenue
                     </label>
-                    <label id="1" class="btn btn-success btn-sm btn-simple">
+                    <!-- label id="1" class="btn btn-success btn-sm btn-simple">
                       <input type="radio" @click="initBigChart(1)" name="options" autocomplete="off">
                       Audience
-                    </label>
-                    <!--<label v-for="(option, index) in bigLineChartCategories"
-                           :key="option"
-                           class="btn btn-success btn-sm btn-simple"
-                           :class="{active:bigLineChart.activeIndex === index}"
-                           :id="index">
-                      <input type="radio"
-                             @click="initBigChart(index)"
-                             name="options" autocomplete="off"
-                             :checked="bigLineChart.activeIndex === index">
-                      {{ option }}
-                    </label>-->
+                    </label> -->
                   </template>
                 </div>
               </div>
@@ -100,6 +89,7 @@
             <line-chart
                 v-if="!isMyPageLoading"
                 class="chart-area"
+                ref="greenChart"
                 chart-id="green-line-chart"
                 :chart-data="greenLineChartData"
                 :gradient-colors="greenLineChartColors"
@@ -119,6 +109,7 @@
             <bar-chart
                 v-if="!isMyPageLoading"
                 class="chart-area"
+                ref="barChart"
                 chart-id="blue-bar-chart"
                 :chart-data="blueBarChartData"
                 :gradient-stops="blueBarChartStops"
@@ -156,9 +147,7 @@ import {
 
 import LineChart from '@/components/Charts/LineChart';
 import BarChart from '@/components/Charts/BarChart';
-//import * as chartConfigs from '@/components/Charts/config';
 import TaskList from './Dashboard/TaskList'
-import config from './config';
 import {MY_CONCERTS} from "@/store/actions.type";
 import {mapGetters} from "vuex";
 
@@ -169,67 +158,6 @@ export default {
     BarChart,
     TaskList
   },
-  /*data(){
-    return{
-      bigLineChartCategories:[
-        "Revenue",
-        "Audiences"
-      ],
-      bigLineChart: {
-        allData: [
-          [100, 70, 90, 70, 85, 60, 75, 60, 90, 80, 110, 100],
-          [80, 120, 105, 110, 95, 105, 90, 100, 80, 95, 70, 120]
-        ],
-        activeIndex: 0,
-        chartData: { datasets: [{ }]},
-        extraOptions: chartConfigs.purpleChartOptions,
-        gradientColors: config.colors.primaryGradient,
-        gradientStops: [1, 0.4, 0],
-        categories: []
-      },
-      greenLineChart: {
-        extraOptions: chartConfigs.greenChartOptions,
-        chartData: {
-          labels: ['JUL', 'AUG', 'SEP', 'OCT', 'NOV', 'DEC'],
-          datasets: [{
-            label: "Data",
-            fill: true,
-            borderColor: config.colors.primary,
-            borderWidth: 2,
-            borderDash: [],
-            borderDashOffset: 0.0,
-            pointBackgroundColor: config.colors.primary,
-            pointBorderColor: 'rgba(255,255,255,0)',
-            pointHoverBackgroundColor: config.colors.primary,
-            pointBorderWidth: 20,
-            pointHoverRadius: 4,
-            pointHoverBorderWidth: 15,
-            pointRadius: 4,
-            data: [80, 100, 70, 80, 120, 80],
-          }]
-        },
-        gradientColors: config.colors.primaryGradient,
-        gradientStops: [1, 0.2, 0],
-      },
-      blueBarChart: {
-        extraOptions: chartConfigs.barChartOptions,
-        chartData: {
-          labels: ['USA', 'GER', 'AUS', 'UK', 'RO', 'BR'],
-          datasets: [{
-            label: "Countries",
-            fill: true,
-            borderColor: config.colors.info,
-            borderWidth: 2,
-            borderDash: [],
-            borderDashOffset: 0.0,
-            data: [53, 20, 10, 80, 100, 45],
-          }]
-        },
-        gradientColors: config.colors.primaryGradient,
-        gradientStops: [1, 0.4, 0],
-      },
-    }
-  },*/
   computed:{
     ...mapGetters(
             [
@@ -254,36 +182,11 @@ export default {
     ),
   },
   methods:{
-    initBigChart(index) {
-      let chartData = {
-        datasets: [{
-          fill: true,
-          borderColor: config.colors.primary,
-          borderWidth: 2,
-          borderDash: [],
-          borderDashOffset: 0.0,
-          pointBackgroundColor: config.colors.primary,
-          pointBorderColor: 'rgba(255,255,255,0)',
-          pointHoverBackgroundColor: config.colors.primary,
-          pointBorderWidth: 20,
-          pointHoverRadius: 4,
-          pointHoverBorderWidth: 15,
-          pointRadius: 4,
-          data: this.bigLineChart.allData[index]
-        }],
-        labels: ['JAN', 'FEB', 'MAR', 'APR', 'MAY', 'JUN', 'JUL', 'AUG', 'SEP', 'OCT', 'NOV', 'DEC'],
-      }
-      this.$refs.bigChart.updateGradients(chartData);
-      this.bigLineChart.chartData = chartData;
-      this.bigLineChart.activeIndex = index;
-    }
   },
   mounted(){
-    //this.initBigChart(0);
   },
   created() {
     this.$store.dispatch(MY_CONCERTS);
-
   }
 }
 </script>
