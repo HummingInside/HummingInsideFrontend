@@ -1,12 +1,13 @@
 import ApiService from "@/common/api.service";
 
 import {
-    MY_CONCERTS,
+    MY_CONCERTS, STATISTICS_ONE,
 } from "./actions.type";
 
 import {
     SET_ERROR,
-    SET_MY_CONCERTS
+    SET_MY_CONCERTS,
+    SET_STATISTICS
 } from "./mutations.type";
 import * as chartConfigs from "@/components/Charts/config";
 import config from "@/pages/config";
@@ -204,6 +205,18 @@ export const actions = {
             .catch(() => {
                 context.commit(SET_ERROR);
             });
+    },
+    [STATISTICS_ONE](context, credentials){
+        return new Promise(resolve => {
+            ApiService.post("/my-page/statistics", credentials)
+                .then(({ data }) => {
+                    context.commit(SET_STATISTICS, data);
+                    resolve(data);
+                })
+                .catch(() => {
+                    context.commit(SET_ERROR);
+                });
+        });
     }
 };
 
@@ -236,6 +249,21 @@ export const mutations = {
 
         state.purpleLineChart.chartData.labels = Object.keys(state.expStatistics);
         state.purpleLineChart.chartData.datasets[0].data = Object.values(state.expStatistics);
+
+        state.isLoading = false;
+    },
+    [SET_STATISTICS](state, concert){
+        state.concertRevenue = concert[0];
+
+        setStatistics(state.concertRevenue, 1);
+
+        state.greenLineChart.chartData.labels = Object.keys(state.expStatistics);
+        state.greenLineChart.chartData.datasets[0].data = Object.values(state.expStatistics);
+
+        setStatistics(state.concertRevenue, 2);
+
+        state.blueBarChart.chartData.labels = Object.keys(state.expStatistics);
+        state.blueBarChart.chartData.datasets[0].data = Object.values(state.expStatistics);
 
         state.isLoading = false;
     }
