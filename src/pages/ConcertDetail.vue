@@ -89,7 +89,7 @@ export default {
     getImage,
     pay(){
       const IMP = window.IMP;
-      IMP.init('---');
+      IMP.init('imp29667601');
 
       IMP.request_pay({
         pg : 'inicis', // version 1.1.0부터 지원.
