@@ -14,9 +14,11 @@
         <p class="text-muted">{{row.startDate}}</p>
       </td>
       <td class="td-actions text-right">
-        <base-button type="link" artia-label="edit button">
-          <i class="tim-icons icon-pencil"></i>
-        </base-button>
+        <router-link :to="{ name: 'concert-update', params: {pk :row.id} }">
+          <base-button type="link" artia-label="edit button">
+            <i class="tim-icons icon-pencil"></i>
+          </base-button>
+        </router-link>
       </td>
     </template>
   </base-table>

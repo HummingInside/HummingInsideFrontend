@@ -35,20 +35,18 @@ export default {
       gradientStroke.addColorStop(this.gradientStops[0], this.gradientColors[0]);
       gradientStroke.addColorStop(this.gradientStops[1], this.gradientColors[1]);
       gradientStroke.addColorStop(this.gradientStops[2], this.gradientColors[2]);
-      chartData.datasets.forEach(set => {
+      this.chartData.datasets.forEach(set => {
         set.backgroundColor = gradientStroke;
       });
     }
   },
   mounted() {
-    this.$watch('chartData', (newVal, oldVal) => {
-      this.updateGradients(this.chartData);
-      if (!oldVal) {
-        this.renderChart(
+    this.$watch('chartData.labels', (newVal) => {
+      this.updateGradients(newVal);
+      this.renderChart(
           this.chartData,
           this.extraOptions
-        );
-      }
-    }, { immediate: true });
+      );
+    }, { immediate: true, deep:true });
   }
 };

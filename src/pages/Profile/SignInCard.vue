@@ -20,7 +20,7 @@
         <base-input label="Password"
                     type="password"
                     v-model="password"
-                    placeholder="Password">
+                    placeholder="Password" v-on:keyup.enter="onSubmit">
         </base-input>
       </div>
     </div>
