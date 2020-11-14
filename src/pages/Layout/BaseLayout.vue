@@ -3,7 +3,7 @@
     <side-bar :background-color="backgroundColor">
       <sidebar-link
           v-for="(status, index) in concertStatus" :key="index"
-          :to="'/dashboard?concertStatus=' + status.query">
+          :to="'/concerts?concertStatus=' + status.query">
         <i class="tim-icons" v-bind:class="status.icon"></i>
         <p class="sidebar-link-text">{{ status.text }}</p>
       </sidebar-link>
@@ -25,7 +25,7 @@
 
       <sidebar-link
           v-for="(category, index) in categories" :key="'a'+index"
-          :to="'/dashboard?categoryId=' + category.id">
+          :to="'/concerts?categoryId=' + category.id">
         <i class="tim-icons icon-headphones"></i>
         <template>
           <p class="sidebar-link-text">{{ category.name }}</p>

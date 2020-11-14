@@ -52,11 +52,13 @@
           </base-button>
         </router-link>
         <template v-else>
-          <router-link to="/">
-            <base-button class="big-button blue-color">
+<!--          <router-link to="/">-->
+            <base-button
+                @click="pay"
+                class="big-button blue-color">
               Reservation
             </base-button>
-          </router-link>
+<!--          </router-link>-->
           <router-link
               v-if="concert.status !== 'ENDED'
                && concert.performer === currentUser.username"
@@ -71,7 +73,6 @@
     </div>
   </div>
 </template>
-
 <script>
 import { mapGetters } from "vuex";
 import store from "@/store";
@@ -85,7 +86,37 @@ export default {
     },
     numberFormat,
     dateFormat,
-    getImage
+    getImage,
+    pay(){
+      const IMP = window.IMP;
+      IMP.init('imp29667601');
+
+      IMP.request_pay({
+        pg : 'inicis', // version 1.1.0부터 지원.
+        pay_method : 'card',
+        merchant_uid : 'merchant_' + new Date().getTime(),
+        name : 'The play, History Boys',
+        amount : 15000,
+        buyer_email : 'iamport@siot.do',
+        buyer_name : '구매자이름',
+        buyer_tel : '010-1234-5678',
+        buyer_addr : '서울특별시 강남구 삼성동',
+        buyer_postcode : '123-456',
+      }, rsp => {
+        let msg
+        if ( rsp.success ) {
+          msg = 'Payment has been completed.\nYou can check the paid concert information in My Tickets Page.'
+          msg += '고유ID : ' + rsp.imp_uid;
+          msg += '상점 거래ID : ' + rsp.merchant_uid;
+          msg += '결제 금액 : ' + rsp.paid_amount;
+          msg += '카드 승인번호 : ' + rsp.apply_num;
+        } else {
+          msg = '결제에 실패하였습니다.';
+          msg += '에러내용 : ' + rsp.error_msg;
+        }
+        alert(msg);
+      });
+    }
   },
   computed: {
     ...mapGetters(['concert', 'imgPreview', 'currentUser'])

@@ -21,7 +21,7 @@ const routes = [
   {
     path: "/",
     component: AuthLayout,
-    redirect: "dashboard",
+    redirect: "concerts",
     children: [
       {
         path: "sign-in",
@@ -38,7 +38,7 @@ const routes = [
   {
     path: "/",
     component: BaseLayout,
-    redirect: "dashboard",
+    redirect: "concerts",
     children:[
       {
         path: "concerts/create",
