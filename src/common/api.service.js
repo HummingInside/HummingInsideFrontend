@@ -59,6 +59,7 @@ export default ApiService;
 const CONCERT_PATH = 'concerts'
 const FILE_PATH = 'files'
 const CATEGORY_PATH = 'categories'
+const RESERVATION_PATH = '/reservations'
 
 export const CategoriesService = {
     query(){
@@ -88,5 +89,8 @@ export const ConcertsService = {
         const formData = new FormData()
         formData.append('file', file)
         return ApiService.upload(FILE_PATH, formData);
+    },
+    reserve(pk){
+        return ApiService.post(CONCERT_PATH+`/${pk}`+RESERVATION_PATH);
     }
 };
