@@ -102,8 +102,9 @@ export default {
           ConcertsService.reserve(this.$route.params.pk)
           alert('Payment has been completed.\nCheck it out in My Tickets Page.');
           this.$router.push({ name: "concert-list" })
+        } else {
+          alert('Payment failed. User canceled payment.');
         }
-        alert('Payment failed. User canceled payment.');
       });
     }
   },
