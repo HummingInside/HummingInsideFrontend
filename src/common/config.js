@@ -1,4 +1,5 @@
-export const API_URL = "http://localhost:8080";
+export const API_URL = "http://localhost:8080/api";
+// export const API_URL = "https://humming-inside.kro.kr/api";
 export default API_URL;
 
 export const WEB_RTC_CONF = {
@@ -43,5 +44,5 @@ export const WEB_RTC_CONF = {
 
 export const USER_MEDIA_CONF = {
     video: true,
-    audio: true,
+    // audio: true,
 }
