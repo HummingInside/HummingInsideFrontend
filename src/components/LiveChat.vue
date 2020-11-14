@@ -50,7 +50,7 @@
             },
             send(message) {
                 if (this.stompClient && this.stompClient.connected) {
-                    const msg = { message: {msg: message}};
+                    const msg = { message: {msg: message, username: this.currentUser.username}};
                     this.stompClient.send("/send/" + this.$route.params.pk + "/chat", JSON.stringify(msg), {});
                 }
             },
@@ -63,7 +63,7 @@
                         this.connected = true;
                         this.stompClient.subscribe("/listen/" + this.$route.params.pk + "/chat", tick => {
                             const msg = {
-                                username: this.currentUser.username,
+                                username: JSON.parse(tick.body).message.username,
                                 content: JSON.parse(tick.body).message.msg
                             }
                             this.chatMessages.push(msg);

@@ -50,6 +50,9 @@
     export default {
         name: 'video-player',
         props: {
+            stream: {
+                defaults: null,
+            },
             start: {
                 type: Number,
                 default: 0
@@ -117,9 +120,9 @@
             }
         },
         beforeDestroy() {
-            if (this.player) {
-                this.dispose()
-            }
+            // if (this.player) {
+            //     this.dispose()
+            // }
         },
         methods: {
             initialize() {
@@ -178,23 +181,11 @@
                     // player readied
                     self.$emit('ready', this)
                 })
-                if('srcObject' in videoOptions){
-
-                }
-                navigator.getUserMedia(
-                    {
-                        video: true,
-                        // audio: true,
-                    },
-                    stream => {
-                        this.player.tech().el().srcObject = stream;
-
-                        // this.player = videojs(this.$refs.videoPlayer, this.options)
-                    },
-                    error => {
-                        alert("비디오, 오디오 스트림 획득에 실패했습니다.");
-                    }
-                );
+                // When the srcObject property is passed,
+                // the srcObject is added directly to the video element.
+                // if('stream' in videoOptions){
+                //     this.player.tech().el().srcObject = videoOptions.stream;
+                // }
             },
             dispose(callback) {
                 if (this.player && this.player.dispose) {
@@ -232,6 +223,9 @@
                         }
                     })
                 }
+            },
+            stream: function () {
+                this.player.tech().el().srcObject = this.stream;
             }
         }
     }

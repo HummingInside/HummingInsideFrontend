@@ -1,16 +1,16 @@
 <template>
-  <base-table v-if="templateId === 'concerts'"  :data="myConcerts"
+  <base-table v-if="templateId === 'concerts'"  :data="data"
               thead-classes="text-primary">
     <template slot-scope="{row}">
       <td>
-        <!--<base-checkbox v-model="row.done">
-        </base-checkbox>-->
         <div class="card-image" v-if="row.imgUrl">
           <img :src="getImage(row.imgUrl)" style="height:110px;">
         </div>
       </td>
       <td class="text-left">
-        <p class="title" style="font-size: 20px;">{{row.title}}</p>
+        <a href="#" v-on:click.prevent="getStatistics(row.id)">
+          <p class="title" style="font-size: 20px;">{{row.title}}</p>
+        </a>
         <p class="text-muted">{{row.startDate}}</p>
       </td>
       <td class="td-actions text-right">
@@ -20,12 +20,10 @@
       </td>
     </template>
   </base-table>
-  <base-table v-else :data="myReservations"
+  <base-table v-else :data="data"
               thead-classes="text-primary">
     <template slot-scope="{row}">
       <td>
-        <!--<base-checkbox v-model="row.done">
-        </base-checkbox>-->
         <div class="card-image" v-if="row.imgUrl">
           <img :src="getImage(row.imgUrl)" style="height:110px;">
         </div>
@@ -34,11 +32,11 @@
         <p class="title" style="font-size: 20px;">{{row.title}}</p>
         <p class="text-muted">{{row.startDate}}</p>
       </td>
-      <td class="td-actions text-right">
+      <!-- <td class="td-actions text-right">
         <base-button type="link" artia-label="edit button">
           <i class="tim-icons icon-pencil"></i>
         </base-button>
-      </td>
+      </td> -->
     </template>
   </base-table>
 </template>
@@ -46,27 +44,30 @@
 
   import BaseButton from '@/components/BaseButton';
   import BaseTable from '@/components/BaseTable';
-  //import BaseCheckbox from '@/components/BaseCheckbox';
-  import { MY_CONCERTS } from "@/store/actions.type";
-  import { mapGetters } from "vuex";
   import { getImage } from "@/common/misc";
+  import {STATISTICS_ONE} from "@/store/actions.type";
 
   export default {
     components: {
       BaseButton,
       BaseTable,
-      //BaseCheckbox
     },
     methods:{
-      getImage
+      getImage,
+      getStatistics:function(concertId){
+        this.$store
+            .dispatch(STATISTICS_ONE,{ concertId: concertId });
+      }
     },
     computed: {
-      ...mapGetters(["myConcerts"]),
-      ...mapGetters(["myReservations"])
     },
-    props:['templateId'],
+    data() {
+      return{
+        concertId : null
+      };
+    },
+    props:['templateId', 'data'],
     created() {
-      this.$store.dispatch(MY_CONCERTS)
     }
   }
 </script>
