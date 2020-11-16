@@ -8,8 +8,8 @@
                     </div>
                 </div>
                 <div style="border-bottom-left-radius: 4px;padding: 15px 25px;">
-                    <p class="font-dark" style="font-size: 18px;font-weight: 600;">Christopher</p>
-                    <p class="font-dark" style="font-size: 14px;font-weight: 600;">Christopher concert in Korea</p>
+                    <p class="font-dark" style="font-size: 18px;font-weight: 600;">{{ concert.performer }}</p>
+                    <p class="font-dark" style="font-size: 14px;font-weight: 600;">{{ concert.description }}</p>
                 </div>
             </div>
             <LiveChat></LiveChat>
@@ -19,10 +19,11 @@
 <script>
     import {BaseInput} from "@/components/index";
     import LiveChat from "../components/LiveChat";
-    import { USER_MEDIA_CONF } from "@/common/config";
     import {videoPlayer} from "../vue-video-player"
     import "../vue-video-player/custom-theme.css"
     import VideoPlayerWrapper from "../components/VideoPlayerWrapper";
+    import {mapGetters} from "vuex";
+    import {FETCH_CONCERT} from "../store/actions.type";
 
     export default {
         components: {
@@ -31,33 +32,22 @@
             BaseInput,
             VideoPlayer: videoPlayer,
         },
-        data() {
-            return {
-                stream: null
-            };
+        methods: {
+            loadConcert() {
+                this.$store.dispatch(FETCH_CONCERT, this.$route.params.pk)
+            },
         },
-        computed:{
+        props: {
+            stream: {
+                required: true,
+            }
         },
-        methods:{
-
-        },
-        beforeDestroy() {
+        computed: {
+            ...mapGetters(['concert'])
         },
         created() {
-        },
-        mounted(){
-            navigator.getUserMedia(
-                USER_MEDIA_CONF,
-                stream => {
-                    this.stream = stream;
-
-                    // this.player = videojs(this.$refs.videoPlayer, this.options)
-                },
-                error => {
-                    alert("비디오, 오디오 스트림 획득에 실패했습니다.");
-                }
-            );
-        },
+            this.loadConcert()
+        }
     }
 </script>
 <style scoped>
