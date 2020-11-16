@@ -12,9 +12,10 @@ import ConcertCreate from "./pages/ConcertCreate";
 import ConcertUpdate from "./pages/ConcertUpdate";
 import SignIn from "./pages/SignIn";
 import SignUp from "./pages/SignUp";
-import LiveConcert from "./pages/LiveConcert";
 import AuthLayout from "@/pages/Layout/AuthLayout";
 import MyPage from "@/pages/MyPage";
+import PerformerLiveChat from "./pages/PerformerLiveChat";
+import AudienceLiveChat from "./pages/AudienceLiveChat";
 
 
 const routes = [
@@ -56,9 +57,14 @@ const routes = [
         component: ConcertUpdate,
       },
       {
-        path: "concerts/:pk/live",
+        path: "concerts/:pk/live/performer",
         name: "Live Concert",
-        component: LiveConcert,
+        component: PerformerLiveChat,
+      },
+      {
+        path: "concerts/:pk/live/audience",
+        name: "Live Concert",
+        component: AudienceLiveChat,
       },
       {
         path: "concerts",
