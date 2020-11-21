@@ -83,7 +83,7 @@
             <template slot="header">
               <div style="text-align: left !important;">
                 <h5 class="card-category">Daily Concert Revenue</h5>
-                <h3 class="card-title"><i class="tim-icons icon-bell-55 text-primary"></i> 763,215</h3>
+                <h3 class="card-title" ><i class="tim-icons icon-bell-55 text-primary"></i>{{greenLineChartTotal}}</h3>
               </div>
             </template>
             <line-chart
@@ -103,7 +103,7 @@
             <template slot="header">
               <div style="text-align: left !important;">
                 <h5 class="card-category">Concert Purchaser Count</h5>
-                <h3 class="card-title"><i class="tim-icons icon-delivery-fast text-info "></i> 3,500€</h3>
+                <h3 class="card-title"><i class="tim-icons icon-delivery-fast text-info "></i>{{blueBarChartTotal}}</h3>
               </div>
             </template>
             <bar-chart
@@ -122,7 +122,7 @@
             <template slot="header">
               <div style="text-align: left !important;">
                 <h5 class="card-category">My Expenditure</h5>
-                <h3 class="card-title"><i class="tim-icons icon-send text-success "></i> 12,100K</h3>
+                <h3 class="card-title"><i class="tim-icons icon-send text-success "></i>{{purpleLineChartTotal}}</h3>
               </div>
             </template>
             <line-chart
@@ -171,12 +171,15 @@ export default {
               "greenLineChartColors",
               "greenLineChartStops",
               "greenLineChartOptions",
+              "greenLineChartTotal",
               "blueBarChartData",
               "blueBarChartStops",
               "blueBarChartOptions",
+              "blueBarChartTotal",
               "purpleLineChartData",
               "purpleLineChartStops",
               "purpleLineChartOptions",
+              "purpleLineChartTotal",
               "isMyPageLoading"
             ]
     ),
