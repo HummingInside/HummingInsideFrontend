@@ -5,13 +5,14 @@ export default API_URL;
 export const WEB_RTC_CONF = {
     iceServers: [
 
-        {url:'stun:stun01.sipphone.com'},
-        {url:'stun:stun.ekiga.net'},
-        {url:'stun:stun.fwdnet.net'},
-        {url:'stun:stun.ideasip.com'},
-        {url:'stun:stun.iptel.org'},
-        {url:'stun:stun.rixtelecom.se'},
-        {url:'stun:stun.schlund.de'},
+        {url:'stun:stun.l.google.com:19302'},
+        {url:'stun:stun1.l.google.com:19302'},
+        {url:'stun:stun2.l.google.com:19302'},
+        {url:'stun:stun3.l.google.com:19302'},
+        {url:'stun:stun4.l.google.com:19302'},
+        {url:'stun:stun.1und1.de:3478'},
+        {url:'stun:stun.gmx.net:3478'},
+
         {url:'stun:stun.l.google.com:19302'},
         {url:'stun:stun1.l.google.com:19302'},
         {url:'stun:stun2.l.google.com:19302'},
@@ -24,10 +25,17 @@ export const WEB_RTC_CONF = {
         {url:'stun:stun.voipstunt.com'},
         {url:'stun:stun.voxgratia.org'},
         {url:'stun:stun.xten.com'},
+        {url:'turn:turn01.hubl.in?transport=udp'},
+        {url:'turn:turn02.hubl.in?transport=tcp'},
         {
             url: 'turn:numb.viagenie.ca',
             credential: 'digh3484',
             username: 'sekyo95@naver.com'
+        },
+        {
+            url: 'turn:numb.viagenie.ca',
+            credential: 'muazkh',
+            username: 'webrtc@live.com'
         },
         {
             url: 'turn:192.158.29.39:3478?transport=udp',
@@ -40,11 +48,31 @@ export const WEB_RTC_CONF = {
             username: '28224511:1379330808'
         },
         {
+            url: 'turn:turn.bistri.com:80',
+            credential: 'homeo',
+            username: 'homeo'
+        },
+        {
+            url: 'turn:turn.anyfirewall.com:443?transport=tcp',
+            credential: 'webrtc',
+            username: 'webrtc'
+        },
+        {
             "urls": [
                 "turn:13.250.13.83:3478?transport=udp"
             ],
             "username": "YzYNCouZM1mhqhmseWk6",
             "credential": "YzYNCouZM1mhqhmseWk6"
+        },
+        {
+            url: 'turn:relay.backups.cz',
+            credential: 'webrtc',
+            username: 'webrtc'
+        },
+        {
+            url: 'turn:relay.backups.cz?transport=tcp',
+            credential: 'webrtc',
+            username: 'webrtc'
         },
 
     ]
