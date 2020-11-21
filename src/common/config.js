@@ -1,8 +1,10 @@
 export const API_URL = "http://localhost:8080/api";
+// export const API_URL = "https://humming-inside.kro.kr/api";
 export default API_URL;
 
 export const WEB_RTC_CONF = {
     iceServers: [
+
         {url:'stun:stun01.sipphone.com'},
         {url:'stun:stun.ekiga.net'},
         {url:'stun:stun.fwdnet.net'},
@@ -36,6 +38,16 @@ export const WEB_RTC_CONF = {
             url: 'turn:192.158.29.39:3478?transport=tcp',
             credential: 'JZEOEt2V3Qb0y27GRntt2u2PAYA=',
             username: '28224511:1379330808'
+        },
+        {
+            url: 'turn:turn.bistri.com:80',
+            credential: 'homeo',
+            username: 'homeo'
+        },
+        {
+            url: 'turn:turn.anyfirewall.com:443?transport=tcp',
+            credential: 'webrtc',
+            username: 'webrtc'
         }
     ]
 }
@@ -43,5 +55,5 @@ export const WEB_RTC_CONF = {
 
 export const USER_MEDIA_CONF = {
     video: true,
-    // audio: true,
+    audio: true,
 }
