@@ -25,8 +25,13 @@ export const WEB_RTC_CONF = {
         {url:'stun:stun.voipstunt.com'},
         {url:'stun:stun.voxgratia.org'},
         {url:'stun:stun.xten.com'},
-        {url:'turn:turn01.hubl.in?transport=udp'},
-        {url:'turn:turn02.hubl.in?transport=tcp'},
+        // {url:'turn:turn01.hubl.in?transport=udp'},
+        // {url:'turn:turn02.hubl.in?transport=tcp'},
+        {
+            url: 'turn:13.125.69.218:3478?transport=tcp',
+            credential: 'root',
+            username: 'sekyo95'
+        },
         {
             url: 'turn:numb.viagenie.ca',
             credential: 'digh3484',
