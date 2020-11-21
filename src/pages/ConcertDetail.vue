@@ -42,14 +42,6 @@
           <div class="col-lg-3 font-weight-bold text-left">Description</div>
           <div class="col-lg-7 text-left desc-content">{{ concert.description }}</div>
         </div>
-        <div class="row desc-row">
-          <div class="col-lg-3 font-weight-bold text-left">HasOwnership</div>
-          <div class="col-lg-7 text-left desc-content">{{ concert.hasOwnership }}</div>
-        </div>
-        <div class="row desc-row">
-          <div class="col-lg-3 font-weight-bold text-left">HasPurchased</div>
-          <div class="col-lg-7 text-left desc-content">{{ concert.hasPurchased }}</div>
-        </div>
       </div>
     </div>
     <div class="row desc-row mt-1">
