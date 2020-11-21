@@ -42,9 +42,9 @@ Vue.use(Datetime)
 
 // Ensure we checked auth before each page load.
 router.beforeEach((to, from, next) =>{
-    if(to.name !== 'sign-in'){
+    if(to.name !== 'sign-in' && to.name !== 'sign-up'){
         Promise.all([store.dispatch(CHECK_AUTH)]).then(next)
-    } else {
+    }else {
         next();
     }
 }
