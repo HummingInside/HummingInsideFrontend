@@ -6,7 +6,7 @@
     import LiveConcert from "./LiveConcert";
     import Stomp from "webstomp-client";
     import SockJS from "sockjs-client";
-    import {API_URL, WEB_RTC_CONF, USER_MEDIA_CONF} from "../common/config";
+    import {API_URL, WEB_RTC_CONF} from "../common/config";
 
     export default {
         name: "AudienceLiveChat",
@@ -15,7 +15,7 @@
             return {
                 stream: null,
                 connection: null,
-                me: '1234',
+                me: Math.random().toString(36).substr(2),
                 sendPath: `/send/${this.$route.params.pk}/`,
                 listenPath: `/listen/${this.$route.params.pk}/`,
             }
