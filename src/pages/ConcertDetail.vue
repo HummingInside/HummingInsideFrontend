@@ -42,33 +42,55 @@
           <div class="col-lg-3 font-weight-bold text-left">Description</div>
           <div class="col-lg-7 text-left desc-content">{{ concert.description }}</div>
         </div>
+        <div class="row desc-row">
+          <div class="col-lg-3 font-weight-bold text-left">HasOwnership</div>
+          <div class="col-lg-7 text-left desc-content">{{ concert.hasOwnership }}</div>
+        </div>
+        <div class="row desc-row">
+          <div class="col-lg-3 font-weight-bold text-left">HasPurchased</div>
+          <div class="col-lg-7 text-left desc-content">{{ concert.hasPurchased }}</div>
+        </div>
       </div>
     </div>
     <div class="row desc-row mt-1">
       <div class="col-lg-12 font-weight-bold">
-        <router-link v-if="concert.status === 'ON-AIR'" to="/">
-          <base-button class="big-button purple-color">
-            Enter
-          </base-button>
-        </router-link>
-        <template v-else>
-<!--          <router-link to="/">-->
-            <base-button
-                @click="pay"
-                class="big-button blue-color">
-              Reservation
+
+        <template v-if="concert.hasOwnership && concert.status === 'UPCOMING'">
+          <router-link :to="{ name: 'live-concert-performer', params: {pk :concert.id} }">
+            <base-button class="big-button purple-color">
+              Start
             </base-button>
-<!--          </router-link>-->
-          <router-link
-              v-if="concert.status !== 'ENDED'
-               && concert.performer === currentUser.username"
-              :to="{ name: 'concert-update', params: {pk :concert.id} }">
+          </router-link>
+          <router-link :to="{ name: 'concert-update', params: {pk :concert.id} }">
             <base-button class="middle-button mint-color">
               Modify
             </base-button>
           </router-link>
         </template>
-        <base-button class="small-button pink-color">🤍</base-button>
+        <template v-else-if="!concert.hasOwnership">
+          <template v-if="concert.status === 'UPCOMING'">
+            <template v-if="!concert.hasPurchased && concert.maxAudience-concert.currentAudience > 0">
+              <base-button
+                  @click="pay"
+                  class="big-button blue-color">
+                Reservation
+              </base-button>
+            </template>
+            <template v-else>
+              <base-button
+                  class="big-button gray-color">
+                Reserved
+              </base-button>
+            </template>
+          </template>
+          <template v-else-if="concert.status === 'ON-AIR' && concert.hasPurchased">
+            <router-link :to="{ name: 'live-concert-audience', params: {pk :concert.id} }">
+              <base-button class="big-button purple-color">
+                Enter
+              </base-button>
+            </router-link>
+          </template>
+        </template>
       </div>
     </div>
   </div>
@@ -163,6 +185,9 @@ export default {
   }
   .purple-color {
     background-color: #ba54f5 !important;
+  }
+  .gray-color {
+    background-color: #928c8c !important;
   }
   .mint-color {
     background-color: #71caa6 !important;
