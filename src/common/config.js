@@ -26,8 +26,8 @@ export const WEB_RTC_CONF = {
         {url:'stun:stun.xten.com'},
         {
             url: 'turn:numb.viagenie.ca',
-            credential: 'muazkh',
-            username: 'webrtc@live.com'
+            credential: 'digh3484',
+            username: 'sekyo95@naver.com'
         },
         {
             url: 'turn:192.158.29.39:3478?transport=udp',
@@ -40,15 +40,13 @@ export const WEB_RTC_CONF = {
             username: '28224511:1379330808'
         },
         {
-            url: 'turn:turn.bistri.com:80',
-            credential: 'homeo',
-            username: 'homeo'
+            "urls": [
+                "turn:13.250.13.83:3478?transport=udp"
+            ],
+            "username": "YzYNCouZM1mhqhmseWk6",
+            "credential": "YzYNCouZM1mhqhmseWk6"
         },
-        {
-            url: 'turn:turn.anyfirewall.com:443?transport=tcp',
-            credential: 'webrtc',
-            username: 'webrtc'
-        }
+
     ]
 }
 
