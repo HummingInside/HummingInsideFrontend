@@ -58,12 +58,12 @@ const routes = [
       },
       {
         path: "concerts/:pk/live/performer",
-        name: "Live Concert",
+        name: "live-concert-performer",
         component: PerformerLiveChat,
       },
       {
         path: "concerts/:pk/live/audience",
-        name: "Live Concert",
+        name: "live-concert-audience",
         component: AudienceLiveChat,
       },
       {

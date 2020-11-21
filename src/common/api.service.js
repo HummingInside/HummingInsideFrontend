@@ -74,7 +74,7 @@ export const ConcertsService = {
         });
     },
     get(pk) {
-        return ApiService.get(CONCERT_PATH, pk);
+        return ApiService.get(CONCERT_PATH, pk)
     },
     create(params) {
         return ApiService.post(CONCERT_PATH, params);
