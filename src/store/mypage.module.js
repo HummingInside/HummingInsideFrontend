@@ -67,6 +67,7 @@ export const state = {
         },
         gradientColors: config.colors.primaryGradient,
         gradientStops: [1, 0.2, 0],
+        total: 0
     },
     blueBarChart: {
         extraOptions: chartConfigs.barChartOptions,
@@ -85,6 +86,7 @@ export const state = {
         },
         gradientColors: config.colors.primaryGradient,
         gradientStops: [1, 0.4, 0],
+        total : 0
     },
     purpleLineChart: {
         extraOptions: chartConfigs.purpleChartOptions,
@@ -109,6 +111,7 @@ export const state = {
         },
         gradientColors: ['rgba(66,134,121,0.15)', 'rgba(66,134,121,0.0)', 'rgba(66,134,121,0)'],
         gradientStops: [1, 0.4, 0],
+        total: 0
     }
 };
 
@@ -143,6 +146,9 @@ const getters = {
     greenLineChartOptions(state){
         return state.greenLineChart.extraOptions;
     },
+    greenLineChartTotal(state){
+        return state.greenLineChart.total;
+    },
     blueBarChartData(state){
         return state.blueBarChart.chartData;
     },
@@ -152,6 +158,9 @@ const getters = {
     blueBarChartOptions(state){
         return state.blueBarChart.extraOptions;
     },
+    blueBarChartTotal(state){
+        return state.blueBarChart.total;
+    },
     purpleLineChartData(state){
         return state.purpleLineChart.chartData;
     },
@@ -160,6 +169,9 @@ const getters = {
     },
     purpleLineChartOptions(state){
         return state.purpleLineChart.extraOptions;
+    },
+    purpleLineChartTotal(state){
+        return state.purpleLineChart.total;
     },
     isMyPageLoading(state){
         return state.isLoading;

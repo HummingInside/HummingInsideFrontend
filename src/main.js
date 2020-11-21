@@ -41,8 +41,13 @@ Vue.use(Notify);
 Vue.use(Datetime)
 
 // Ensure we checked auth before each page load.
-router.beforeEach((to, from, next) =>
-    Promise.all([store.dispatch(CHECK_AUTH)]).then(next)
+router.beforeEach((to, from, next) =>{
+    if(to.name !== 'sign-in'){
+        Promise.all([store.dispatch(CHECK_AUTH)]).then(next)
+    } else {
+        next();
+    }
+}
 );
 
 const vm = new Vue({

@@ -35,6 +35,7 @@ const getters = {
 
 const actions = {
     [LOGIN](context, credentials) {
+
         return new Promise(resolve => {
             ApiService.post("/signin", credentials )
                 .then(({ data }) => {
@@ -74,7 +75,11 @@ const actions = {
                     vm.$router.push({name:"sign-in"});
                 });
         } else {
-            context.commit(PURGE_AUTH);
+            setTimeout(function (){
+                context.commit(PURGE_AUTH);
+                vm.$router.push({name:"sign-in"});
+            }, 1000);
+            alert("로그인이 필요합니다..");
         }
     },
     /*[UPDATE_USER](context, payload) {
@@ -105,6 +110,7 @@ const mutations = {
         state.user = user;
         state.errors = {};
         TokenService.saveToken(state.user.token);
+        ApiService.setHeader();
     },
     [PURGE_AUTH](state) {
         state.isAuthenticated = false;
