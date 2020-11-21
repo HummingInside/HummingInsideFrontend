@@ -179,6 +179,7 @@ const getters = {
 };
 
 function setStatistics(list, index){
+
     state.expStatistics = {};
 
     list.forEach(data => {
@@ -253,16 +254,31 @@ export const mutations = {
 
         state.greenLineChart.chartData.labels = Object.keys(state.expStatistics);
         state.greenLineChart.chartData.datasets[0].data = Object.values(state.expStatistics);
+        state.greenLineChart.total = 0;
+
+        state.greenLineChart.chartData.datasets[0].data.forEach(data => {
+            state.greenLineChart.total += data;
+        });
 
         setStatistics(state.concertRevenue, 2);
 
         state.blueBarChart.chartData.labels = Object.keys(state.expStatistics);
         state.blueBarChart.chartData.datasets[0].data = Object.values(state.expStatistics);
+        state.blueBarChart.total = 0;
+
+        state.blueBarChart.chartData.datasets[0].data.forEach(data => {
+            state.blueBarChart.total += data;
+        });
 
         setStatistics(state.reservations, 3);
 
         state.purpleLineChart.chartData.labels = Object.keys(state.expStatistics);
         state.purpleLineChart.chartData.datasets[0].data = Object.values(state.expStatistics);
+        state.purpleLineChart.total = 0;
+
+        state.purpleLineChart.chartData.datasets[0].data.forEach(data => {
+            state.purpleLineChart.total += data;
+        });
 
         state.isLoading = false;
     },
@@ -273,11 +289,21 @@ export const mutations = {
 
         state.greenLineChart.chartData.labels = Object.keys(state.expStatistics);
         state.greenLineChart.chartData.datasets[0].data = Object.values(state.expStatistics);
+        state.greenLineChart.total = 0;
+
+        state.greenLineChart.chartData.datasets[0].data.forEach(data => {
+            state.greenLineChart.total += data;
+        });
 
         setStatistics(state.concertRevenue, 2);
 
         state.blueBarChart.chartData.labels = Object.keys(state.expStatistics);
         state.blueBarChart.chartData.datasets[0].data = Object.values(state.expStatistics);
+        state.blueBarChart.total = 0;
+
+        state.blueBarChart.chartData.datasets[0].data.forEach(data => {
+            state.blueBarChart.total += data;
+        });
 
         state.isLoading = false;
     }
