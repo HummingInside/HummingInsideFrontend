@@ -7,7 +7,7 @@
         <i class="tim-icons" v-bind:class="status.icon"></i>
         <p class="sidebar-link-text">{{ status.text }}</p>
       </sidebar-link>
-      <hr style="border-color: rgba(255, 255, 255, .45);"/>
+      <!-- <hr style="border-color: rgba(255, 255, 255, .45);"/>
       <sidebar-link to="/d">
         <i class="tim-icons icon-app"></i>
         <template>
@@ -19,7 +19,7 @@
         <template>
           <p class="sidebar-link-text">My Tickets</p>
         </template>
-      </sidebar-link>
+      </sidebar-link> -->
 
       <hr style="border-color: rgba(255, 255, 255, .45);"/>
 
@@ -32,7 +32,7 @@
         </template>
       </sidebar-link>
 
-      <sidebar-link to="/icons">
+      <!-- <sidebar-link to="/icons">
         <i class="tim-icons icon-atom"></i>
         <template>
           <p class="sidebar-link-text">Icons</p>
@@ -73,7 +73,7 @@
         <template>
           <p class="sidebar-link-text">RTL Support</p>
         </template>
-      </sidebar-link>
+      </sidebar-link> -->
     </side-bar>
 
     <div class="main-panel" :data="backgroundColor">
