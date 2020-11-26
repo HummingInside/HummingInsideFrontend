@@ -37,7 +37,7 @@ export default{
 </script>
 
 <style>
-@import url(http://fonts.googleapis.com/earlyaccess/notosanskr.css);
+@import url(https://fonts.googleapis.com/earlyaccess/notosanskr.css);
 
 .badge{
   color: #ffffff;

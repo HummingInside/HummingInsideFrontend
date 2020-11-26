@@ -157,7 +157,7 @@ export default {
 </script>
 
 <style scoped="scss">
-@import url(http://fonts.googleapis.com/earlyaccess/notosanskr.css);
+@import url(https://fonts.googleapis.com/earlyaccess/notosanskr.css);
 
 .content {
   font-family: 'Noto Sans KR', sans-serif;
