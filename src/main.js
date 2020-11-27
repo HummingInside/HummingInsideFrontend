@@ -20,7 +20,8 @@ import { CHECK_AUTH } from "./store/actions.type";
 import ApiService from "./common/api.service";
 
 import 'video.js/dist/video-js.css'
-// import 'vue-video-player/src/custom-theme.css'
+
+import VueGtag from 'vue-gtag'
 
 const router = new VueRouter({
   routes, // short for routes: routes
@@ -39,6 +40,12 @@ Vue.use(GlobalDirectives);
 Vue.use(SideBar);
 Vue.use(Notify);
 Vue.use(Datetime)
+
+Vue.use(VueGtag, {
+    config: {
+        id: 'G-76F7QK6T9K'  // Google Analytics Tracking ID
+    }
+});
 
 // Ensure we checked auth before each page load.
 router.beforeEach((to, from, next) =>{
