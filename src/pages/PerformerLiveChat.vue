@@ -20,10 +20,10 @@
             }
         },
         methods: {
-            printConnection(){
-                console.log(this.connections);
-                setTimeout(this.printConnection, 3000);
-            },
+            // printConnection(){
+            //     // console.log(this.connections);
+            //     setTimeout(this.printConnection, 3000);
+            // },
             connect() {
                 this.stompClient = Stomp.over(new SockJS(API_URL + "/ws"));
                 this.stompClient.connect(
@@ -59,7 +59,6 @@
                     USER_MEDIA_CONF,
                     async stream => {
                         stream.getTracks().forEach(track => connection.addTrack(track, stream));
-                        console.log(this.stream);
                         const answer = await connection.createAnswer();
                         await connection.setLocalDescription(new RTCSessionDescription(answer));
                         this.sendAnswer(answer, data.user);
@@ -106,7 +105,7 @@
 
         },
         mounted(){
-            this.printConnection();
+            // this.printConnection();
         },
         beforeDestroy() {
             this.disconnect();
