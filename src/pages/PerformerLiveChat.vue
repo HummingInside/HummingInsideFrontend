@@ -3,10 +3,9 @@
 </template>
 
 <script>
-    import { USER_MEDIA_CONF } from "@/common/config";
+    import { USER_MEDIA_CONF, API_URL, WEB_RTC_CONF } from "@/common/config";
     import LiveConcert from "./LiveConcert";
     import SockJS from "sockjs-client";
-    import {API_URL, WEB_RTC_CONF} from "../common/config";
     import Stomp from "webstomp-client";
 
     export default {
@@ -21,6 +20,10 @@
             }
         },
         methods: {
+            printConnection(){
+                console.log(this.connections);
+                setTimeout(this.printConnection, 3000);
+            },
             connect() {
                 this.stompClient = Stomp.over(new SockJS(API_URL + "/ws"));
                 this.stompClient.connect(
@@ -45,7 +48,7 @@
 
                 connection.onicecandidate = event => {
                     if(event.candidate) {
-                        this.sendCandidate(event.candidate);
+                        this.sendCandidate(event.candidate, data.user);
                     }
                 };
                 await connection.setRemoteDescription(
@@ -84,6 +87,7 @@
             sendCandidate(candidate, user) {
                 const msg = { message: {user: user, candidate: candidate}};
                 this.stompClient.send(this.sendPath + 'performer_candidate', JSON.stringify(msg), {});
+
             },
 
         },
@@ -99,8 +103,10 @@
                     alert("비디오, 오디오 스트림 획득에 실패했습니다.");
                 }
             );
+
         },
         mounted(){
+            this.printConnection();
         },
         beforeDestroy() {
             this.disconnect();

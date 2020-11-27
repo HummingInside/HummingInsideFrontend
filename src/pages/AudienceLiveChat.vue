@@ -6,7 +6,7 @@
     import LiveConcert from "./LiveConcert";
     import Stomp from "webstomp-client";
     import SockJS from "sockjs-client";
-    import {API_URL, WEB_RTC_CONF} from "../common/config";
+    import {API_URL, WEB_RTC_CONF} from "@/common/config";
 
     export default {
         name: "AudienceLiveChat",
@@ -21,6 +21,10 @@
             }
         },
         methods: {
+            printConnection(){
+                console.log(this.connection);
+                setTimeout(this.printConnection, 3000);
+            },
             connect() {
                 this.stompClient = Stomp.over(new SockJS(API_URL + "/ws"));
                 this.stompClient.connect(
@@ -111,6 +115,7 @@
             this.connect();
         },
         mounted(){
+            this.printConnection();
         },
         beforeDestroy() {
             this.disconnect();
