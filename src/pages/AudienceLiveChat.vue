@@ -21,10 +21,10 @@
             }
         },
         methods: {
-            printConnection(){
-                console.log(this.connection);
-                setTimeout(this.printConnection, 3000);
-            },
+            // printConnection(){
+            //     console.log(this.connection);
+            //     setTimeout(this.printConnection, 3000);
+            // },
             connect() {
                 this.stompClient = Stomp.over(new SockJS(API_URL + "/ws"));
                 this.stompClient.connect(
@@ -115,7 +115,7 @@
             this.connect();
         },
         mounted(){
-            this.printConnection();
+            // this.printConnection();
         },
         beforeDestroy() {
             this.disconnect();
