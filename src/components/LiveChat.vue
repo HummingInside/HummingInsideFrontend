@@ -4,7 +4,7 @@
             <p class="text-center font-dark" style="font-size: 14px; font-weight: 600;margin: 10px;color:#343a40!important">Live Chat</p>
         </div>
         <div style="border-bottom:1px solid rgb(229,229,229);border-top-right-radius: 4px">
-            <p v-if="isPerformer||performerMessage" class=" font-dark" style="font-size: 14px; font-weight: 600;margin: 10px;color:#e66ad2!important">
+            <p v-if="performerMessage" class=" font-dark" style="font-size: 14px; font-weight: 600;margin: 10px;color:#e66ad2!important">
                 <i class="tim-icons icon-pin font-weight-bold"></i> Performer:
                 <span>
                     {{performerMessage}}
@@ -50,9 +50,6 @@
             this.connect();
         },
         mounted() {
-            if(this.isPerformer){
-                this.performerMessage = 'enter message...';
-            }
         },
         updated() {
           this.$refs.messageSection.scrollTop = this.$refs.messageSection.lastElementChild.offsetTop;
@@ -70,6 +67,7 @@
                     let url = "/send/" + this.$route.params.pk + "/chat";
                     if(this.isPerformer){
                         url = "/send/" + this.$route.params.pk + "/notice";
+                        msg['message']['username'] += ' (Performer)';
                     }
                     this.stompClient.send(url, JSON.stringify(msg), {});
                 }

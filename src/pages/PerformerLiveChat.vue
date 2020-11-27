@@ -70,9 +70,11 @@
             },
             listenCandidate(data) {
                 data = JSON.parse(data.body).message;
-                this.connections[data.user].addIceCandidate(
-                    new RTCIceCandidate(data.candidate)
-                ).catch(e=> console.error(e));
+                if(this.connections[data.user]){
+                    this.connections[data.user].addIceCandidate(
+                        new RTCIceCandidate(data.candidate)
+                    ).catch(e=> console.error(e));
+                }
             },
             listenOffer(data) {
                 data = JSON.parse(data.body).message;
