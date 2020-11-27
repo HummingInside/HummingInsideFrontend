@@ -1,5 +1,5 @@
 <template>
-    <LiveConcert :stream="stream"></LiveConcert>
+    <LiveConcert :stream="stream" :isPerformer="true"></LiveConcert>
 </template>
 
 <script>

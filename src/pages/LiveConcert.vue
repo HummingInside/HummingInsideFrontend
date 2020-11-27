@@ -12,7 +12,7 @@
                     <p class="font-dark" style="font-size: 14px;font-weight: 600;">{{ concert.description }}</p>
                 </div>
             </div>
-            <LiveChat></LiveChat>
+            <LiveChat :isPerformer="isPerformer"></LiveChat>
         </div>
     </div>
 </template>
@@ -40,6 +40,9 @@
         props: {
             stream: {
                 required: true,
+            },
+            isPerformer: {
+                default: false,
             }
         },
         computed: {
