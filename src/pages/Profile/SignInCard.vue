@@ -30,8 +30,7 @@
         <base-button type="success" fill v-on:click="onSubmit">Sign In</base-button>
       </div>
       <div class="signup-link">
-        <router-link to="/sign-up" class="text-light"><small>Create new account</small></router-link> /
-        <router-link to="/sign-up" class="text-light"><small>Forget your password?</small></router-link>
+        <router-link to="/sign-up" class="text-light"><small>Create new account</small></router-link>
       </div>
     </template>
   </card>
