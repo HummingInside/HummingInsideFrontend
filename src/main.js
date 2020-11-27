@@ -21,7 +21,7 @@ import ApiService from "./common/api.service";
 
 import 'video.js/dist/video-js.css'
 
-import VueGtag from 'vue-gtag'
+//import VueGtag from 'vue-gtag'
 
 const router = new VueRouter({
   routes, // short for routes: routes
@@ -41,11 +41,11 @@ Vue.use(SideBar);
 Vue.use(Notify);
 Vue.use(Datetime)
 
-Vue.use(VueGtag, {
+/*Vue.use(VueGtag, {
     config: {
         id: 'G-76F7QK6T9K'  // Google Analytics Tracking ID
     }
-});
+});*/
 
 // Ensure we checked auth before each page load.
 router.beforeEach((to, from, next) =>{
