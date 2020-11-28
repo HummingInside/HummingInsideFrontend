@@ -103,6 +103,12 @@ export default {
     dateFormat,
     getImage,
     pay(){
+      if(this.concert.price === 0){
+        ConcertsService.reserve(this.$route.params.pk)
+        alert('Payment has been completed.\nCheck it out in My Tickets Page.');
+        this.$router.push({ name: "concert-list" })
+        return;
+      }
       const IMP = window.IMP;
       IMP.init('imp29667601');
 
