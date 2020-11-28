@@ -1,4 +1,5 @@
 // export const API_URL = "http://localhost:8080/api";
+//export const API_URL = "https://localhost/api";
 export const API_URL = "https://humming-inside.kro.kr/api";
 export default API_URL;
 
