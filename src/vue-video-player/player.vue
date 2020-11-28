@@ -1,6 +1,6 @@
 <template>
     <div class="video-player" v-if="reseted">
-        <video class="video-js" ref="video">
+        <video class="video-js" ref="video" loop>
             <track v-for="crtTrack in trackList" :kind="crtTrack.kind" :label="crtTrack.label" :src="crtTrack.src" :srcLang="crtTrack.srcLang" :default="crtTrack.default"/>
         </video>
     </div>
