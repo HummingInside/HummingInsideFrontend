@@ -70,7 +70,7 @@ const actions = {
                     context.commit(SET_AUTH, data);
                 })
                 .catch(() => {
-                    alert("로그아웃 되었습니다. 다시 로그인해주세요.");
+                    alert("Login is required");
                     context.commit(PURGE_AUTH);
                     vm.$router.push({name:"sign-in"});
                 });
@@ -79,7 +79,7 @@ const actions = {
                 context.commit(PURGE_AUTH);
                 vm.$router.push({name:"sign-in"});
             }, 1000);
-            alert("로그인이 필요합니다..");
+            alert("Login is required");
         }
     },
     /*[UPDATE_USER](context, payload) {

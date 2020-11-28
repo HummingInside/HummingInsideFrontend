@@ -31,6 +31,7 @@
                     frame => {
                         this.stompClient.subscribe(this.listenPath + 'offer', this.listenOffer);
                         this.stompClient.subscribe(this.listenPath + 'audience_candidate', this.listenCandidate);
+                        this.sendPerformerEnter();
                     },
                     error => {
                         console.log(error);
@@ -38,8 +39,12 @@
                 );
             },
             disconnect() {
+                this.sendPerformerOut();
                 if (this.stompClient) {
                     this.stompClient.disconnect();
+                }
+                for(let connection in this.connections) {
+                    this.connections[connection].close();
                 }
             },
             async answer(data) {
@@ -88,7 +93,14 @@
             sendCandidate(candidate, user) {
                 const msg = { message: {user: user, candidate: candidate}};
                 this.stompClient.send(this.sendPath + 'performer_candidate', JSON.stringify(msg), {});
-
+            },
+            sendPerformerEnter() {
+                const msg = { message: {pk: this.$route.params.pk + ''}};
+                this.stompClient.send(this.sendPath + 'performer/enter', JSON.stringify(msg), {});
+            },
+            sendPerformerOut() {
+                const msg = { message: {pk: this.$route.params.pk + ''}};
+                this.stompClient.send(this.sendPath + 'performer/out', JSON.stringify(msg), {});
             },
 
         },
@@ -111,7 +123,15 @@
         },
         beforeDestroy() {
             this.disconnect();
-        }
+        },
+        beforeRouteLeave(to, from, next) {
+            const answer = window.confirm('Do you really want to leave? This concert will be end!')
+            if (answer) {
+                next()
+            } else {
+                next(false)
+            }
+        },
     }
 </script>
 

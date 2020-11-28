@@ -47,6 +47,9 @@
                 if (this.stompClient) {
                     this.stompClient.disconnect();
                 }
+                if (this.connection) {
+                    this.connection.close();
+                }
             },
             async call(){
                 const connection = new RTCPeerConnection(WEB_RTC_CONF);
@@ -57,6 +60,13 @@
                         this.sendCandidate(event.candidate);
                     }
                 };
+
+                connection.oniceconnectionstatechange = () => {
+                    if(connection.iceConnectionState === 'disconnected') {
+                        alert('The connection with the performer has ended.');
+                        this.$router.push({ name: "concert-list" });
+                    }
+                }
 
                 connection.ontrack = ({streams: [stream]}) => {
                     this.stream = stream;
