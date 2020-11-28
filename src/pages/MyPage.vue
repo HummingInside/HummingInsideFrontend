@@ -83,7 +83,7 @@
             <template slot="header">
               <div style="text-align: left !important;">
                 <h5 class="card-category">Daily Concert Revenue</h5>
-                <h3 class="card-title" ><i class="tim-icons icon-bell-55 text-primary"></i>{{greenLineChartTotal}}</h3>
+                <h3 class="card-title" ><i class="tim-icons icon-coins text-primary"></i>{{greenLineChartTotal}}</h3>
               </div>
             </template>
             <line-chart
@@ -103,7 +103,7 @@
             <template slot="header">
               <div style="text-align: left !important;">
                 <h5 class="card-category">Concert Purchaser Count</h5>
-                <h3 class="card-title"><i class="tim-icons icon-delivery-fast text-info "></i>{{blueBarChartTotal}}</h3>
+                <h3 class="card-title"><i class="tim-icons icon-single-02 text-info "></i>{{blueBarChartTotal}}</h3>
               </div>
             </template>
             <bar-chart
@@ -122,7 +122,7 @@
             <template slot="header">
               <div style="text-align: left !important;">
                 <h5 class="card-category">My Expenditure</h5>
-                <h3 class="card-title"><i class="tim-icons icon-send text-success "></i>{{purpleLineChartTotal}}</h3>
+                <h3 class="card-title"><i class="tim-icons icon-paper text-success "></i>{{purpleLineChartTotal}}</h3>
               </div>
             </template>
             <line-chart
