@@ -33,7 +33,7 @@
               </button>
             </router-link>
           </li>
-          <li class="search-bar input-group"  @click="searchModalVisible = true">
+          <!--<li class="search-bar input-group"  @click="searchModalVisible = true">
             <button class="btn btn-link" id="search-button" data-toggle="modal" data-target="#searchModal"><i class="tim-icons icon-zoom-split"></i>
               <span class="d-lg-none d-md-block">Search</span>
             </button>
@@ -44,7 +44,7 @@
                  :centered="false"
                  :show-close="true">
             <input slot="header" v-model="searchQuery" type="text" class="form-control" id="inlineFormInputGroup" placeholder="SEARCH">
-          </modal>
+          </modal> -->
 <!--          <drop-down>-->
 <!--            <a href="javascript:void(0)" data-toggle="dropdown" class="dropdown-toggle nav-link">-->
 <!--              <div class="notification d-none d-lg-block d-xl-block"></div>-->
@@ -72,8 +72,7 @@
                   </p>
                 </a>
                 <ul class="dropdown-menu dropdown-navbar">
-                  <li class="nav-link"><a href="#/my-page" class="nav-item dropdown-item">MY page</a></li>
-                  <li class="nav-link"><a href="javascript:void(0)" class="nav-item dropdown-item">Settings</a></li>
+                  <li class="nav-link"><a @click="myPage" class="nav-item dropdown-item">MY page</a></li>
                   <li class="dropdown-divider"></li>
                   <li class="nav-link"><a @click="logout" class="nav-item dropdown-item">Log out</a></li>
                 </ul>
@@ -86,17 +85,11 @@
 <script>
 
 import DropDown from "@/components/Dropdown.vue";
-import Modal from "@/components/Modal.vue";
-import {
-  SidebarPlugin
-} from "@/components/index";
-import {LOGIN, LOGOUT} from "@/store/actions.type";
+import {LOGOUT} from "@/store/actions.type";
 
   export default{
     components:{
       DropDown,
-      Modal,
-      SidebarPlugin
     },
     data() {
       return {
@@ -116,6 +109,9 @@ import {LOGIN, LOGOUT} from "@/store/actions.type";
         this.$store
             .dispatch(LOGOUT)
             .then(() => this.$router.push({ name: "sign-in" }));
+      },
+      myPage:function (){
+        this.$router.push({ name: "my-page" })
       }
     },
     computed:{
