@@ -61,12 +61,20 @@
         </template>
         <template v-else-if="!concert.hasOwnership">
           <template v-if="concert.status === 'UPCOMING'">
-            <template v-if="!concert.hasPurchased && concert.maxAudience-concert.currentAudience > 0">
-              <base-button
-                  @click="pay"
-                  class="big-button blue-color">
-                Reservation
-              </base-button>
+            <template v-if="!concert.hasPurchased">
+              <template v-if="concert.maxAudience-concert.currentAudience > 0">
+                <base-button
+                        @click="pay"
+                        class="big-button blue-color">
+                  Reservation
+                </base-button>
+              </template>
+              <template v-else>
+                <base-button
+                        class="big-button gray-color">
+                  Already Full
+                </base-button>
+              </template>
             </template>
             <template v-else>
               <base-button
@@ -120,10 +128,10 @@ export default {
       }, rsp => {
         if (rsp.success) {
           ConcertsService.reserve(this.$route.params.pk)
-          alert('Payment has been completed.\nCheck it out in My Tickets Page.');
+          alert('Reservation has been completed.\nCheck it out in My Tickets Page.');
           this.$router.push({ name: "concert-list" })
         } else {
-          alert('Payment failed. User canceled payment.');
+          alert('Reservation failed. User canceled payment.');
         }
       });
     }
@@ -133,6 +141,7 @@ export default {
   },
   created() {
     this.loadConcert()
+    console.log(this.concert)
   }
 }
 </script>
