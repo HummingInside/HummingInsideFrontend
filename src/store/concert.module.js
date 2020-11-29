@@ -31,8 +31,8 @@ const initialState = {
     concert: {
         title: "",
         category: {
-          id: 50,
-          name: ""
+            id: 50,
+            name: ""
         },
         hasOwnership: false,
         hasPurchased: false,
@@ -42,7 +42,7 @@ const initialState = {
         runningTime: "",
         description: "",
         currentAudience: 0,
-        maxAudience: 0,
+        maxAudience: 100,
         price: 0,
         likesCount: 0,
         status: "UPCOMING",
@@ -55,6 +55,38 @@ const initialState = {
     isLoading: true,
     imgFile: "",
     imgPreview: ""
+}
+
+const getInitialState = () => {
+    return {
+        concert: {
+            title: "",
+            category: {
+                id: 50,
+                name: ""
+            },
+            hasOwnership: false,
+            hasPurchased: false,
+            performer: "",
+            startDate: "",
+            endDate: "",
+            runningTime: "",
+            description: "",
+            currentAudience: 0,
+            maxAudience: 100,
+            price: 0,
+            likesCount: 0,
+            status: "UPCOMING",
+            img: "",
+            time: 0
+        },
+        concerts: [],
+        concertsCount: 0,
+        categories: [],
+        isLoading: true,
+        imgFile: "",
+        imgPreview: ""
+    }
 }
 
 const getters = {
@@ -116,8 +148,7 @@ export const actions = {
             price: concert.price,
             imgUrl: concert.img
         }
-        ConcertsService.create(param)
-        commit(RESET_STATE)
+        return ConcertsService.create(param)
     },
     async [UPDATE_CONCERT]({ commit, state }, pk){
         if(state.imgFile !== ''){
@@ -175,9 +206,8 @@ export const mutations = {
         state.isLoading = false
     },
     [RESET_STATE](state){
-        for (let f in state){
-            Vue.set(state, f, initialState[f])
-        }
+        Object.assign(state, getInitialState())
+        console.log(state.concert)
     },
     [SET_IMAGE](state, imgUrl){
         state.imgFile = imgUrl

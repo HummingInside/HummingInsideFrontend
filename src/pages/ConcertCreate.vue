@@ -26,9 +26,7 @@ export default {
       store.dispatch(RESET_CONCERT)
     },
     createConcert(){
-      store.dispatch(CREATE_CONCERT)
-      store.dispatch(FETCH_CONCERTS)
-          .then(() => this.$router.push({ name: "concert-list" }))
+      store.dispatch(CREATE_CONCERT).then(() => this.$router.push({ name: "concert-list" }))
     },
   },
   created() {
